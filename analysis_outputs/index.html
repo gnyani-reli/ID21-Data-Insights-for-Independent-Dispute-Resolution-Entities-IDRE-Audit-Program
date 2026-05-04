@@ -30,7 +30,7 @@ body { font-family: 'Inter', -apple-system, sans-serif; background: #f4f6f8; col
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  padding: 14px 22px 11px;
+  padding: 19px 22px 16px;
   font-size: 13px;
   font-family: inherit;
   font-weight: 500;
@@ -323,13 +323,14 @@ html, body, body * { font-size: 15px !important; }
 
 /* KPI strip */
 #tab-l4 .l4-kpi-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:22px; }
-#tab-l4 .l4-kpi { background:var(--l4-surface); border:1px solid #e2e6ed; border-top:3px solid #dfe1e2; border-radius:11px; padding:20px 24px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+#tab-l4 .l4-kpi { background:var(--l4-surface); border:1px solid #e2e6ed; border-top:3px solid #dfe1e2; border-radius:11px; padding:20px 24px; display:flex; flex-direction:column; justify-content:flex-start; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
 #tab-l4 .l4-k-blue { border-top-color: var(--l4-blue); }
 #tab-l4 .l4-k-red { border-top-color: var(--l4-red); }
 #tab-l4 .l4-k-amber { border-top-color: var(--l4-amber); }
 #tab-l4 .l4-k-green { border-top-color: var(--l4-green); }
-#tab-l4 .l4-kpi-desc { font-size:13px; font-weight:600; color:#1a2332; line-height:1.45; margin-bottom:10px; }
-#tab-l4 .l4-kpi-val { font-size:32px; font-weight:700; line-height:1; margin-bottom:4px; }
+#tab-l4 .l4-kpi-desc { font-size:13px; font-weight:600; color:#1a2332; line-height:1.45; margin-bottom:6px; order:1; }
+#tab-l4 .l4-kpi .kpi-context { display:block !important; color:#5a6475; line-height:1.45; margin:0 0 10px; order:2; }
+#tab-l4 .l4-kpi-val { font-size:32px; font-weight:700; line-height:1; margin-bottom:4px; order:3; }
 #tab-l4 .l4-k-blue .l4-kpi-val { color:var(--l4-blue); }
 #tab-l4 .l4-k-red .l4-kpi-val { color:var(--l4-red); }
 #tab-l4 .l4-k-amber .l4-kpi-val { color:var(--l4-amber); }
@@ -593,7 +594,7 @@ html, body, body * { font-size: 15px !important; }
   <div class="header">
     <div class="header-top">
       <div>
-        <h1>Plan non-response rates are elevated at scale; 354 providers show a pattern of disproportionate default-win outcomes</h1>
+        <h1>Plan non-response rates are elevated at scale; 47 providers show a statistically notable default-win concentration pattern</h1>
       </div>
       <div class="filters">
         <div class="filter-group">
@@ -616,16 +617,16 @@ html, body, body * { font-size: 15px !important; }
     </div>
   </div>
 
-  <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and do not represent findings of fraud, non-compliance, or wrongdoing.</p>
+  <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
   <div class="insight">
-  In <strong>more than 1 out of every 4 disputes</strong>, health plans don&#39;t respond, and when that happens, the provider automatically wins. In this dataset, <strong>253 providers</strong> won more than <strong>60%</strong> of their disputes through plan non-response. <strong>Key observation:</strong> plans that fail to respond also pay providers significantly more on average.
+  In <strong>more than 1 out of every 4 disputes</strong>, health plans do not respond, and the dispute can close in the provider&#39;s favor through default procedures. In this dataset, <strong>47 providers</strong> exceeded a <strong>60%</strong> default-win share. <strong>Key observation:</strong> plan non-response aligns with materially higher average payment outcomes and serves as a compliance-monitoring trigger for further review.
   </div>
 
   <!-- KPIs -->
   <div class="kpi-strip">
     <div class="kpi k-blue">
-      <div class="kpi-lbl">Flagged providers</div>
+      <div class="kpi-lbl">Review-flagged providers</div>
       <div class="kpi-desc" style="margin-bottom:8px;">Providers winning 60%+ of disputes via plan non-response (min. 10 wins, 50 disputes)</div>
       <div class="kpi-val" id="kpiFlaggedProviders">—</div>
       <p class="kpi-context">providers meeting the default-win share rule in this view (10+ wins, 50+ disputes)</p>
@@ -648,13 +649,13 @@ html, body, body * { font-size: 15px !important; }
   <div class="two-col paired-row">
     <div class="card">
       <div class="card-header">
-        <div class="card-title">Providers winning more than 60% of total disputes because plan did not respond</div>
-        <div class="card-sub">Showing top 20 flagged providers by default-win share. A "default win" means the plan never responded to the dispute.</div>
+        <div class="card-title">Providers with more than 60% default-win share due to plan non-response</div>
+        <div class="card-sub">Showing top 20 review-flagged providers by default-win share. A "default win" means the plan never responded to the dispute.</div>
       </div>
       <div class="card-body">
         <div class="legend-row">
-          <span class="li"><span class="dot" style="background:rgba(140,152,163,0.45);border:1.5px solid #8C98A3;"></span>Not flagged</span>
-          <span class="li"><span class="dot" style="background:#1a4d8f;"></span>Flagged 60–89%</span>
+          <span class="li"><span class="dot" style="background:rgba(140,152,163,0.45);border:1.5px solid #8C98A3;"></span>Baseline range</span>
+          <span class="li"><span class="dot" style="background:#1a4d8f;"></span>Review signal 60–89%</span>
           <span class="li"><span class="dot" style="background:#9a7022;"></span>Elevated ≥90%</span>
           <span class="li"><span class="dot" style="background:#c45c1a;"></span>High ≥95%</span>
           <span class="li"><span class="dot" style="background:#c0392b;"></span>Critical ≥98%</span>
@@ -663,19 +664,19 @@ html, body, body * { font-size: 15px !important; }
         <div class="scatter-wrap"><svg id="svgProv" width="100%" height="100%"></svg></div>
         <div class="callout" id="providerTierSummary">Loading provider tiers…</div>
         <div class="criteria-box">
-          <strong>Provider flag criteria</strong>
+          <strong>Provider review criteria</strong>
           <ul>
             <li>Each dot represents one provider.</li>
             <li>Default win share = won by default / total disputes.</li>
-            <li>Flagged at 60%+ default win share (line shown at 60%).</li>
+            <li>Review signal at 60%+ default win share (line shown at 60%).</li>
           </ul>
         </div>
       </div>
     </div>
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
       <div class="card-header" style="flex-shrink:0;">
-        <div class="card-title">Top providers by default-win share</div>
-        <div class="card-sub">All flagged providers sorted by default-win share — scroll within this panel to see all. Flagged = 60%+ share with 10+ wins and 50+ disputes.</div>
+        <div class="card-title">Providers with highest default-win share</div>
+        <div class="card-sub">All review-flagged providers sorted by default-win share — scroll within this panel to see all. Review flag = 60%+ share with 10+ wins and 50+ disputes.</div>
       </div>
       <div class="card-body" style="padding:0;overflow-y:scroll;overflow-x:hidden;overscroll-behavior:contain;max-height:calc(100vh - 260px);">
         <table class="data-table centered-table fit-table" style="width:100%;">
@@ -703,8 +704,8 @@ html, body, body * { font-size: 15px !important; }
     </div>
   </div>
   <div class="two-col" style="margin-top:-8px;margin-bottom:18px;gap:10px;">
-    <p class="chart-insight chart-insight-plain" style="margin:0;">When a health plan misses the federal IDR deadline, the dispute can close in the provider&#39;s favor without a hearing — that&#39;s a <strong>default win</strong>. Each dot is one provider: left-to-right is how many disputes they were in; up-and-down is what <strong>share of their wins</strong> came from the plan not responding (not from a merits decision).<br><br>Dots <strong>above the 60% line</strong> stand out because most of those wins are driven by <strong>plan silence</strong>, not adjudication — especially when the dot is also far to the right (high dispute volume).</p>
-    <p class="chart-insight chart-insight-plain" style="margin:0;">This panel ranks every <strong>flagged</strong> provider by default-win share — of all their disputes, how many ended because the plan never answered (subject to minimum wins and dispute counts).<br><br><strong>Rank order</strong> surfaces providers with the highest default-win share at scale — a pattern that warrants further review alongside other indicators. Hover a row to see the full legal entity name.</p>
+    <p class="chart-insight chart-insight-plain" style="margin:0;">When a health plan misses the federal IDR deadline, the dispute can close in the provider&#39;s favor without a hearing — a <strong>default win</strong>. Each dot is one provider: left-to-right is dispute volume; up-and-down is the <strong>share of wins</strong> attributable to plan non-response rather than merits decisions.<br><br>Dots <strong>above the 60% line</strong> indicate elevated default-driven outcomes, particularly when combined with high volume, and should be treated as monitoring signals for follow-up review.</p>
+    <p class="chart-insight chart-insight-plain" style="margin:0;">This panel ranks every <strong>review-flagged</strong> provider by default-win share — the proportion of disputes that ended because the plan did not respond (subject to minimum wins and dispute counts).<br><br><strong>Rank order</strong> helps prioritize follow-up by highlighting high-share, high-volume patterns alongside other monitoring indicators. Hover a row to see the full legal entity name.</p>
   </div>
 
   <!-- ROW 2: Plan Scatter + Plan Table -->
@@ -716,7 +717,7 @@ html, body, body * { font-size: 15px !important; }
       </div>
       <div class="card-body">
         <div class="legend-row">
-          <span class="li"><span class="dot" style="background:rgba(140,152,163,0.45);border:1.5px solid #8C98A3;"></span>Not flagged (&lt;40%)</span>
+          <span class="li"><span class="dot" style="background:rgba(140,152,163,0.45);border:1.5px solid #8C98A3;"></span>Baseline range (&lt;40%)</span>
           <span class="li"><span class="dot" style="background:#9a7022;"></span>Elevated ≥40%</span>
           <span class="li"><span class="dot" style="background:#c45c1a;"></span>High ≥60%</span>
           <span class="li"><span class="dot" style="background:#c0392b;"></span>Critical ≥80%</span>
@@ -724,7 +725,7 @@ html, body, body * { font-size: 15px !important; }
         <div class="scatter-wrap"><svg id="svgPlan" width="100%" height="100%"></svg></div>
         <div class="callout" id="planFlagSummary">Loading plan risk summary…</div>
         <div class="criteria-box">
-          <strong>Plan flag criteria</strong>
+          <strong>Plan review criteria</strong>
           <ul>
             <li>Each dot represents one plan.</li>
             <li>Default loss rate = lost by default / total disputes.</li>
@@ -737,7 +738,7 @@ html, body, body * { font-size: 15px !important; }
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
       <div class="card-header" style="flex-shrink:0;">
         <div class="card-title">Plans most exposed to default losses</div>
-        <div class="card-sub">All flagged plans sorted by default loss rate — scroll within this panel to see all. Flagged = 40%+ loss rate with 50+ disputes.</div>
+        <div class="card-sub">All review-flagged plans sorted by default loss rate — scroll within this panel to see all. Review flag = 40%+ loss rate with 50+ disputes.</div>
       </div>
       <div class="card-body" style="padding:0;overflow-y:scroll;overflow-x:hidden;overscroll-behavior:contain;max-height:calc(100vh - 260px);">
         <table class="data-table centered-table fit-table" style="width:100%;">
@@ -766,7 +767,7 @@ html, body, body * { font-size: 15px !important; }
   </div>
   <div class="two-col" style="margin-top:-8px;margin-bottom:18px;gap:10px;">
     <p class="chart-insight chart-insight-plain" style="margin:0;">Each dot is one <strong>health plan</strong>. Left-to-right is how many disputes involved that plan; up-and-down is what share of those disputes the plan <strong>lost because it never responded</strong> (default loss rate). Dot color shows severity tiers starting at 40%.<br><br>Plans <strong>high and to the right</strong> combine large volume with a high default-loss rate, so many cases exit without the plan engaging IDR — a pattern that is statistically unusual at scale relative to low-volume plans and warrants further review.</p>
-    <p class="chart-insight chart-insight-plain" style="margin:0;">This table sorts plans by default-loss rate among plans with enough disputes to compare fairly — who forfeits the most share of their portfolio to silence.<br><br>Leaders on this list include <strong>national carriers</strong> where uncontested defaults still move large dollar volumes; the ranking highlights where plan-side response timing is inconsistent with expected patterns beyond a single national average.</p>
+    <p class="chart-insight chart-insight-plain" style="margin:0;">This table sorts plans by default-loss rate among plans with enough disputes to compare fairly.<br><br>Higher-ranked entries, including <strong>national carriers</strong>, indicate where uncontested defaults represent sizable volume and where response-timing controls may warrant additional compliance review.</p>
   </div>
 
   <!-- BAR CHARTS ROW -->
@@ -845,10 +846,10 @@ html, body, body * { font-size: 15px !important; }
   </div>
 </div>
 
-<p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and do not represent findings of fraud, non-compliance, or wrongdoing.</p>
+<p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
 <div class="l4-insight">
-  In Q1-Q2 2025, <strong>10,453 providers</strong> charged <strong>6 times or more</strong> the federally set benchmark rate for out-of-network emergency care and won most of their disputes. Cross-checking against the Medicare fee schedule confirmed that <strong>619 providers</strong> remain extreme by both standards simultaneously, which is inconsistent with a QPA-only explanation for the full distribution. <strong>Key observation:</strong> the single most extreme claim on record was billed at <strong>3,857,500 times</strong> the expected rate.
+  In Q1-Q2 2025, <strong>10,453 providers</strong> submitted offers at <strong>6 times or more</strong> the federal benchmark rate for out-of-network emergency care, with high provider-favorable outcome rates in this extract. Cross-checking against the Medicare fee schedule identified <strong>619 providers</strong> with elevated values on both benchmarks, suggesting the full distribution is not explained by QPA level alone. <strong>Key observation:</strong> the highest observed claim in this period was billed at <strong>3,857,500 times</strong> the benchmark rate.
 </div>
 
 <div class="l4-kpi-strip">
@@ -858,19 +859,19 @@ html, body, body * { font-size: 15px !important; }
     <p class="kpi-context">providers who billed at least 6× the federal benchmark</p>
   </div>
   <div class="l4-kpi l4-k-red">
-    <div class="l4-kpi-desc">Total disputed claims submitted at extreme rates — the majority of which these providers won</div>
+    <div class="l4-kpi-desc">Total disputed claims submitted at elevated benchmark multiples, with high provider-favorable outcomes in this extract</div>
     <div class="l4-kpi-val" id="kpi2">842,565</div>
     <p class="kpi-context">disputed claims filed at extreme rates</p>
   </div>
   <div class="l4-kpi l4-k-green">
-    <div class="l4-kpi-desc">Providers extreme against the Medicare fee schedule in the same period — a pattern inconsistent with a low benchmark as the sole explanation</div>
+    <div class="l4-kpi-desc">Providers elevated against the Medicare fee schedule in the same period — a pattern not fully explained by a low benchmark alone</div>
     <div class="l4-kpi-val" id="kpi5">619</div>
-    <p class="kpi-context">providers flagged as outliers against both federal and Medicare rates</p>
+    <p class="kpi-context">providers identified as dual-benchmark outliers against both federal and Medicare rates</p>
   </div>
   <div class="l4-kpi l4-k-amber">
-    <div class="l4-kpi-desc">The most extreme individual claim on record in Q1–Q2 2025</div>
+    <div class="l4-kpi-desc">The highest individual benchmark multiple observed in Q1–Q2 2025</div>
     <div class="l4-kpi-val" id="kpi3">3,857,500×</div>
-    <p class="kpi-context">the single most extreme bill found in the dataset</p>
+    <p class="kpi-context">the highest individual billed multiple observed in the dataset</p>
   </div>
 </div>
 
@@ -885,17 +886,19 @@ html, body, body * { font-size: 15px !important; }
 
       <div class="risk-exec-chart-row">
         <div class="risk-exec-chart-main">
-          <h3 class="risk-exec-chart-heading">Billing multiple vs. dispute win rate</h3>
+          <h3 class="risk-exec-chart-heading">Most extreme providers - ranked by average overcharge multiple</h3>
+          <p class="risk-exec-chart-subhead">Bar length = how far above the federal QPA benchmark a provider typically bills. Win rate % shown on each bar.</p>
           <div class="risk-matrix-scatter-canvas-wrap risk-exec-canvas">
             <canvas id="riskMatrixScatter"></canvas>
           </div>
           <div id="riskScatterEmpty" class="risk-exec-empty" style="display:none;">No matching providers for current filters.</div>
+          <p class="risk-exec-chart-foot">Each bar is one provider ranked by how far the median charge exceeds the federal QPA benchmark - a bar at 100× means the median offer is 100 times the benchmark in the data. The percentage on each bar is dispute win rate, which is analytically separate from billing multiples. Providers with very high multiples and high win rates represent elevated financial exposure in the model and may warrant follow-up sampling for payment integrity.</p>
         </div>
       </div>
 
       <div class="risk-exec-split">
         <div class="risk-exec-table-block">
-          <div class="risk-exec-table-heading">Highest Priority Providers</div>
+      <div class="risk-exec-table-heading">Providers for Priority Compliance Review</div>
           <div class="risk-exec-table-shell">
             <table class="risk-exec-table">
               <thead>
@@ -913,7 +916,7 @@ html, body, body * { font-size: 15px !important; }
       </div>
 
       <div class="risk-exec-takeaway" role="note">
-        <p>A small set of providers consistently appear in the highest combined billing and win rate range, making them the most relevant candidates for targeted audit review.</p>
+        <p>A small set of providers consistently appears in the highest combined billing and win-rate range, indicating a focused group for targeted compliance review and case-level validation.</p>
       </div>
 
     </div>
@@ -935,7 +938,7 @@ html, body, body * { font-size: 15px !important; }
       background: #fff;
     }
     .risk-exec-title {
-      font-size: clamp(17px, 1.35vw, 20px) !important;
+      font-size: 15px !important;
       font-weight: 700 !important;
       color: #0f2744 !important;
       letter-spacing: -0.02em;
@@ -957,30 +960,54 @@ html, body, body * { font-size: 15px !important; }
     .risk-exec-chart-row {
       display: flex;
       justify-content: center;
-      padding: 18px 22px 16px;
+      padding: 14px 16px 14px;
       align-items: start;
-      border-bottom: 1px solid #eef1f5;
+      border-bottom: none;
     }
     @media (max-width: 820px) {
       .risk-exec-chart-row { grid-template-columns: 1fr; }
     }
     .risk-exec-chart-heading {
-      margin: 0 0 10px;
-      font-size: clamp(13px, 1.1vw, 15px);
+      margin: 0 0 2px;
+      font-size: 15px;
       font-weight: 700;
       color: #0f2744;
     }
+    .risk-exec-chart-subhead {
+      margin: 0;
+      font-size: 12px;
+      color: #5b6472;
+      line-height: 1.45;
+    }
+    .risk-exec-readline {
+      margin: 2px 0 10px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1f6fb2;
+    }
     .risk-exec-chart-main {
-      width: min(74%, 900px);
+      width: min(96%, 1280px);
       min-width: 0;
     }
     .risk-exec-canvas {
-      height: clamp(230px, 30vh, 320px) !important;
-      min-height: 230px !important;
+      height: clamp(420px, 52vh, 620px) !important;
+      min-height: 420px !important;
       margin-top: 0;
-      border: 1px solid #e8ecf1;
+      border: 1px solid #e5e7eb;
       border-radius: 8px;
       background: #fff;
+    }
+    .risk-exec-split,
+    .risk-exec-takeaway {
+      display: none !important;
+    }
+    .risk-exec-chart-foot {
+      margin: 10px 0 0;
+      padding: 10px 0 0;
+      border-top: 1px solid #edf1f5;
+      font-size: 12px;
+      color: #4b5565;
+      line-height: 1.5;
     }
     .risk-exec-empty {
       margin-top: 10px;
@@ -1104,7 +1131,7 @@ html, body, body * { font-size: 15px !important; }
 
   <div class="l4-card l4-card-flex">
     <div class="l4-card-header">
-      <div class="l4-card-title">States with the most extreme claims — volume vs. severity</div>
+      <div class="l4-card-title">States with the highest observed claim multiples — volume vs. severity</div>
     </div>
     <div class="l4-card-body-flex">
       <div class="l4-canvas-wrap l4-canvas-flex"><canvas id="stateCombo"></canvas></div>
@@ -1113,7 +1140,7 @@ html, body, body * { font-size: 15px !important; }
 
   <div class="l4-card l4-card-flex">
     <div class="l4-card-header">
-      <div class="l4-card-title">Highest-risk provider–plan pairs by overcharge magnitude</div>
+      <div class="l4-card-title">Provider-plan pairs with highest benchmark-multiple magnitude</div>
     </div>
     <div class="l4-card-body-flex">
       <div class="l4-canvas-wrap l4-canvas-flex" id="pairWrap"><canvas id="pairChart"></canvas></div>
@@ -1126,7 +1153,7 @@ html, body, body * { font-size: 15px !important; }
 <div class="l4-chart-grid-full">
   <div class="l4-card">
     <div class="l4-card-header">
-      <div class="l4-card-title">Confirmed outliers — extreme on both benchmarks simultaneously</div>
+      <div class="l4-card-title">Dual-benchmark outliers — elevated on both benchmarks simultaneously</div>
     </div>
     <div class="l4-scroll-wrap">
       <table class="l4-data-table">
@@ -1161,10 +1188,10 @@ html, body, body * { font-size: 15px !important; }
     </div>
   </div>
 
-  <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and do not represent findings of fraud, non-compliance, or wrongdoing.</p>
+  <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
   <div class="insight">
-  In Q1–Q2 2025, national IDR volume reached roughly <strong>1.06 million</strong> disputes (OON E&amp;NE + air ambulance). The market is <strong>highly concentrated</strong> — <strong>10 corporate billing networks control 66%</strong> of all filings. Among top domains, <strong>24</strong> show multi-signal patterns (high default wins, cross-plan volume concentration, volume bursts, dual-track combinations) inconsistent with expected patterns for ordinary dispute activity. <strong>Key observation:</strong> the highest composite risk score on record is <strong>45.9</strong> (fam-llc.com), aligning with Tier 1 review where multiple signals coincide in this scoring frame.
+  In Q1–Q2 2025, national IDR volume reached roughly <strong>1.06 million</strong> disputes (OON E&amp;NE + air ambulance). The market is <strong>highly concentrated</strong> — <strong>10 corporate billing networks account for 66%</strong> of all filings. Among top domains, <strong>24</strong> exhibit multi-signal patterns (high default wins, cross-plan volume concentration, volume bursts, dual-track combinations) that may warrant additional compliance-focused review. <strong>Key observation:</strong> the highest composite risk score observed is <strong>45.9</strong> (fam-llc.com), aligning with Tier 1 priority review where multiple signals coincide in this scoring frame.
   </div>
 
   <!-- KPI strip -->
@@ -1182,7 +1209,7 @@ html, body, body * { font-size: 15px !important; }
       <p class="kpi-context">share of national volume attributed to the ten largest billing domains on this tab</p>
     </div>
     <div class="kpi k-red">
-      <div class="kpi-lbl">Tier 1 audit referrals</div>
+      <div class="kpi-lbl">Tier 1 priority review cohort</div>
       <div class="kpi-desc" style="margin-bottom:8px">Highest risk score across 8 behavioral blocks</div>
       <div class="kpi-val">24</div>
       <p class="kpi-context">domains scoring in Tier 1 under the composite risk model</p>
@@ -1196,12 +1223,12 @@ html, body, body * { font-size: 15px !important; }
   </div>
 
   <div class="logic-section" id="market-dominance">
-    <h3 class="act-title">Market dominance — 10 networks control 66% of national IDR volume</h3>
-    <p class="chart-intro">A handful of corporate billing networks dominate the IDR program. halomd.com and teamhealth.com together represent 33% of all national disputes — concentrations where default and merit outcomes in the extract warrant further review alongside volume.</p>
+    <h3 class="act-title">Market concentration — 10 networks account for 66% of national IDR volume</h3>
+    <p class="chart-intro">A limited number of corporate billing networks account for a large share of IDR activity. halomd.com and teamhealth.com together represent 33% of all national disputes — a concentration pattern where default and merit outcomes can be prioritized for further compliance review alongside volume.</p>
     <div class="grid-2">
       <div class="card">
         <div class="card-header">
-          <div class="card-title">Total disputes by provider domain <span style="font-weight:400;color:var(--muted)">(top 12 flagged networks)</span></div>
+          <div class="card-title">Total disputes by provider domain <span style="font-weight:400;color:var(--muted)">(top 12 review-flagged networks)</span></div>
           <div class="card-sub"><span style="color:var(--red)">■</span> Default win rate &gt;30% — high default &nbsp;<span style="color:var(--amber)">■</span> Default 15–30% — elevated &nbsp;<span style="color:var(--blue)">■</span> Default &lt;15% — low</div>
         </div>
         <div class="chart-wrap chart-wrap--md"><canvas id="c_vol"></canvas></div>
@@ -1218,7 +1245,7 @@ html, body, body * { font-size: 15px !important; }
   </div>
 
   <div class="logic-section">
-    <h3 class="act-title">Dual-track operators — merit wins and defaults simultaneously</h3>
+    <h3 class="act-title">Dual-track patterns — merit wins and defaults in the same period</h3>
     <p class="chart-intro">A dual-track operator shows above-average merit win rates <em>and</em> elevated default win rates in the same period — adjudicated wins appearing alongside insurer non-response. The composite index (merit wins × median award) summarizes how those dimensions combine in the data.</p>
     <div class="grid-2 grid-2--stretch">
       <div class="card">
@@ -1253,7 +1280,7 @@ html, body, body * { font-size: 15px !important; }
 
   <div class="logic-section">
     <h3 class="act-title">Volume bursts — Q1→Q2 escalations</h3>
-    <p class="chart-intro">Providers that multiply dispute volume by 10x–100x in a single quarter — especially when paired with rising default rates — are an anomaly in the data relative to typical quarter-to-quarter growth. Simple operational scaling rarely produces 1,000–11,000% quarter-over-quarter jumps in this extract.</p>
+    <p class="chart-intro">Providers that increase dispute volume by 10x–100x in a single quarter — especially when paired with rising default rates — represent a statistically unusual pattern relative to typical quarter-to-quarter growth. Simple operational scaling rarely produces 1,000–11,000% quarter-over-quarter jumps in this extract.</p>
     <div class="grid-2 grid-2--stretch">
       <div class="card">
         <div class="card-header">
@@ -1325,8 +1352,8 @@ html, body, body * { font-size: 15px !important; }
   </div>
 
   <div class="logic-section">
-    <h3 class="act-title">Priority audit targets — final cross-reference ranking</h3>
-    <p class="chart-intro">Each domain is scored across 8 behavioral blocks (B1–B8). Risk score combines flag count with volume weighting. Tier 1 = highest score in this frame for review; Tier 2 = enhanced monitoring.</p>
+    <h3 class="act-title">Priority review targets — final cross-reference ranking</h3>
+    <p class="chart-intro">Each domain is scored across 8 behavioral blocks (B1–B8). The risk score combines flag count with volume weighting. Tier 1 indicates highest priority for compliance review in this frame; Tier 2 indicates enhanced monitoring.</p>
     <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:11px 18px;margin-bottom:8px;display:inline-block">
       <span style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-right:10px">Risk score formula</span>
       <code style="font-size:13px;color:var(--text);font-family:'DM Mono',monospace;font-weight:600">risk_score = total_flags &times; log<sub>10</sub>(total_disputes) &times; (1 + default_rate / 100)</code>
@@ -1334,29 +1361,29 @@ html, body, body * { font-size: 15px !important; }
     <p style="font-size:12px;color:var(--muted);margin-bottom:16px">A higher score indicates a domain that is flagged across more behavioral signals, operates at large scale, and relies heavily on default wins — a combination that is statistically unusual in this scoring frame and warrants further review.</p>
     <div class="card" style="margin-bottom:12px">
       <div class="card-header">
-        <div class="card-title">Risk score by domain — Tier 1 audit referrals</div>
+        <div class="card-title">Risk score by domain — Tier 1 priority review cohort</div>
         <div class="card-sub"><span style="color:var(--red)">■</span> 7–8 flags active &nbsp;<span style="color:var(--amber)">■</span> 5–6 flags active &nbsp;<span style="color:var(--blue)">■</span> 3–4 flags active · Hover for flag count and default rate.</div>
       </div>
       <div class="chart-wrap chart-wrap--rank"><canvas id="c_rank"></canvas></div>
     </div>
     <div class="card">
       <div class="card-header">
-        <div class="card-title">Default rate vs. risk score — all audit candidates (Tier 1 &amp; Tier 2)</div>
+        <div class="card-title">Default rate vs. risk score — all review candidates (Tier 1 &amp; Tier 2)</div>
         <div class="card-sub">
           X = Default win rate (%) · Y = Composite risk score · Size ∝ total disputes ·
-          <span style="color:var(--red)">●</span> Tier 1 — Audit Referral &nbsp;
+          <span style="color:var(--red)">●</span> Tier 1 — Priority Review &nbsp;
           <span style="color:var(--amber)">●</span> Tier 2 — Enhanced Review ·
           Hover for full detail. Upper-right = highest priority.
         </div>
       </div>
       <div class="chart-wrap chart-wrap--md"><canvas id="c_rank_scatter"></canvas></div>
     </div>
-    <p class="chart-insight">The bar chart ranks each domain by its <strong>composite risk score</strong> — combining the number of behavioral flags triggered (B1–B8), total dispute volume (log-scaled), and default rate. The scatter below maps every audit candidate by default rate (x-axis) against risk score (y-axis); bubble size reflects total disputes. Domains in the upper-right combine high default-win share with high composite risk in this scoring frame — the clearest review priorities in the model. <strong>Key observation:</strong> Top-ranked domains carry 7–8 active flags simultaneously — volume dominance, dual-track outcomes, sharp quarter-to-quarter volume changes, cross-plan concentration, and cross-quarter persistence appear together. These rows sit far from the center of the distribution. The risk score is calculated entirely from CMS public data, making it reproducible for independent checks.</p>
+    <p class="chart-insight">The bar chart ranks each domain by its <strong>composite risk score</strong> — combining the number of behavioral signals triggered (B1–B8), total dispute volume (log-scaled), and default rate. The scatter below maps every review candidate by default rate (x-axis) against risk score (y-axis); bubble size reflects total disputes. Domains in the upper-right combine high default-win share with high composite risk in this scoring frame — the clearest review priorities in the model. <strong>Key observation:</strong> Top-ranked domains carry 7–8 active signals simultaneously — volume dominance, dual-track outcomes, sharp quarter-to-quarter volume changes, cross-plan concentration, and cross-quarter persistence appear together. These rows sit far from the center of the distribution. The risk score is calculated entirely from CMS public data, making it reproducible for independent checks.</p>
   </div>
 
   <div class="logic-section">
     <h3 class="act-title">Threshold calibration — natural break points</h3>
-    <p class="chart-intro">Percentile distributions identify where the data naturally separates into anomalous vs. normal ranges. Providers above the 90th percentile in volume <em>and</em> above the 75th percentile in default rate form the core high-risk population.</p>
+    <p class="chart-intro">Percentile distributions identify where the data naturally separates into elevated and baseline ranges. Providers above the 90th percentile in volume <em>and</em> above the 75th percentile in default rate form the core risk-monitoring population.</p>
     <div class="grid-2 grid-2--stretch">
       <div class="card">
         <div class="card-header">
@@ -1381,7 +1408,7 @@ html, body, body * { font-size: 15px !important; }
       <div class="card">
         <div class="card-header">
           <div class="card-title">Dual-track operator counts at threshold combinations</div>
-          <div class="card-sub">Number of providers qualifying as dual-track operators under progressively stricter threshold combinations — showing how the audit population shrinks as thresholds tighten.</div>
+          <div class="card-sub">Number of providers qualifying as dual-track operators under progressively stricter threshold combinations — showing how the review population shrinks as thresholds tighten.</div>
         </div>
         <div style="padding:12px 16px;display:flex;flex-direction:column;gap:12px">
         <div style="background:#fef2f2;border-left:4px solid var(--red);border-radius:8px;padding:16px">
@@ -1391,7 +1418,7 @@ html, body, body * { font-size: 15px !important; }
         </div>
         <div style="background:#fffbeb;border-left:4px solid var(--amber);border-radius:8px;padding:16px">
           <div style="font-size:26px;font-weight:800;color:var(--orange)">13</div>
-          <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:4px">Recommended audit cohort</div>
+          <div style="font-size:12px;font-weight:600;color:var(--text);margin-top:4px">Recommended review cohort</div>
           <div style="font-size:11px;color:var(--muted);margin-top:2px">Merit &gt;60% AND Default &gt;20% (≥1K disputes)</div>
         </div>
         <div style="background:var(--blue-lt);border-left:4px solid var(--blue);border-radius:8px;padding:16px">
@@ -1425,10 +1452,10 @@ html, body, body * { font-size: 15px !important; }
     </div>
   </div>
 
-  <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and do not represent findings of fraud, non-compliance, or wrongdoing.</p>
+  <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
   <div class="insight">
-  Under the same federal program, <strong>IDRE merit win rates span 40.7 percentage points</strong> (98.4% at IPRO vs 57.7% at Keystone), so routing choice is financially decisive. Flagged providers submit offers up to <strong>18.6× higher</strong> at their preferred IDRE for the same case complexity; <strong>12 of 13</strong> rows are not explained by RVU-matched case mix alone in this model. <strong>Key observation:</strong> the Step 18 scorecard marks <strong>4 CRITICAL-tier</strong> providers for CMS regulatory review under the published signal rules.
+  Under the same federal program, <strong>IDRE merit win rates span 40.7 percentage points</strong> (98.4% at IPRO vs 57.7% at Keystone), so routing concentration can materially affect financial outcomes. Review-flagged providers submit offers up to <strong>18.6× higher</strong> at their preferred IDRE for similar case complexity; <strong>12 of 13</strong> rows are not fully explained by RVU-matched case mix alone in this model. <strong>Key observation:</strong> the Step 18 scorecard identifies <strong>4 CRITICAL-tier</strong> providers as highest-priority candidates for CMS follow-up under the published signal rules.
   </div>
 
   <!-- KPI strip -->
@@ -1452,7 +1479,7 @@ html, body, body * { font-size: 15px !important; }
       <p class="kpi-context">providers where RVU-matched case mix alone does not explain the gap</p>
     </div>
     <div class="kpi k-green">
-      <div class="kpi-lbl">CRITICAL tier referrals</div>
+      <div class="kpi-lbl">CRITICAL tier review candidates</div>
       <div class="kpi-desc" style="margin-bottom:8px">All signals active — highest composite score in this model</div>
       <div class="kpi-val">4</div>
       <p class="kpi-context">providers at CRITICAL tier with every signal active in the Step 18 screen</p>
@@ -1475,8 +1502,8 @@ html, body, body * { font-size: 15px !important; }
   </div>
 
   <div class="logic-section">
-    <h3 class="act-title">Statistical confirmation — win rate gaps are not random</h3>
-    <p class="chart-intro">A z-score measures how statistically unlikely a win rate gap is by chance. Z &gt; 3.0 means p &lt; 0.003; every flagged provider exceeds this threshold. z = 31.76 (NPPA SERVICES) would occur by random chance less than 1 in 1,000,000 times.</p>
+    <h3 class="act-title">Statistical confirmation — win rate gaps are statistically unlikely under random assignment</h3>
+    <p class="chart-intro">A z-score measures how statistically unlikely a win rate gap is by chance. Z &gt; 3.0 means p &lt; 0.003; every review-flagged provider exceeds this threshold. z = 31.76 (NPPA SERVICES) corresponds to an extremely low chance probability under standard assumptions.</p>
     <div class="grid-2 grid-2--stretch">
       <div class="card">
         <div class="card-header">
@@ -1499,11 +1526,11 @@ html, body, body * { font-size: 15px !important; }
         </div>
       </div>
     </div>
-    <p class="chart-insight">Each bubble represents one provider. The further right, the larger the win rate gap between their preferred IDRE and all others. The further up, the more statistically certain that gap is — a <strong>z-score above 3.0</strong> means there is less than a 0.3% probability the gap is random. Bubble size reflects total dispute volume filed. <strong>Key observation:</strong> Every flagged provider exceeds z = 3.0. NPPA SERVICES at z = 31.76 would occur by random chance fewer than 1 in 1,000,000 times. That tail position is inconsistent with chance alone under standard assumptions — it warrants further review with other indicators.</p>
+    <p class="chart-insight">Each bubble represents one provider. The further right, the larger the win rate gap between their preferred IDRE and all others. The further up, the stronger the statistical confidence in that gap — a <strong>z-score above 3.0</strong> means there is less than a 0.3% probability the gap is random. Bubble size reflects total dispute volume filed. <strong>Key observation:</strong> Every review-flagged provider exceeds z = 3.0. NPPA SERVICES at z = 31.76 corresponds to an extremely low chance probability. This tail position supports prioritizing further review with other indicators.</p>
   </div>
 
   <div class="logic-section">
-    <h3 class="act-title">Priority audit targets — Q1 &amp; Q2 validated providers</h3>
+    <h3 class="act-title">Priority review targets — Q1 &amp; Q2 validated providers</h3>
     <p class="chart-intro">12 providers passed all three filters — ≥80% routing concentration, ≥25 pp win rate gap, and the pattern confirmed independently in both Q1 and Q2. <strong>All 12 share halomd.com as their billing domain; 11 of 12 route exclusively to Capitol Bridge.</strong></p>
     <div class="grid-2 grid-2--stretch">
       <div class="card">
@@ -1530,7 +1557,7 @@ html, body, body * { font-size: 15px !important; }
         </div>
       </div>
     </div>
-    <p class="chart-insight">Each bar pair shows one validated provider's <strong>win rate at their preferred IDRE</strong> (blue) alongside their <strong>win rate at all other IDREs</strong> (green), using disputes filed across Q1 and Q2 2025. The gap between the two bars is the difference observed when routing concentrates at a chosen IDRE rather than elsewhere in the data. <strong>Key observation:</strong> 12 providers win 92–100% at their preferred IDRE but only 33–72% everywhere else, under the exact same federal rules. All 12 share one billing domain (halomd.com) and 11 of 12 route exclusively to Capitol Bridge. The pattern was confirmed independently in Q1 and Q2 — a stability that is inconsistent with a single-period chance explanation alone.</p>
+    <p class="chart-insight">Each bar pair shows one validated provider's <strong>win rate at their preferred IDRE</strong> (blue) alongside their <strong>win rate at all other IDREs</strong> (green), using disputes filed across Q1 and Q2 2025. The gap between the two bars is the difference observed when routing concentrates at a chosen IDRE rather than elsewhere in the data. <strong>Key observation:</strong> 12 providers win 92–100% at their preferred IDRE but only 33–72% everywhere else, under the exact same federal rules. All 12 share one billing domain (halomd.com) and 11 of 12 route exclusively to Capitol Bridge. The pattern appears in both Q1 and Q2, supporting additional validation beyond a single-period effect.</p>
   </div>
 
   <div class="logic-section">
@@ -1566,8 +1593,8 @@ html, body, body * { font-size: 15px !important; }
   <p class="logic-part-label">Part B — Medicare benchmarking &amp; case-mix analysis</p>
 
   <div class="logic-section">
-    <h3 class="act-title">Offer inflation — higher offers at preferred IDREs</h3>
-    <p class="chart-intro">Flagged providers submit offers that are 2–19× higher at their preferred IDRE compared to other IDREs — even when their Medicare-benchmarked case complexity (RVU ratio) is equal or lower. That pattern is inconsistent with a higher-complexity-only explanation for the offer spread in this slice.</p>
+    <h3 class="act-title">Offer concentration — higher offers at preferred IDREs</h3>
+    <p class="chart-intro">Review-flagged providers submit offers that are 2–19× higher at their preferred IDRE compared to other IDREs — even when their Medicare-benchmarked case complexity (RVU ratio) is equal or lower. This pattern suggests case complexity alone may not fully explain the offer spread in this slice.</p>
     <div class="grid-2 grid-2--stretch">
       <div class="card">
         <div class="card-header">
@@ -1594,7 +1621,7 @@ html, body, body * { font-size: 15px !important; }
         </div>
       </div>
     </div>
-    <p class="chart-insight">This chart compares the <strong>median offer each provider submits at their preferred IDRE</strong> (red) against their median offer at all other IDREs (green), expressed as a percentage of QPA. The inflation ratio is how many times higher the primary-IDRE offer is. If offers were unrelated to IDRE venue, the two bars would often be closer regardless of which IDRE is handling the case. <strong>Key observation:</strong> South Main Surgery Alliance submits offers 18.6× higher at Capitol Bridge versus all other IDREs — while their cases there are actually simpler (RVU ratio 0.81). The ratio moves with IDRE venue in the data, not with patient field alone. Medicare RVU data is inconsistent with a harder-cases-only story for every provider flagged OFFER_EXCEEDS_COMPLEXITY in this extract.</p>
+    <p class="chart-insight">This chart compares the <strong>median offer each provider submits at their preferred IDRE</strong> (red) against their median offer at all other IDREs (green), expressed as a percentage of QPA. The concentration ratio is how many times higher the primary-IDRE offer is. If offers were unrelated to IDRE venue, the two bars would often be closer regardless of which IDRE is handling the case. <strong>Key observation:</strong> South Main Surgery Alliance submits offers 18.6× higher at Capitol Bridge versus all other IDREs — while their cases there are actually simpler (RVU ratio 0.81). The observed ratio varies with IDRE venue in this extract. Medicare RVU data suggests a harder-cases-only explanation is limited for providers marked OFFER_EXCEEDS_COMPLEXITY.</p>
   </div>
 
   <div class="logic-section">
@@ -1644,15 +1671,15 @@ html, body, body * { font-size: 15px !important; }
         </div>
       </div>
     </div>
-    <p class="chart-insight">The <strong>RVU ratio</strong> (x-axis) measures case complexity at a provider's preferred IDRE relative to all other IDREs, using Medicare Relative Value Units as the proxy. A ratio below 1.0 means cases at the preferred IDRE are simpler; above 1.0 means harder. If the harder-cases explanation fully accounted for the gap, many flagged points would sit to the right. The y-axis shows how large their win rate gap is. <strong>Key observation:</strong> 12 of 13 flagged providers sit at similar or lower RVU at the preferred IDRE than elsewhere. Two providers (EMCC STEPHENVILLE, ER24 DENTON) route their lowest RVU bucket to Capitol Bridge and still win 47–51 pp more there. The routing gap is not explained by RVU alone in these rows — it remains a concentration pattern in the tabulated fields.</p>
+    <p class="chart-insight">The <strong>RVU ratio</strong> (x-axis) measures case complexity at a provider's preferred IDRE relative to all other IDREs, using Medicare Relative Value Units as the proxy. A ratio below 1.0 means cases at the preferred IDRE are simpler; above 1.0 means harder. If case complexity fully accounted for the gap, many review-flagged points would sit to the right. The y-axis shows the win rate gap magnitude. <strong>Key observation:</strong> 12 of 13 review-flagged providers sit at similar or lower RVU at the preferred IDRE than elsewhere. Two providers (EMCC STEPHENVILLE, ER24 DENTON) route their lowest RVU bucket to Capitol Bridge and still show 47–51 pp higher wins there. RVU alone does not fully explain these rows, so this remains a concentration pattern for follow-up review.</p>
   </div>
 
   <div class="logic-section">
-    <h3 class="act-title">Medicare-anchored regulatory referral scorecard</h3>
-    <p class="chart-intro">Every flagged provider scored across all signals: routing concentration, win rate gap (raw and Wilson-adjusted), z-score, IDRE outperformance vs system average, RVU complexity verdict, and offer inflation. CRITICAL tier = all signals active. HIGH tier = most signals active with statistically confirmed gaps.</p>
+    <h3 class="act-title">Medicare-anchored compliance review scorecard</h3>
+    <p class="chart-intro">Every review-flagged provider is scored across all signals: routing concentration, win rate gap (raw and Wilson-adjusted), z-score, IDRE outperformance vs system average, RVU complexity verdict, and offer concentration. CRITICAL tier = all signals active. HIGH tier = most signals active with statistically confirmed gaps.</p>
     <div class="card" style="margin-bottom:12px">
       <div class="card-header">
-        <div class="card-title">Win rate gap vs. Z-score — final audit candidates</div>
+        <div class="card-title">Win rate gap vs. Z-score — final review candidates</div>
         <div class="card-sub">X = raw win rate gap (pp) · Y = z-score · Size ∝ total disputes · <span style="color:var(--red)">●</span> CRITICAL tier — all signals &nbsp;<span style="color:var(--amber)">●</span> HIGH tier — enhanced review · Upper-right = strongest joint signal in this frame.</div>
       </div>
       <div class="chart-wrap chart-wrap--md"><canvas id="c_18_scatter"></canvas></div>
@@ -1677,7 +1704,7 @@ html, body, body * { font-size: 15px !important; }
           <tbody id="tb_18"></tbody>
         </table>
       </div>
-      <p class="chart-insight">This is the <strong>final consolidated output</strong>, scoring each validated provider across every signal — routing concentration, win rate gap, z-score, IDRE outperformance, case-mix verdict, and offer inflation. The x-axis is the raw win rate gap; the y-axis is the statistical z-score. Bubble size reflects total dispute volume. Red bubbles are <strong>CRITICAL tier</strong> (all signals active); amber are <strong>HIGH tier</strong> (most signals active). Providers in the upper-right combine the largest gaps with the strongest statistical certainty. <strong>Key observation:</strong> 4 providers are CRITICAL tier — every signal is active simultaneously in this model. All 4 route to Capitol Bridge through the halomd.com network. These rows rank highest for follow-up review using CMS public fields alone — no additional data collection is required to reproduce the screen.</p>
+      <p class="chart-insight">This is the <strong>final consolidated output</strong>, scoring each validated provider across every signal — routing concentration, win rate gap, z-score, IDRE outperformance, case-mix verdict, and offer concentration. The x-axis is the raw win rate gap; the y-axis is the statistical z-score. Bubble size reflects total dispute volume. Red bubbles are <strong>CRITICAL tier</strong> (all signals active); amber are <strong>HIGH tier</strong> (most signals active). Providers in the upper-right combine larger gaps with stronger statistical confidence. <strong>Key observation:</strong> 4 providers are CRITICAL tier with all signals active in this model. All 4 route to Capitol Bridge through the halomd.com network. These rows rank highest for follow-up review using CMS public fields alone and can be independently reproduced.</p>
     </div>
   </div>
 
@@ -1694,12 +1721,12 @@ html, body, body * { font-size: 15px !important; }
       <div class="header">
         <div class="header-top">
           <div>
-            <h1>Higher-payment cases are resolving faster, not slower; timing pattern that diverges from expected compliant review behavior</h1>
+            <h1>Higher-payment cases are resolving faster, not slower; timing pattern that may warrant additional compliance validation</h1>
           </div>
         </div>
       </div>
 
-      <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and do not represent findings of fraud, non-compliance, or wrongdoing.</p>
+      <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
       <!-- INSIGHT -->
       <div class="insight">
@@ -1721,7 +1748,7 @@ html, body, body * { font-size: 15px !important; }
           <p class="kpi-context">filtered merit-decision records used for the timing analysis</p>
         </div>
         <div class="kpi k-red">
-          <div class="kpi-lbl">IDREs flagged</div>
+          <div class="kpi-lbl">IDREs review-flagged</div>
           <div class="kpi-desc" style="margin-bottom:8px">Extreme cases faster than Routine · minimum 50 Extreme-tier cases</div>
           <div class="kpi-val">7 of 14</div>
           <p class="kpi-context">IDREs with faster median timelines for Extreme tier than Routine (≥50 Extreme cases)</p>
@@ -1740,7 +1767,7 @@ html, body, body * { font-size: 15px !important; }
         <!-- LEFT: line chart -->
         <div class="card">
           <div class="card-header">
-            <div class="card-title">Median days by payment tier — should slope upward, slopes down</div>
+            <div class="card-title">Median days by payment tier — expected upward slope vs observed downward slope</div>
             <div class="card-sub">Each point = median days for all disputes in that tier. The downward slope shows larger awards associated with shorter median timelines in this extract.</div>
           </div>
           <div class="card-body" style="padding:14px 16px 0;">
@@ -1759,12 +1786,12 @@ html, body, body * { font-size: 15px !important; }
         <div class="card">
           <div class="card-header">
             <div class="card-title">IQR spread by tier — P25 → Median → P75</div>
-            <div class="card-sub">The spread narrows for the Extreme tier (24–48 days) vs. Routine (26–91 days). High-payment cases are not only faster on average — the IQR is tighter, which is inconsistent with a wide idiosyncratic-review story alone.</div>
+            <div class="card-sub">The spread narrows for the Extreme tier (24–48 days) vs. Routine (26–91 days). High-payment cases are not only faster on average — the IQR is tighter, which may indicate a repeatable process pattern that warrants further validation.</div>
           </div>
           <div class="card-body" style="padding:14px 16px 0;">
             <div class="chart-wrap chart-wrap--l1-iqr"><canvas id="c_iqr"></canvas></div>
           </div>
-          <p class="chart-insight">The narrowing interquartile range at the Extreme tier means these decisions are not only faster but more <strong>uniform</strong>. If IDREs were applying individual case scrutiny, the spread should be wider for high-complexity high-payment cases — not tighter.</p>
+          <p class="chart-insight">The narrowing interquartile range at the Extreme tier means these decisions are not only faster but more <strong>uniform</strong>. If case-by-case differences were the dominant driver, one would generally expect a wider spread for high-complexity high-payment cases; the observed tighter spread is a pattern for additional review.</p>
         </div>
       </div>
 
@@ -1773,18 +1800,18 @@ html, body, body * { font-size: 15px !important; }
         <p class="chart-insight-plain" style="border-radius:8px;border:1px solid var(--border)">Additionally, the Medicare fee schedule cross-check reveals that <strong>81.4% of even Routine-tier cases</strong> have a QPA set below 50% of the Medicare rate for the same service — so high payment variance partly reflects a low QPA baseline in the benchmark data, not only high provider asks. The Medicare comparison (Act 3) separates those components at the service code level.</p>
       </div>
 
-      <h3 class="act-title">The inversion is systemic — present at 7 of 14 certified IDREs</h3>
+      <h3 class="act-title">The timing inversion is broad — present at 7 of 14 certified IDREs</h3>
 
       <div class="grid-2 paired-row l1-idre-gap-row">
         <!-- LEFT: horizontal bar gap chart -->
         <div class="card">
           <div class="card-header">
             <div class="card-title">Day gap by IDRE — Routine median days minus Extreme median days</div>
-            <div class="card-sub">Positive bars = Extreme cases resolved faster than Routine (flagged). Negative = Extreme cases took longer (expected behavior). Sorted by gap descending.</div>
+            <div class="card-sub">Positive bars = Extreme cases resolved faster than Routine (review flag). Negative = Extreme cases took longer (baseline pattern). Sorted by gap descending.</div>
           </div>
           <div class="card-body" style="padding:12px 14px 0;">
             <div class="legend-row">
-              <span class="li"><span class="dot" style="background:#c0392b"></span>FLAGGED — Extreme faster than Routine</span>
+              <span class="li"><span class="dot" style="background:#c0392b"></span>REVIEW FLAG — Extreme faster than Routine</span>
               <span class="li"><span class="dot" style="background:#1a7a4a"></span>No inversion detected</span>
               <span class="li"><span class="dot" style="background:rgba(140,152,163,0.55)"></span>Insufficient data (&lt;50 Extreme cases)</span>
             </div>
@@ -1797,7 +1824,7 @@ html, body, body * { font-size: 15px !important; }
         <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
           <div class="card-header" style="flex-shrink:0;">
             <div class="card-title">IDRE inversion detail — all 14 certified entities</div>
-            <div class="card-sub">Flagged = ≥50 Extreme-tier cases AND Extreme median days &lt; Routine median days. Sorted by day gap descending.</div>
+            <div class="card-sub">Review flag = ≥50 Extreme-tier cases AND Extreme median days &lt; Routine median days. Sorted by day gap descending.</div>
           </div>
           <div class="card-body l1-idre-inversion-body" style="padding:0;overflow-y:auto;overflow-x:auto;overscroll-behavior:contain;flex:1;min-height:0;">
             <table class="data-table sticky-head" style="width:100%;table-layout:fixed;" id="tbl_idre">
@@ -1823,22 +1850,22 @@ html, body, body * { font-size: 15px !important; }
             </table>
           </div>
           <div class="callout" style="margin:8px 12px 10px;">
-            <strong>7 flagged IDREs</strong> (positive day gap with ≥50 Extreme-tier cases). 5 have insufficient Extreme-tier data (&lt;50 cases). 2 show no inversion (Provider Resources −5 days, Livanta no Extreme cases).
+            <strong>7 review-flagged IDREs</strong> (positive day gap with ≥50 Extreme-tier cases). 5 have insufficient Extreme-tier data (&lt;50 cases). 2 show no inversion (Provider Resources −5 days, Livanta no Extreme cases).
           </div>
         </div>
       </div>
 
-      <h3 class="act-title">Providers benefiting most from fast Extreme-tier decisions at flagged IDREs</h3>
+      <h3 class="act-title">Providers most associated with fast Extreme-tier decisions at review-flagged IDREs</h3>
 
       <div class="insight-red">
-        <strong>Pattern note — halomd.com domain:</strong> Dozens of separately named provider entities share the billing email domain halomd.com — NPPA Services, Precision Emergency Physicians, Emergency Medicine Specialists, IES Arizona PLLC, Villa Park Neurological Services, and more. When grouped by domain, halomd.com shows the largest combined volume of fast Extreme-tier decisions across multiple flagged IDREs in this extract. Entity relationships can be checked against IDRE certification records and billing registration files.
+        <strong>Pattern note — halomd.com domain:</strong> Dozens of separately named provider entities share the billing email domain halomd.com — NPPA Services, Precision Emergency Physicians, Emergency Medicine Specialists, IES Arizona PLLC, Villa Park Neurological Services, and more. When grouped by domain, halomd.com shows the largest combined volume of fast Extreme-tier decisions across multiple review-flagged IDREs in this extract. Entity relationships can be checked against IDRE certification records and billing registration files.
       </div>
 
       <div class="grid-2 paired-row" style="grid-template-columns:2fr 3fr;">
         <!-- LEFT: provider bar chart -->
         <div class="card">
           <div class="card-header">
-            <div class="card-title">Top provider-IDRE pairs by Extreme-tier case count at flagged IDREs</div>
+            <div class="card-title">Top provider-IDRE pairs by Extreme-tier case count at review-flagged IDREs</div>
             <div class="card-sub">Minimum 10 Extreme-tier cases per pair. <span style="color:var(--red);font-weight:600">■ Red = halomd.com domain</span> &nbsp;<span style="color:var(--blue);font-weight:600">■ Blue = other domains</span>. Hover for detail.</div>
           </div>
           <div class="card-body" style="padding:14px 16px 0;">
@@ -1850,7 +1877,7 @@ html, body, body * { font-size: 15px !important; }
         <!-- RIGHT: provider table -->
         <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
           <div class="card-header" style="flex-shrink:0;">
-            <div class="card-title">Provider-IDRE pairs — Extreme tier at flagged IDREs</div>
+            <div class="card-title">Provider-IDRE pairs — Extreme tier at review-flagged IDREs</div>
             <div class="card-sub">Sorted by Extreme case count. Minimum 10 cases per pair. Avg QPA % Medicare — low values indicate the QPA baseline itself may be artificially low.</div>
           </div>
           <div class="card-body" style="padding:0;overflow-y:auto;overflow-x:auto;overscroll-behavior:contain;max-height:420px;">
@@ -1929,7 +1956,7 @@ html, body, body * { font-size: 15px !important; }
             </table>
           </div>
           <div class="insight-green" style="margin:10px 14px 14px;border-radius:0 6px 6px 0;">
-            <strong>How to read Interpretation:</strong> BOTH = QPA below Medicare AND provider offer above 3× Medicare — two benchmark dimensions flagged together. LOW QPA = high variance mainly from a low QPA benchmark in the row. WITHIN EXPECTED = no benchmark flags triggered. Commercial payers typically reimburse at 150–200% of Medicare; QPAs below 50% of Medicare sit outside that band in the reference data.
+            <strong>How to read Interpretation:</strong> BOTH = QPA below Medicare AND provider offer above 3× Medicare — two benchmark dimensions signaled together. LOW QPA = high variance mainly from a low QPA benchmark in the row. WITHIN EXPECTED = no benchmark signals triggered. Commercial payers typically reimburse at 150–200% of Medicare; QPAs below 50% of Medicare sit outside that band in the reference data.
           </div>
         </div>
       </div>
@@ -2114,7 +2141,7 @@ function initReq7Charts() {
   charts['c_rank_scatter'] = new Chart(document.getElementById('c_rank_scatter'),{
     type:'bubble',
     data:{datasets:[
-      {label:'Tier 1 — Audit Referral',data:auditData.filter(d=>d.tier==='Tier 1').map(d=>({x:d.def,y:d.sc,r:Math.max(5,Math.min(24,Math.cbrt(d.d)*1.9)),dom:d.dom,fl:d.fl,d:d.d,tier:d.tier})),backgroundColor:'rgba(220,38,38,.75)',borderColor:'rgba(255,255,255,.6)',borderWidth:1.5},
+      {label:'Tier 1 — Priority Review',data:auditData.filter(d=>d.tier==='Tier 1').map(d=>({x:d.def,y:d.sc,r:Math.max(5,Math.min(24,Math.cbrt(d.d)*1.9)),dom:d.dom,fl:d.fl,d:d.d,tier:d.tier})),backgroundColor:'rgba(220,38,38,.75)',borderColor:'rgba(255,255,255,.6)',borderWidth:1.5},
       {label:'Tier 2 — Enhanced Review',data:auditData.filter(d=>d.tier==='Tier 2').map(d=>({x:d.def,y:d.sc,r:Math.max(5,Math.min(24,Math.cbrt(d.d)*1.9)),dom:d.dom,fl:d.fl,d:d.d,tier:d.tier})),backgroundColor:'rgba(245,158,11,.75)',borderColor:'rgba(255,255,255,.6)',borderWidth:1.5}
     ]},
     options:{plugins:{legend:{position:'top',labels:{font:{size:11.5},padding:14}},tooltip:{callbacks:{label:c=>`${c.raw.dom}\nDefault: ${c.raw.x}%  ·  Risk Score: ${c.raw.y}\nFlags: ${c.raw.fl}/8  ·  ${c.raw.d.toLocaleString()} disputes\n${c.raw.tier}`}}},scales:{x:{title:{display:true,text:'Default Win Rate (%)',font:{size:11},color:'#6b7280'},min:0,max:60,grid:{color:'#f3f4f6'},ticks:{callback:v=>v+'%',font:{size:10.5}}},y:{title:{display:true,text:'Composite Risk Score',font:{size:11},color:'#6b7280'},min:0,max:50,grid:{color:'#f3f4f6'},ticks:{font:{size:10.5}}}},responsive:true,maintainAspectRatio:false}
@@ -2639,644 +2666,348 @@ window.addEventListener('hashchange', applyHashToTab);
    ============================================================ */
 
 const PROV_FOCUS = [
-  {name:"Professional Emergency Physicians PC",share:100.0,wins:55,disputes:55,q:"q1",s:"emer"},
-  {name:"Emergency Medicine Services of Florida",share:100.0,wins:59,disputes:59,q:"q1",s:"emer"},
-  {name:"Raleigh Sedation Associates LLC",share:100.0,wins:53,disputes:53,q:"q1",s:"emer"},
-  {name:"Doctors for Emergency Service",share:100.0,wins:67,disputes:67,q:"q1",s:"emer"},
-  {name:"Conway Hospital Emergency Prof. Svcs",share:100.0,wins:126,disputes:126,q:"q2",s:"emer"},
-  {name:"EMCARE-RSN EMERG PHYSICIANS",share:100.0,wins:59,disputes:59,q:"q1",s:"emer"},
-  {name:"LONE STAR EMERGENCY ASSOCIATES LLC",share:100.0,wins:126,disputes:126,q:"q1",s:"emer"},
-  {name:"Western Healthcare Services of Texas",share:100.0,wins:50,disputes:50,q:"q1",s:"emer"},
-  {name:"Pro care Nacogdoches LLC",share:100.0,wins:56,disputes:56,q:"q1",s:"emer"},
-  {name:"Lake Wales Emergency Physicians, LLC",share:100.0,wins:89,disputes:89,q:"q1",s:"emer"},
-  {name:"INDEPENDENCE EMERG PHYSICIANS",share:100.0,wins:56,disputes:56,q:"q1",s:"emer"},
-  {name:"Wake Emergency Physicians, PA",share:100.0,wins:92,disputes:92,q:"q1",s:"emer"},
-  {name:"Valley Emergency Care Management",share:100.0,wins:50,disputes:50,q:"q1",s:"emer"},
-  {name:"South Texas Radiology Group, P.A.",share:100.0,wins:57,disputes:57,q:"q2",s:"emer"},
-  {name:"BECKWITH EMERG PHYS PLLC",share:100.0,wins:137,disputes:137,q:"q1",s:"emer"},
-  {name:"Central DuPage Emergency Physicians",share:100.0,wins:98,disputes:98,q:"q2",s:"emer"},
-  {name:"RAY HUBBARD EMERG PHY, PLLC",share:100.0,wins:64,disputes:64,q:"q1",s:"emer"},
-  {name:"Emergency Medicine Professionals, P.A.",share:100.0,wins:261,disputes:261,q:"q1",s:"emer"},
-  {name:"Lumberton Hospital, LLC",share:100.0,wins:114,disputes:114,q:"q1",s:"emer"},
-  {name:"Rio Valley Emerg Phys Assoc PLLC",share:100.0,wins:203,disputes:203,q:"q1",s:"emer"},
-  {name:"COMPASS EMERGENCY PHYSICIANS PSC",share:100.0,wins:239,disputes:239,q:"q2",s:"emer"},
-  {name:"Pasco County Emergency Physicians LLC",share:100.0,wins:130,disputes:130,q:"q1",s:"emer"},
-  {name:"HIGHLAND PARK EMERGENCY CENTER LLC",share:100.0,wins:59,disputes:59,q:"q1",s:"emer"},
-  {name:"USA EMERGENCY CENTERS - BURNET, LLC",share:100.0,wins:72,disputes:72,q:"q1",s:"emer"},
-  {name:"Emergency Resources Group",share:100.0,wins:296,disputes:296,q:"q1",s:"emer"},
-  {name:"EMERGENCY MEDICINE SERVICES OF KY,",share:100.0,wins:52,disputes:52,q:"q1",s:"emer"},
-  {name:"GRAND CANYON ANESTHESIA",share:100.0,wins:111,disputes:111,q:"q2",s:"emer"},
-  {name:"ROME RADIOLOGY GROUP PA",share:100.0,wins:1094,disputes:1094,q:"q1",s:"emer"},
-  {name:"Elite Medical Services",share:100.0,wins:167,disputes:167,q:"q2",s:"emer"},
-  {name:"Williamsburg Emergency Physicians, INC",share:100.0,wins:64,disputes:64,q:"q1",s:"emer"},
-  {name:"AUSTIN GASTROENTEROLOGY ANESTHESIA ASSOC",share:100.0,wins:100,disputes:100,q:"q1",s:"emer"},
-  {name:"AnMed Health Medical Center",share:100.0,wins:112,disputes:112,q:"q2",s:"emer"},
-  {name:"COMPASS POINT EMERGENCY PHYS PLLC",share:100.0,wins:193,disputes:193,q:"q1",s:"emer"},
-  {name:"Eastern Carolina Emergency Physicians",share:100.0,wins:176,disputes:176,q:"q1",s:"emer"},
-  {name:"INTERCOMMUNITY EMER MED GROUP",share:100.0,wins:100,disputes:100,q:"q2",s:"emer"},
-  {name:"Professional Emergency Physicians PC",share:100.0,wins:357,disputes:357,q:"q2",s:"emer"},
-  {name:"ICH-ER Services",share:100.0,wins:559,disputes:559,q:"q2",s:"emer"},
-  {name:"Emergency Medicine Services of KY,",share:100.0,wins:62,disputes:62,q:"q2",s:"emer"},
-  {name:"Emergency Medicine Services of KY",share:100.0,wins:69,disputes:69,q:"q2",s:"emer"},
-  {name:"EMERGENCY SPEC. PHYS. MED. ASSOC",share:100.0,wins:55,disputes:55,q:"q2",s:"emer"},
-  {name:"St. Bernardine Medical Center",share:100.0,wins:69,disputes:69,q:"q2",s:"emer"},
-  {name:"Sandhills Emergency Physicians",share:100.0,wins:76,disputes:76,q:"q1",s:"emer"},
-  {name:"Emergency Resources Group",share:100.0,wins:656,disputes:656,q:"q2",s:"emer"},
-  {name:"South Miami Criticare, Inc",share:100.0,wins:92,disputes:92,q:"q1",s:"emer"},
-  {name:"GWINNETT ER SPEC OBS SRVCS LLC",share:100.0,wins:200,disputes:200,q:"q1",s:"emer"},
-  {name:"Methodist South Emergency PhysiciansPLLC",share:100.0,wins:61,disputes:61,q:"q1",s:"emer"},
-  {name:"Global Physician Network LLC, Series I",share:100.0,wins:77,disputes:77,q:"q1",s:"emer"},
-  {name:"RADIOLOGY ASSOCIATES OF NORTH TX",share:100.0,wins:2368,disputes:2368,q:"q1",s:"emer"},
-  {name:"Rio Valley Emerg Phys Assoc PLLC",share:100.0,wins:1099,disputes:1099,q:"q2",s:"emer"},
-  {name:"LEVEL ONE EMERGENCY PHYSICIANS LLC",share:100.0,wins:147,disputes:147,q:"q1",s:"emer"},
-  {name:"PROCARE PEARLAND",share:100.0,wins:54,disputes:54,q:"q2",s:"emer"},
-  {name:"Health Southwest Louisiana",share:100.0,wins:51,disputes:51,q:"q1",s:"emer"},
-  {name:"compass point emergency physicians pllc",share:100.0,wins:57,disputes:57,q:"q2",s:"emer"},
-  {name:"Alexandria Springfield EMP, PC",share:100.0,wins:220,disputes:220,q:"q1",s:"emer"},
-  {name:"EXCEPTIONAL HEALTHCARE INC HARLINGEN",share:100.0,wins:57,disputes:57,q:"q2",s:"emer"},
-  {name:"Bethesda Emergency Associates LLC",share:100.0,wins:199,disputes:199,q:"q1",s:"emer"},
-  {name:"Immanual Medical Center",share:100.0,wins:54,disputes:54,q:"q1",s:"emer"},
-  {name:"MAGELLA MEDICAL ASSOCIATES BILLING, INC.",share:100.0,wins:142,disputes:142,q:"q1",s:"emer"},
-  {name:"St. Bernardine Medical Center",share:100.0,wins:57,disputes:57,q:"q1",s:"emer"},
-  {name:"HNI MEDICAL SERVICES OF FLORIDA LLC",share:100.0,wins:124,disputes:124,q:"q1",s:"emer"},
-  {name:"Small Hospital Innovations, LLC",share:100.0,wins:362,disputes:362,q:"q2",s:"emer"},
-  {name:"Valley Emergency Care Management",share:100.0,wins:99,disputes:99,q:"q2",s:"emer"},
-  {name:"Bonita Creek Emergency Services",share:100.0,wins:69,disputes:69,q:"q2",s:"emer"},
-  {name:"SHADOW EMERG PHYS",share:100.0,wins:200,disputes:200,q:"q1",s:"emer"},
-  {name:"Integrated Emergency Medicine Specialist",share:100.0,wins:175,disputes:175,q:"q2",s:"emer"},
-  {name:"Small Hospital Innovations, LLC",share:100.0,wins:114,disputes:114,q:"q1",s:"emer"},
-  {name:"Emergency Medicine Service of KY",share:100.0,wins:55,disputes:55,q:"q1",s:"emer"},
-  {name:"Georgia Emergency Associates",share:99.7,wins:319,disputes:320,q:"q1",s:"emer"},
-  {name:"GRAND CANYON ANESTHESIA",share:99.5,wins:182,disputes:183,q:"q1",s:"emer"},
-  {name:"Holy Cross Emergency Phys, PA",share:99.4,wins:314,disputes:316,q:"q1",s:"emer"},
-  {name:"Wake Emergency Physicians PA",share:99.3,wins:586,disputes:590,q:"q1",s:"emer"},
-  {name:"Sterling Emergency Services of Miami Bea",share:99.0,wins:100,disputes:101,q:"q2",s:"emer"},
-  {name:"SAFEGUARD EMERG PHYS LLC",share:99.0,wins:96,disputes:97,q:"q1",s:"emer"},
-  {name:"MEDICAL ANESTHESIA CONSULTANTS MEDICAL G",share:98.8,wins:80,disputes:81,q:"q1",s:"emer"},
-  {name:"LAKE NONA EMERGENCY PHYSI",share:98.8,wins:79,disputes:80,q:"q1",s:"emer"},
-  {name:"LONESTAR24 HR ER",share:98.6,wins:71,disputes:72,q:"q2",s:"emer"},
-  {name:"Georgia Emerg Med Specialists PC",share:98.5,wins:66,disputes:67,q:"q1",s:"emer"},
-  {name:"PREMIER EM MEDICAL SPECIALISTS",share:98.5,wins:67,disputes:68,q:"q2",s:"emer"},
-  {name:"SCOTTSDALE EMERG ASSOC, LTD",share:98.4,wins:124,disputes:126,q:"q1",s:"emer"},
-  {name:"NEMS PLLC",share:98.4,wins:60,disputes:61,q:"q1",s:"emer"},
-  {name:"LAKE OLIVER EM GROUP LLC",share:98.1,wins:1051,disputes:1071,q:"q1",s:"emer"},
-  {name:"LAKE WALES EMERGENCY PHYSICIANS LLC",share:98.0,wins:596,disputes:608,q:"q1",s:"emer"},
-  {name:"WAKE EMERGENCY PHYSICIANS PA",share:97.8,wins:87,disputes:89,q:"q2",s:"emer"},
-  {name:"Sterling Emergency Services of Miami Bea",share:97.7,wins:379,disputes:388,q:"q1",s:"emer"},
-  {name:"Progressive Emergency Physicians, PLLC",share:97.6,wins:80,disputes:82,q:"q2",s:"emer"},
-  {name:"PEDIATRIX MEDICAL GROUP OF LOUISIANA, L.",share:97.2,wins:70,disputes:72,q:"q1",s:"emer"},
-  {name:"PEDIATRIX MEDICAL GROUP OF TEXAS BILLING",share:97.0,wins:64,disputes:66,q:"q1",s:"emer"},
-  {name:"GWINNETT EMERG SPECIALISTS, PC",share:97.0,wins:227,disputes:234,q:"q1",s:"emer"},
-  {name:"COMPASS POINT EMERG PHYS PLLC",share:96.4,wins:53,disputes:55,q:"q1",s:"emer"},
-  {name:"NEVADA EMERGENCY PHYS, PLLC",share:96.4,wins:54,disputes:56,q:"q1",s:"emer"},
-  {name:"LAKE WALES EMERGENCY PHYSICIANS LLC",share:96.2,wins:483,disputes:502,q:"q2",s:"emer"},
-  {name:"SHADOW EMERG PHYSICIANS, PLLC",share:95.9,wins:212,disputes:221,q:"q1",s:"emer"},
-  {name:"Polk Emergency Group, L.L.C.",share:95.7,wins:90,disputes:94,q:"q1",s:"emer"},
-  {name:"Emergency Physicians of Central Florida",share:95.5,wins:1301,disputes:1362,q:"q1",s:"emer"},
-  {name:"RIDGEWOOD EM GROUP LLC",share:95.4,wins:291,disputes:305,q:"q2",s:"emer"},
-  {name:"GOLDEN TRIANGLE EMERGENCY Center",share:95.3,wins:102,disputes:107,q:"q2",s:"emer"},
-  {name:"POLK EMERGENCY GROUP",share:94.4,wins:1207,disputes:1278,q:"q1",s:"emer"},
-  {name:"Mission Regional Medical Center",share:94.3,wins:700,disputes:742,q:"q1",s:"emer"},
-  {name:"Madison Emergency Physicians SC",share:94.2,wins:129,disputes:137,q:"q1",s:"emer"},
-  {name:"PINELLAS COUNTY ANESTHESIA ASSOCIATES",share:94.1,wins:271,disputes:288,q:"q1",s:"emer"},
-  {name:"Blue Radiology Services LLC",share:94.1,wins:365,disputes:388,q:"q2",s:"emer"},
-  {name:"Sandhills Emergency Physicians",share:93.7,wins:177,disputes:189,q:"q2",s:"emer"},
-  {name:"POLK EMERGENCY GROUP",share:93.6,wins:869,disputes:928,q:"q2",s:"emer"},
-  {name:"Saint Marys Regional Medical Center",share:93.2,wins:2894,disputes:3106,q:"q1",s:"emer"},
-  {name:"RIDGEWOOD EM GROUP LLC",share:92.8,wins:155,disputes:167,q:"q1",s:"emer"},
-  {name:"Ridgewood Emergency Group, LLC",share:92.7,wins:89,disputes:96,q:"q2",s:"emer"},
-  {name:"ADVENTHEALTH WESLEY CHAPEL",share:92.3,wins:60,disputes:65,q:"q2",s:"emer"},
-  {name:"ER of Texas Hurst LLC",share:92.2,wins:746,disputes:809,q:"q2",s:"emer"},
-  {name:"RIDGEWOOD EMERGENCY GROUP LLC",share:92.2,wins:1078,disputes:1169,q:"q2",s:"emer"},
-  {name:"ESS OF NACOGDOCHES LLC",share:91.6,wins:87,disputes:95,q:"q1",s:"emer"},
-  {name:"LAKE OLIVER EMERGENCY GRP LLC",share:91.5,wins:527,disputes:576,q:"q1",s:"emer"},
-  {name:"EMERGENCY MEDICINE SERVICES OF IN",share:91.5,wins:86,disputes:94,q:"q1",s:"emer"},
-  {name:"Legacy Meridian Park Hospital",share:91.4,wins:74,disputes:81,q:"q1",s:"emer"},
-  {name:"Melbourne Emergency Group, LLC",share:91.4,wins:117,disputes:128,q:"q1",s:"emer"},
-  {name:"GOLDEN TRIANGLE EMERGENCY LLC",share:91.3,wins:115,disputes:126,q:"q2",s:"emer"},
-  {name:"LAKE OLIVER EMERGENCY GROUP LLC",share:91.1,wins:901,disputes:989,q:"q1",s:"emer"},
-  {name:"AUGUSTINE EMERGENCY PHYSICIANS",share:91.1,wins:51,disputes:56,q:"q1",s:"emer"},
-  {name:"Emergency Medicine Professionals, P.A.",share:91.0,wins:628,disputes:690,q:"q2",s:"emer"},
-  {name:"SG ANESTHESIA",share:91.0,wins:162,disputes:178,q:"q1",s:"emer"},
-  {name:"NEWBERRY EMERGENCY PHYSICIANS PLLC",share:91.0,wins:61,disputes:67,q:"q1",s:"emer"},
-  {name:"MAGELLA MEDICAL ASSOCIATES BILLING, INC.",share:90.7,wins:49,disputes:54,q:"q2",s:"emer"},
-  {name:"Duval Emergency Group, LLC",share:90.3,wins:168,disputes:186,q:"q1",s:"emer"},
-  {name:"ER of Texas Little Elm LLC",share:90.2,wins:939,disputes:1041,q:"q2",s:"emer"},
-  {name:"ER of Texas Frisco LLC",share:90.1,wins:246,disputes:273,q:"q2",s:"emer"},
-  {name:"Rockledge Emergency Group, LLC",share:89.6,wins:86,disputes:96,q:"q2",s:"emer"},
-  {name:"JC ANESTHESIA",share:89.1,wins:98,disputes:110,q:"q1",s:"emer"},
-  {name:"Atascocita First ER",share:89.0,wins:178,disputes:200,q:"q2",s:"emer"},
-  {name:"ER of Texas Hillcrest LLC",share:88.7,wins:485,disputes:547,q:"q2",s:"emer"},
-  {name:"LAKE OLIVER EMERGENCY GRP LLC",share:88.7,wins:543,disputes:612,q:"q2",s:"emer"},
-  {name:"ABILENE ER PHYSICIANS STAFFING PA",share:88.7,wins:47,disputes:53,q:"q2",s:"emer"},
-  {name:"Emerson Emergency Physicians LLC",share:88.7,wins:118,disputes:133,q:"q2",s:"emer"},
-  {name:"ER of Texas Colleyville LLC",share:88.7,wins:425,disputes:479,q:"q2",s:"emer"},
-  {name:"RIDGEWOOD EMERGENCY GROUP LLC",share:88.7,wins:1040,disputes:1172,q:"q1",s:"emer"},
-  {name:"Louisville Emerg Med Associates PSC",share:88.2,wins:45,disputes:51,q:"q2",s:"emer"},
-  {name:"Victoria Emergency Partners",share:88.1,wins:1242,disputes:1409,q:"q2",s:"emer"},
-  {name:"Suburban Community Hospital",share:88.0,wins:2310,disputes:2625,q:"q2",s:"emer"},
-  {name:"STERLING EMERG SERV OF MI BEACH PA",share:87.9,wins:551,disputes:627,q:"q2",s:"emer"},
-  {name:"EMERGENCY RESOURCE GROUP",share:87.6,wins:1068,disputes:1219,q:"q1",s:"emer"},
-  {name:"LAKE OLIVER EMERGENCY GROUP LLC",share:87.1,wins:861,disputes:988,q:"q2",s:"emer"},
-  {name:"Elite Hospital Partners",share:87.0,wins:160,disputes:184,q:"q1",s:"emer"},
-  {name:"HIGHLAND PARK EMERGENCY CENTER LLC",share:86.9,wins:333,disputes:383,q:"q2",s:"emer"},
-  {name:"ATLANTIC COD EMERG PHYS",share:86.9,wins:53,disputes:61,q:"q1",s:"emer"},
-  {name:"Torrance Emergency Physicians Inc",share:86.8,wins:59,disputes:68,q:"q2",s:"emer"},
-  {name:"LAKE OLIVER EMERG GROUP LLC",share:86.8,wins:647,disputes:745,q:"q2",s:"emer"},
-  {name:"STERLING EMERG SVCS MIAMI BEACH PA",share:86.7,wins:679,disputes:783,q:"q2",s:"emer"},
-  {name:"Des Moines River Physicians, LLC",share:86.5,wins:64,disputes:74,q:"q1",s:"emer"},
-  {name:"STERLING EMERG SVCS MIAMI BEACH PA",share:86.5,wins:500,disputes:578,q:"q1",s:"emer"},
-  {name:"STERLING EMER SVCS MIAMI BEACH PA",share:86.4,wins:1329,disputes:1538,q:"q1",s:"emer"},
-  {name:"EXCEPTIONAL H C BROWNSVILLE LLC",share:86.0,wins:49,disputes:57,q:"q2",s:"emer"},
-  {name:"NORTHSTAR ANESTHESIA OF VIRGINIA, LLC",share:85.9,wins:177,disputes:206,q:"q2",s:"emer"},
-  {name:"STERLING EMER SVCS MIAMI BEACH PA",share:85.6,wins:1335,disputes:1560,q:"q2",s:"emer"},
-  {name:"eastern carolina emergency physicians",share:85.5,wins:53,disputes:62,q:"q2",s:"emer"},
-  {name:"EMCARE-RSN EMERG PHYSICIANS",share:85.5,wins:136,disputes:159,q:"q2",s:"emer"},
-  {name:"LAKE OLIVER EM GROUP LLC",share:85.3,wins:215,disputes:252,q:"q2",s:"emer"},
-  {name:"Emergency Physicians at Sumner PLLC",share:85.2,wins:276,disputes:324,q:"q2",s:"emer"},
-  {name:"NorthStar Anesthesia of Michigan, LLC",share:85.1,wins:63,disputes:74,q:"q2",s:"emer"},
-  {name:"LAKE OLIVER EMERG GROUP LLC",share:84.7,wins:471,disputes:556,q:"q1",s:"emer"},
-  {name:"Bayside Emergency Physicians",share:84.4,wins:152,disputes:180,q:"q1",s:"emer"},
-  {name:"Mercy Hospital",share:84.3,wins:86,disputes:102,q:"q1",s:"emer"},
-  {name:"STERLING EMERG SERV OF MI BEACH PA",share:83.9,wins:480,disputes:572,q:"q1",s:"emer"},
-  {name:"Westmoreland Em Med Specialists PC",share:83.8,wins:109,disputes:130,q:"q2",s:"emer"},
-  {name:"TOTAL POINT ER IRVING LLC",share:83.3,wins:130,disputes:156,q:"q1",s:"emer"},
-  {name:"North Vista Hospital",share:83.2,wins:198,disputes:238,q:"q1",s:"emer"},
-  {name:"CHI St. Lukes Health Brazosport",share:83.1,wins:152,disputes:183,q:"q1",s:"emer"},
-  {name:"Broad River Physicians Group, LLC",share:83.1,wins:1251,disputes:1505,q:"q1",s:"emer"},
-  {name:"ROCKLEDGE EMERGENCY GROUP LLC",share:82.7,wins:583,disputes:705,q:"q1",s:"emer"},
-  {name:"Duval Emergency Group, LLC",share:82.7,wins:62,disputes:75,q:"q2",s:"emer"},
-  {name:"STARFIELD EMERGENCY PHYSICIANS PLLC",share:82.0,wins:114,disputes:139,q:"q1",s:"emer"},
-  {name:"Lake Oliver Emergency Group, LLC",share:82.0,wins:434,disputes:529,q:"q1",s:"emer"},
-  {name:"ER of Texas Texoma LLC",share:81.9,wins:705,disputes:861,q:"q2",s:"emer"},
-  {name:"Bay Area Emergency Physicians LLC",share:81.8,wins:220,disputes:269,q:"q2",s:"emer"},
-  {name:"MELBOURNE EMERGENCY GROUP LLC",share:81.3,wins:572,disputes:704,q:"q1",s:"emer"},
-  {name:"Saint Francis Hospital Vinita",share:80.5,wins:66,disputes:82,q:"q1",s:"emer"},
-  {name:"QUESTCARE MEDICAL SVCS, PLLC",share:80.4,wins:1380,disputes:1716,q:"q1",s:"emer"},
-  {name:"Bellaire ER",share:80.2,wins:494,disputes:616,q:"q2",s:"emer"},
-  {name:"QUESTCARE MEDICAL SVCS, PLLC",share:80.2,wins:619,disputes:772,q:"q2",s:"emer"},
-  {name:"DUVAL EMERGENCY GROUP LLC",share:80.1,wins:885,disputes:1105,q:"q2",s:"emer"},
-  {name:"ICH-ER Services",share:80.0,wins:244,disputes:305,q:"q1",s:"emer"},
-  {name:"Landmark Medical Center",share:79.8,wins:483,disputes:605,q:"q1",s:"emer"},
-  {name:"Ridgewood Emergency Group, LLC",share:79.8,wins:186,disputes:233,q:"q1",s:"emer"},
-  {name:"FLOYD RIDGE EMERG PHYS P",share:79.8,wins:99,disputes:124,q:"q1",s:"emer"},
-  {name:"TOTAL POINT ER MCKINNEY LLC",share:79.8,wins:182,disputes:228,q:"q2",s:"emer"},
-  {name:"HCC OF LAREDO LLC",share:79.7,wins:231,disputes:290,q:"q2",s:"emer"},
-  {name:"Denver Ray Hall, MD",share:79.7,wins:51,disputes:64,q:"q1",s:"emer"},
-  {name:"Emergency Phys of Central FL, LLP",share:79.6,wins:336,disputes:422,q:"q1",s:"emer"},
-  {name:"California Hospital Medical Center",share:79.6,wins:43,disputes:54,q:"q1",s:"emer"},
-  {name:"Broward Health",share:79.5,wins:66,disputes:83,q:"q1",s:"emer"},
-  {name:"Northern Nevada Emergency Physicians",share:79.4,wins:54,disputes:68,q:"q1",s:"emer"},
-  {name:"Columbiana Emergency Physicians, LLC",share:79.3,wins:111,disputes:140,q:"q1",s:"emer"},
-  {name:"Arizona General Hospital - Laveen",share:79.3,wins:69,disputes:87,q:"q1",s:"emer"},
-  {name:"Grand River Emergency Medical Group PLC",share:79.2,wins:61,disputes:77,q:"q2",s:"emer"},
-  {name:"Killeen Emergency Center, LLC",share:79.1,wins:102,disputes:129,q:"q1",s:"emer"},
-  {name:"Bethesda Emergency Associates LLC",share:79.0,wins:383,disputes:485,q:"q2",s:"emer"},
-  {name:"Steven J Sperring, MD",share:79.0,wins:49,disputes:62,q:"q1",s:"emer"},
-  {name:"Baylor St Lukes Medical Center",share:79.0,wins:64,disputes:81,q:"q2",s:"emer"},
-  {name:"Lumberton Hospital, LLC",share:79.0,wins:94,disputes:119,q:"q2",s:"emer"},
-  {name:"American Anesthesiology of Virginia, P.C",share:78.9,wins:112,disputes:142,q:"q1",s:"emer"},
-  {name:"ER of Texas Highland Village LLC",share:78.9,wins:239,disputes:303,q:"q2",s:"emer"},
-  {name:"ESS OF EL DORADO LLC",share:78.9,wins:45,disputes:57,q:"q2",s:"emer"},
-  {name:"NGUYEN, Lien",share:78.8,wins:52,disputes:66,q:"q2",s:"emer"},
-  {name:"First Physicians Corporation",share:78.8,wins:78,disputes:99,q:"q1",s:"emer"},
-  {name:"AJIM, ALICE",share:78.5,wins:51,disputes:65,q:"q2",s:"emer"},
-  {name:"Baytown First ER",share:78.5,wins:193,disputes:246,q:"q1",s:"emer"},
-  {name:"Professional Emergency Physician Associa",share:78.2,wins:122,disputes:156,q:"q1",s:"emer"},
-  {name:"Texana Physicians, PLLC",share:78.1,wins:57,disputes:73,q:"q2",s:"emer"},
-  {name:"MONADNOCK EMERGENCY PHYSICIANS PLLC",share:77.8,wins:84,disputes:108,q:"q1",s:"emer"},
-  {name:"Emergency Resource Group",share:77.8,wins:77,disputes:99,q:"q1",s:"emer"},
-  {name:"Victoria Emergency Partners",share:77.7,wins:770,disputes:991,q:"q1",s:"emer"},
-  {name:"Tufts Medical Center EP LLC",share:77.5,wins:134,disputes:173,q:"q1",s:"emer"},
-  {name:"EMER GRAND PRAIRIE",share:77.4,wins:178,disputes:230,q:"q2",s:"emer"},
-  {name:"DUVAL EMERGENCY GROUP LLC",share:77.3,wins:655,disputes:847,q:"q1",s:"emer"},
-  {name:"QUANTUM EMERG PHYS PA",share:77.2,wins:447,disputes:579,q:"q1",s:"emer"},
-  {name:"HOUSTON ER PHYSICIANS LLC",share:77.2,wins:44,disputes:57,q:"q1",s:"emer"},
-  {name:"RIDGEWOOD EMERG GROUP LLC",share:76.8,wins:324,disputes:422,q:"q1",s:"emer"},
-  {name:"INTERCOMMUNITY EMER. MED. GROUP",share:76.6,wins:98,disputes:128,q:"q2",s:"emer"},
-  {name:"Integrated Emergency Medicine Partners o",share:76.3,wins:219,disputes:287,q:"q1",s:"emer"},
-  {name:"GWINNETT EMERG SPEC OBSR",share:76.2,wins:317,disputes:416,q:"q1",s:"emer"},
-  {name:"Green Valley Emergency Physicians",share:76.1,wins:70,disputes:92,q:"q1",s:"emer"},
-  {name:"William Charles Lamb, MD",share:76.0,wins:73,disputes:96,q:"q1",s:"emer"},
-  {name:"KYLE HOSPITAL LLC",share:76.0,wins:79,disputes:104,q:"q1",s:"emer"},
-  {name:"Oracle Health Systems Inc",share:75.5,wins:123,disputes:163,q:"q2",s:"emer"},
-  {name:"ROCKLEDGE EMERGENCY GROUP LLC",share:75.5,wins:750,disputes:994,q:"q2",s:"emer"},
-  {name:"CEC TLC Corpus ER Physicians PLLC",share:75.5,wins:262,disputes:347,q:"q2",s:"emer"},
-  {name:"Saint Francis Hospital",share:75.2,wins:872,disputes:1160,q:"q1",s:"emer"},
-  {name:"Jenica Ashley Lampl, MD",share:75.0,wins:51,disputes:68,q:"q1",s:"emer"},
-  {name:"RIDGEWOOD EMERG GROUP LLC",share:75.0,wins:288,disputes:384,q:"q2",s:"emer"},
-  {name:"SHADOW EMERG PHYSICIANS, PLLC",share:75.0,wins:279,disputes:372,q:"q2",s:"emer"},
-  {name:"Western Healthcare Services of Texas",share:74.7,wins:127,disputes:170,q:"q2",s:"emer"},
-  {name:"TC Jester Emergency Center, LLC",share:74.6,wins:44,disputes:59,q:"q1",s:"emer"},
-  {name:"Northridge Hospital Medical Center",share:74.6,wins:47,disputes:63,q:"q2",s:"emer"},
-  {name:"Garden City Hospital",share:74.3,wins:1652,disputes:2223,q:"q1",s:"emer"},
-  {name:"The Woodlands Hospital",share:74.3,wins:52,disputes:70,q:"q1",s:"emer"},
-  {name:"GONZALES, ALBERT",share:74.2,wins:46,disputes:62,q:"q2",s:"emer"},
-  {name:"Saint Francis Hospital South",share:74.2,wins:147,disputes:198,q:"q1",s:"emer"},
-  {name:"NORTHSIDE EMERG ASC PC",share:73.8,wins:534,disputes:724,q:"q1",s:"emer"},
-  {name:"CEC San Antonio ER Physicians PLLC",share:73.6,wins:226,disputes:307,q:"q2",s:"emer"},
-  {name:"Basin Emergency Physicians PLLC",share:73.2,wins:470,disputes:642,q:"q1",s:"emer"},
-  {name:"EPMG STHWST MI PLLC",share:73.1,wins:49,disputes:67,q:"q2",s:"emer"},
-  {name:"BUTLER, JACK",share:73.0,wins:89,disputes:122,q:"q2",s:"emer"},
-  {name:"I Jared Weiner, MD",share:72.5,wins:37,disputes:51,q:"q1",s:"emer"},
-  {name:"Shahriyour Andaz, MD",share:72.5,wins:37,disputes:51,q:"q1",s:"emer"},
-  {name:"Riverview Regional Medical Center",share:72.5,wins:1580,disputes:2178,q:"q1",s:"emer"},
-  {name:"NorthStar Anesthesia of West Virginia, P",share:72.2,wins:78,disputes:108,q:"q1",s:"emer"},
-  {name:"Long Island Anesthesiologists",share:72.2,wins:52,disputes:72,q:"q2",s:"emer"},
-  {name:"QUEENS EMERGENCY MEDICAL",share:72.2,wins:421,disputes:583,q:"q2",s:"emer"},
-  {name:"CANALES, MYLA",share:72.1,wins:62,disputes:86,q:"q2",s:"emer"},
-  {name:"CEC Tyler ER Physicians PLLC",share:72.1,wins:186,disputes:258,q:"q2",s:"emer"},
-  {name:"LEVEL ONE EMERGENCY PHYSICIANS LLC",share:72.0,wins:376,disputes:522,q:"q2",s:"emer"},
-  {name:"MEDCO PHYSICIAN GROUP PLLC",share:72.0,wins:36,disputes:50,q:"q2",s:"emer"},
-  {name:"Cody Daniel Murphy, MD",share:71.9,wins:41,disputes:57,q:"q1",s:"emer"},
-  {name:"Georgia Emerg Med Specialists, PC",share:71.9,wins:143,disputes:199,q:"q1",s:"emer"},
-  {name:"Oklahoma Hospital Medicine Physicians LL",share:71.6,wins:58,disputes:81,q:"q1",s:"emer"},
-  {name:"COGENT HEALTHCARE OF TEXAS PA",share:71.4,wins:70,disputes:98,q:"q1",s:"emer"},
-  {name:"Klingenberg, Christopher",share:71.4,wins:40,disputes:56,q:"q1",s:"emer"},
-  {name:"Eastern Carolina Emergency Physicians",share:71.3,wins:266,disputes:373,q:"q2",s:"emer"},
-  {name:"Prestige Emergency Room LLC-MAIN",share:71.2,wins:47,disputes:66,q:"q1",s:"emer"},
-  {name:"Adventhealth Fish Memorial",share:71.2,wins:42,disputes:59,q:"q2",s:"emer"},
-  {name:"Matthew Thomas Merrell, MD",share:70.9,wins:39,disputes:55,q:"q1",s:"emer"},
-  {name:"WHEELER PEAK EMERGENCY PHYSICIANS LLC",share:70.8,wins:46,disputes:65,q:"q1",s:"emer"},
-  {name:"PREMIER PHYSICIAN SURGICAL ASSOCIATES, PLLC",share:70.8,wins:63,disputes:89,q:"q2",s:"emer"},
-  {name:"KILLEEN EMERGENCY CENTER LLC",share:70.7,wins:116,disputes:164,q:"q2",s:"emer"},
-  {name:"QUALITY CARE ER, LLC",share:70.6,wins:36,disputes:51,q:"q2",s:"emer"},
-  {name:"Saint John Hospital",share:70.6,wins:492,disputes:697,q:"q1",s:"emer"},
-  {name:"HASHMI, SHAKEB",share:70.6,wins:36,disputes:51,q:"q1",s:"emer"},
-  {name:"Alvarado Hospital Medical Center",share:70.6,wins:36,disputes:51,q:"q2",s:"emer"},
-  {name:"CEP AMERICA CALIFORNIA",share:70.6,wins:344,disputes:487,q:"q1",s:"emer"},
-  {name:"NorthStar Anesthesia III, PA",share:70.5,wins:55,disputes:78,q:"q1",s:"emer"},
-  {name:"Emergency Physicians at Sumner PLLC",share:70.5,wins:103,disputes:146,q:"q1",s:"emer"},
-  {name:"PEDIATRIX MEDICAL GROUP OF OKLAHOMA, P.C",share:70.5,wins:86,disputes:122,q:"q1",s:"emer"},
-  {name:"Emergency Medicine Services of KY",share:70.4,wins:188,disputes:267,q:"q1",s:"emer"},
-  {name:"SOUND PHYSICIANS EMERGENCY MED OF NV",share:70.1,wins:75,disputes:107,q:"q1",s:"emer"},
-  {name:"The Woodlands Hospital",share:70.0,wins:175,disputes:250,q:"q2",s:"emer"},
-  {name:"Springhill Emergency Physicians PC",share:70.0,wins:210,disputes:300,q:"q1",s:"emer"},
-  {name:"Northeast Emerg Med Specialists LLC",share:70.0,wins:119,disputes:170,q:"q1",s:"emer"},
-  {name:"NORTHSTAR ANESTHESIA OF MICHIGAN, LLC",share:70.0,wins:105,disputes:150,q:"q2",s:"emer"},
-  {name:"BRIA, CARLEY",share:69.8,wins:37,disputes:53,q:"q1",s:"emer"},
-  {name:"Jefferson Emergency Medicine Associates,",share:69.7,wins:53,disputes:76,q:"q1",s:"emer"},
-  {name:"SUREPOINT EMERGENCY PHYSICIANS DENTON PLLC",share:69.6,wins:78,disputes:112,q:"q2",s:"emer"},
-  {name:"Oracle Health Systems Inc",share:69.6,wins:48,disputes:69,q:"q1",s:"emer"},
-  {name:"Curtis, Thomas",share:69.4,wins:75,disputes:108,q:"q2",s:"emer"},
-  {name:"GRACE EMERGENCY ROOM",share:69.3,wins:212,disputes:306,q:"q2",s:"emer"},
-  {name:"Germantown Emergency Physicians, PLLC",share:69.2,wins:465,disputes:672,q:"q1",s:"emer"},
-  {name:"American Anesthesiology of Tennessee, P.",share:69.2,wins:81,disputes:117,q:"q1",s:"emer"},
-  {name:"Fares Diarbakerli MD",share:69.0,wins:58,disputes:84,q:"q1",s:"emer"},
-  {name:"Suburban Community Hospital",share:68.9,wins:131,disputes:190,q:"q1",s:"emer"},
-  {name:"GOFFI, ADRIANO",share:68.7,wins:46,disputes:67,q:"q1",s:"emer"},
-  {name:"CLEAR CHOICE ER, LLC",share:68.7,wins:46,disputes:67,q:"q2",s:"emer"},
-  {name:"HIGHLAND PARK EMERGENCY CENTER",share:68.6,wins:3688,disputes:5374,q:"q2",s:"emer"},
-  {name:"Southern Regional Medical Center",share:68.5,wins:595,disputes:869,q:"q1",s:"emer"},
-  {name:"Sun City West Emergency Room",share:68.5,wins:187,disputes:273,q:"q1",s:"emer"},
-  {name:"Parviz Soomekh",share:68.4,wins:80,disputes:117,q:"q1",s:"emer"},
-  {name:"HOSPITALIST MEDICINE PHYSICIANS OF TX",share:68.3,wins:298,disputes:436,q:"q2",s:"emer"},
-  {name:"Clark, Gary",share:68.3,wins:43,disputes:63,q:"q2",s:"emer"},
-  {name:"MIDLAND EMERGENCY CENTER LLC",share:68.2,wins:484,disputes:710,q:"q2",s:"emer"},
-  {name:"Tampa Bay Emergency Physicians, LLC",share:68.2,wins:573,disputes:840,q:"q1",s:"emer"},
-  {name:"EMERGENCY SERVICES OF KANSAS PA",share:68.1,wins:982,disputes:1441,q:"q2",s:"emer"},
-  {name:"Meek, Suzanne",share:68.0,wins:174,disputes:256,q:"q2",s:"emer"},
-  {name:"LAKEWOOD EMERGENCY ROOM",share:67.9,wins:1371,disputes:2019,q:"q2",s:"emer"},
-  {name:"TOTAL POINT ER MISSOURI CITY LLC",share:67.9,wins:55,disputes:81,q:"q2",s:"emer"},
-  {name:"Hernando County Emergency Physicians",share:67.8,wins:833,disputes:1229,q:"q1",s:"emer"},
-  {name:"SOUND PHYSICIANS EMERGENCY MED OF ILLINOIS LLC",share:67.8,wins:514,disputes:758,q:"q2",s:"emer"},
-  {name:"Lehigh Regional Medical Center",share:67.7,wins:670,disputes:990,q:"q1",s:"emer"},
-  {name:"LAKEWOOD EMERGENCY ROOM",share:67.5,wins:476,disputes:705,q:"q1",s:"emer"},
-  {name:"Green Country Emergency Physicians Group",share:67.5,wins:56,disputes:83,q:"q2",s:"emer"},
-  {name:"Greater Baltimore Pathology Associates",share:67.4,wins:128,disputes:190,q:"q1",s:"emer"},
-  {name:"DFW LEWISVILLE EMERGENCY",share:67.4,wins:64,disputes:95,q:"q2",s:"emer"},
-  {name:"Alexandria Springfield EP, PC",share:67.4,wins:58,disputes:86,q:"q1",s:"emer"},
-  {name:"GREEN COUNTRY EMERGENCY PHYSICIAN",share:67.3,wins:183,disputes:272,q:"q1",s:"emer"},
-  {name:"The Vintage Hospital",share:67.2,wins:80,disputes:119,q:"q1",s:"emer"},
-  {name:"Tufts Medical Center EP LLC",share:67.2,wins:405,disputes:603,q:"q2",s:"emer"},
-  {name:"Chesapeake Emergency Physicians",share:66.7,wins:36,disputes:54,q:"q2",s:"emer"},
-  {name:"Christopher R Miller, MD",share:66.7,wins:52,disputes:78,q:"q1",s:"emer"},
-  {name:"ISLANDWIDE GASTROENTEROLOGY PC",share:66.7,wins:50,disputes:75,q:"q2",s:"emer"},
-  {name:"Memorial Healthcare System",share:66.7,wins:36,disputes:54,q:"q1",s:"emer"},
-  {name:"LEV GRINMAN, MD",share:66.7,wins:44,disputes:66,q:"q1",s:"emer"},
-  {name:"CHANDLER EMERG MED GROUP LLC",share:66.7,wins:198,disputes:297,q:"q2",s:"emer"},
-  {name:"ROME RADIOLOGY GROUP PA",share:66.5,wins:1005,disputes:1511,q:"q2",s:"emer"},
-  {name:"PATEL, PIKUL B",share:66.3,wins:69,disputes:104,q:"q2",s:"emer"},
-  {name:"Eric Weiss, MD",share:66.3,wins:67,disputes:101,q:"q1",s:"emer"},
-  {name:"COLLEGE STATION ER LLC",share:66.2,wins:202,disputes:305,q:"q2",s:"emer"},
-  {name:"El Paso West Emergency Room",share:66.2,wins:88,disputes:133,q:"q2",s:"emer"},
-  {name:"SURGICAL ASSISTANTS OF COLLIN COUNTY, PLLC",share:66.1,wins:109,disputes:165,q:"q2",s:"emer"},
-  {name:"Altus Exceptional Physician Group PLLC",share:66.1,wins:41,disputes:62,q:"q2",s:"emer"},
-  {name:"TOTAL POINT ER IRVING LLC",share:66.1,wins:150,disputes:227,q:"q2",s:"emer"},
-  {name:"Okorie, Ikechukwu",share:66.0,wins:64,disputes:97,q:"q2",s:"emer"},
-  {name:"Midland Emergency Managers, PLLC",share:66.0,wins:35,disputes:53,q:"q1",s:"emer"},
-  {name:"CEC Westlake ER Physicians PLLC",share:66.0,wins:126,disputes:191,q:"q2",s:"emer"},
-  {name:"Stallings Emergency Physicians, PLLC",share:65.9,wins:147,disputes:223,q:"q1",s:"emer"},
-  {name:"Emergency Medicine Services of NH",share:65.6,wins:227,disputes:346,q:"q1",s:"emer"},
-  {name:"ODESSA EMERGENCY CENTER LLC",share:65.5,wins:307,disputes:469,q:"q2",s:"emer"},
-  {name:"Elisabeth Marie Hughes, MD",share:65.4,wins:34,disputes:52,q:"q1",s:"emer"},
-  {name:"PEDIATRIX MEDICAL GROUP OF OKLAHOMA PC",share:65.4,wins:53,disputes:81,q:"q1",s:"emer"},
-  {name:"MELBOURNE EMERGENCY GROUP LLC",share:65.2,wins:467,disputes:716,q:"q2",s:"emer"},
-  {name:"MONTAGE SURGICAL, PLLC",share:65.1,wins:41,disputes:63,q:"q2",s:"emer"},
-  {name:"USA EMERGENCY CENTERS-BUDA LLC",share:65.1,wins:123,disputes:189,q:"q1",s:"emer"},
-  {name:"Domenick Ernest DiRico, MD",share:65.1,wins:54,disputes:83,q:"q1",s:"emer"},
-  {name:"EMCC WEATHERFORD PHYSICIANS, PLLC",share:65.0,wins:39,disputes:60,q:"q2",s:"emer"},
-  {name:"LONE STAR EMERGENCY ASSOCIATES LLC",share:65.0,wins:380,disputes:585,q:"q2",s:"emer"},
-  {name:"Wells, Howard",share:64.8,wins:35,disputes:54,q:"q2",s:"emer"},
-  {name:"JUNCO EMERGENCY PHYSICIANS LLC",share:64.5,wins:49,disputes:76,q:"q2",s:"emer"},
-  {name:"Riggins, Richard",share:64.5,wins:98,disputes:152,q:"q2",s:"emer"},
-  {name:"Windview First",share:64.2,wins:138,disputes:215,q:"q2",s:"emer"},
-  {name:"Bay Area Emergency Physicians LLC",share:64.1,wins:159,disputes:248,q:"q1",s:"emer"},
-  {name:"TOTAL POINT ER MCKINNEY LLC",share:64.1,wins:82,disputes:128,q:"q1",s:"emer"},
-  {name:"EMERGENCY RESOURCE GROUP",share:64.1,wins:860,disputes:1342,q:"q2",s:"emer"},
-  {name:"STAFFORD, MICHAEL T",share:64.0,wins:55,disputes:86,q:"q2",s:"emer"},
-  {name:"Passaic River Physicians, LLC",share:64.0,wins:308,disputes:481,q:"q2",s:"emer"},
-  {name:"TOPEKA ER & HOSPITAL",share:64.0,wins:1495,disputes:2337,q:"q2",s:"emer"},
-  {name:"Adam Nicholas Cassella, DO",share:63.9,wins:39,disputes:61,q:"q2",s:"emer"},
-  {name:"CONNER, BYRON",share:63.8,wins:37,disputes:58,q:"q1",s:"emer"},
-  {name:"Procare Nacogdoches llc",share:63.8,wins:67,disputes:105,q:"q1",s:"emer"},
-  {name:"College Station Emergency Center, LLC",share:63.6,wins:68,disputes:107,q:"q1",s:"emer"},
-  {name:"RAYFORD ER GROUP, PLLC",share:63.5,wins:40,disputes:63,q:"q1",s:"emer"},
-  {name:"Nicklaus Paul Atria, MD",share:63.5,wins:40,disputes:63,q:"q1",s:"emer"},
-  {name:"DUPREE, AARON L",share:63.4,wins:92,disputes:145,q:"q2",s:"emer"},
-  {name:"Baptist Memorial Hospital Union City",share:63.1,wins:53,disputes:84,q:"q1",s:"emer"},
-  {name:"Passaic River Physicians, LLC",share:63.0,wins:170,disputes:270,q:"q1",s:"emer"},
-  {name:"SUNFLOWER HOSPITAL OF TOPEKA",share:62.9,wins:427,disputes:679,q:"q2",s:"emer"},
-  {name:"Knapp Medical Center",share:62.9,wins:715,disputes:1136,q:"q1",s:"emer"},
-  {name:"compass pt emerg phys pl",share:62.9,wins:200,disputes:318,q:"q2",s:"emer"},
-  {name:"CROSSLEY, MICHAEL K",share:62.8,wins:49,disputes:78,q:"q2",s:"emer"},
-  {name:"END Associates, LLC",share:62.7,wins:37,disputes:59,q:"q1",s:"emer"},
-  {name:"EMERGENCY MEDICINE SERVICES OF KY",share:62.7,wins:696,disputes:1110,q:"q1",s:"emer"},
-  {name:"Sussex Emergency Associates, LLC",share:62.7,wins:193,disputes:308,q:"q1",s:"emer"},
-  {name:"Jay Kamlesh Kamdar, MD",share:62.7,wins:42,disputes:67,q:"q1",s:"emer"},
-  {name:"Kansas Emergency EM Specialists",share:62.5,wins:120,disputes:192,q:"q1",s:"emer"},
-  {name:"VICTORIA EMERGENCY PARTNERS LLC",share:62.5,wins:444,disputes:710,q:"q2",s:"emer"},
-  {name:"John Robert Fan, MD",share:62.5,wins:35,disputes:56,q:"q1",s:"emer"},
-  {name:"Muller Austin Emergency Center LLC",share:62.3,wins:281,disputes:451,q:"q2",s:"emer"},
-  {name:"GWINNETT EMERGENCY SPECIALISTS OBSERVATI",share:62.2,wins:102,disputes:164,q:"q1",s:"emer"},
-  {name:"GLEN CREEK SURGICAL PARTNERS, PLLC",share:62.0,wins:44,disputes:71,q:"q2",s:"emer"},
-  {name:"Mission Regional Medical Center",share:61.9,wins:511,disputes:825,q:"q2",s:"emer"},
-  {name:"Okpon Onabajo, Catherine",share:61.9,wins:52,disputes:84,q:"q2",s:"emer"},
-  {name:"Friedrich, William",share:61.9,wins:70,disputes:113,q:"q1",s:"emer"},
-  {name:"BARTON, JAMES BRADLEY G",share:61.9,wins:156,disputes:252,q:"q2",s:"emer"},
-  {name:"FRONTLINE WHTE ROCK MEDICAL CENTER, LLC",share:61.9,wins:52,disputes:84,q:"q2",s:"emer"},
-  {name:"Health Southwest Louisiana",share:61.8,wins:68,disputes:110,q:"q2",s:"emer"},
-  {name:"PRESTON HOLLOW EMERGENCY ROOM",share:61.6,wins:893,disputes:1450,q:"q1",s:"emer"},
-  {name:"Simon Tan M.D.",share:61.5,wins:32,disputes:52,q:"q2",s:"emer"},
-  {name:"Douglas V. Brown, MD",share:61.5,wins:32,disputes:52,q:"q1",s:"emer"},
-  {name:"OFORDEME, KENECHUKWU",share:61.5,wins:32,disputes:52,q:"q1",s:"emer"},
-  {name:"ATTEBERRY, YO",share:61.5,wins:88,disputes:143,q:"q2",s:"emer"},
-  {name:"Thomas, Angela",share:61.4,wins:113,disputes:184,q:"q2",s:"emer"},
-  {name:"PACIFIC IMAGING ASSOCIATES",share:61.4,wins:263,disputes:428,q:"q2",s:"emer"},
-  {name:"DIETERT, RYAN",share:61.3,wins:65,disputes:106,q:"q2",s:"emer"},
-  {name:"Brandon Wesley Radmall, MD",share:61.3,wins:49,disputes:80,q:"q1",s:"emer"},
-  {name:"MEEK, SUZANNE",share:61.3,wins:46,disputes:75,q:"q1",s:"emer"},
-  {name:"RED MOUNTAIN EMERGENCY PHYSICIANS, LLC",share:61.3,wins:73,disputes:119,q:"q1",s:"emer"},
-  {name:"Anthony Bonanno, MD",share:61.2,wins:90,disputes:147,q:"q1",s:"emer"},
-  {name:"First Physicians Corporation",share:61.1,wins:107,disputes:175,q:"q2",s:"emer"},
-  {name:"PIRALI, SHIRAZ W",share:61.1,wins:33,disputes:54,q:"q1",s:"emer"},
-  {name:"PHAM, BAO",share:61.1,wins:91,disputes:149,q:"q1",s:"emer"},
-  {name:"Silver Alliance LLC",share:61.0,wins:775,disputes:1270,q:"q2",s:"emer"},
-  {name:"FASULLO, FRANK J",share:61.0,wins:36,disputes:59,q:"q2",s:"emer"},
-  {name:"CEC Lakeway ER Physicians PLLC",share:61.0,wins:192,disputes:315,q:"q2",s:"emer"},
-  {name:"PA SURGICAL SERVICES, INC.",share:60.9,wins:78,disputes:128,q:"q2",s:"emer"},
-  {name:"CHILTON, RAYMOND L",share:60.7,wins:37,disputes:61,q:"q1",s:"emer"},
-  {name:"HOSPITALIST MEDICINE PHYSICIANS OF OK TCS",share:60.6,wins:80,disputes:132,q:"q2",s:"emer"},
-  {name:"SPECK, JOHN",share:60.4,wins:32,disputes:53,q:"q2",s:"emer"},
-  {name:"CARRUS LAKESIDE HOSPITAL LLC",share:60.4,wins:32,disputes:53,q:"q2",s:"emer"},
-  {name:"EXCEPTIONAL HEALTH CARE LIVINGSTON LLC",share:60.3,wins:41,disputes:68,q:"q2",s:"emer"},
-  {name:"Nnaemeka Chukwuka Idigo, MD",share:60.3,wins:35,disputes:58,q:"q1",s:"emer"},
-  {name:"Oklahoma Hospital Medicine Physicians",share:60.1,wins:140,disputes:233,q:"q1",s:"emer"},
-  {name:"East Liverpool City Hospital",share:60.1,wins:128,disputes:213,q:"q1",s:"emer"},
-  {name:"TEXARKANA EMERGENCY CENTER LLC",share:60.1,wins:276,disputes:459,q:"q2",s:"emer"},
-  {name:"Ingleside Emergency Group, LLC",share:60.0,wins:30,disputes:50,q:"q2",s:"emer"},
-  {name:"America's ER Center",share:60.0,wins:36,disputes:60,q:"q2",s:"emer"},
-  {name:"Teresa Carr",share:60.0,wins:87,disputes:145,q:"q1",s:"emer"},
-  {name:"BARTON, JAMES BRADLEY G",share:60.0,wins:57,disputes:95,q:"q1",s:"emer"},
-  {name:"CRAIGMILES, LAURA",share:60.0,wins:51,disputes:85,q:"q2",s:"emer"},
-  {name:"Joseph Michael Thompson, MD",share:60.0,wins:42,disputes:70,q:"q1",s:"emer"}
+  {name:"Lake Wales Emergency Physicians, LLC",share:100.0,wins:67,disputes:67,q:"q1",s:"emer"},
+  {name:"LAKE GRANBURY HOSPITALBASED PROFESSIONAL SERVICES",share:98.3,wins:58,disputes:59,q:"q2",s:"emer"},
+  {name:"LAKE WALES EMERGENCY PHYSICIANS LLC",share:97.6,wins:451,disputes:462,q:"q1",s:"emer"},
+  {name:"Transcend Surgery Center",share:96.7,wins:58,disputes:60,q:"q1",s:"emer"},
+  {name:"RIDGEWOOD EM GROUP LLC",share:96.5,wins:167,disputes:173,q:"q2",s:"emer"},
+  {name:"Polk Emergency Group, L.L.C.",share:95.8,wins:68,disputes:71,q:"q1",s:"emer"},
+  {name:"LAKE WALES EMERGENCY PHYSICIANS LLC",share:95.1,wins:233,disputes:245,q:"q2",s:"emer"},
+  {name:"Sterling Emergency Services of Miami Beach, P.A.",share:95.0,wins:170,disputes:179,q:"q1",s:"emer"},
+  {name:"POLK EMERGENCY GROUP",share:94.6,wins:802,disputes:848,q:"q1",s:"emer"},
+  {name:"POLK EMERGENCY GROUP",share:94.0,wins:373,disputes:397,q:"q2",s:"emer"},
+  {name:"RIDGEWOOD EM GROUP LLC",share:92.4,wins:146,disputes:158,q:"q1",s:"emer"},
+  {name:"Melbourne Emergency Group, LLC",share:89.3,wins:67,disputes:75,q:"q1",s:"emer"},
+  {name:"LAKE OLIVER EMERGENCY GRP LLC",share:88.9,wins:343,disputes:386,q:"q1",s:"emer"},
+  {name:"LAKE OLIVER EM GROUP LLC",share:88.0,wins:147,disputes:167,q:"q1",s:"emer"},
+  {name:"Ridgewood Emergency Group, LLC",share:87.9,wins:131,disputes:149,q:"q1",s:"emer"},
+  {name:"NORTHSTAR ANESTHESIA OF VIRGINIA, LLC",share:87.2,wins:102,disputes:117,q:"q2",s:"emer"},
+  {name:"RIDGEWOOD EMERGENCY GROUP LLC",share:87.0,wins:767,disputes:882,q:"q1",s:"emer"},
+  {name:"LAKE OLIVER EMERGENCY GROUP LLC",share:86.8,wins:498,disputes:574,q:"q1",s:"emer"},
+  {name:"RIDGEWOOD EMERGENCY GROUP LLC",share:86.7,wins:383,disputes:442,q:"q2",s:"emer"},
+  {name:"LAKE OLIVER EMERG GROUP LLC",share:86.4,wins:344,disputes:398,q:"q1",s:"emer"},
+  {name:"Duval Emergency Group, LLC",share:85.4,wins:88,disputes:103,q:"q1",s:"emer"},
+  {name:"STERLING EMER SVCS MIAMI BEACH PA",share:84.1,wins:1035,disputes:1230,q:"q1",s:"emer"},
+  {name:"MELBOURNE EMERGENCY GROUP LLC",share:83.2,wins:479,disputes:576,q:"q1",s:"emer"},
+  {name:"Lake Oliver Emergency Group, LLC",share:82.9,wins:58,disputes:70,q:"q2",s:"emer"},
+  {name:"STERLING EMERG SVCS MIAMI BEACH PA",share:82.5,wins:368,disputes:446,q:"q1",s:"emer"},
+  {name:"LAKE OLIVER EM GROUP LLC",share:82.2,wins:88,disputes:107,q:"q2",s:"emer"},
+  {name:"STERLING EMER SVCS MIAMI BEACH PA",share:81.6,wins:553,disputes:678,q:"q2",s:"emer"},
+  {name:"STERLING EMERG SERV OF MI BEACH PA",share:81.1,wins:227,disputes:280,q:"q2",s:"emer"},
+  {name:"STERLING EMERG SERV OF MI BEACH PA",share:80.8,wins:362,disputes:448,q:"q1",s:"emer"},
+  {name:"Rockledge Emergency Group, LLC",share:80.6,wins:58,disputes:72,q:"q1",s:"emer"},
+  {name:"HOSPITALIST MEDICINE PHYSICIANS OF TX",share:79.6,wins:172,disputes:216,q:"q2",s:"emer"},
+  {name:"LAKE OLIVER EMERGENCY GRP LLC",share:79.4,wins:177,disputes:223,q:"q2",s:"emer"},
+  {name:"ROCKLEDGE EMERGENCY GROUP LLC",share:79.0,wins:418,disputes:529,q:"q1",s:"emer"},
+  {name:"LAKE OLIVER EMERGENCY GROUP LLC",share:78.9,wins:255,disputes:323,q:"q2",s:"emer"},
+  {name:"STERLING EMERG SVCS MIAMI BEACH PA",share:78.7,wins:200,disputes:254,q:"q2",s:"emer"},
+  {name:"DUVAL EMERGENCY GROUP LLC",share:76.2,wins:488,disputes:640,q:"q1",s:"emer"},
+  {name:"RIDGEWOOD EMERG GROUP LLC",share:76.0,wins:254,disputes:334,q:"q1",s:"emer"},
+  {name:"LAKE OLIVER EMERG GROUP LLC",share:74.4,wins:186,disputes:250,q:"q2",s:"emer"},
+  {name:"SOUND PHYSICIANS EMERGENCY MED OF ILLINOIS LLC",share:72.8,wins:303,disputes:416,q:"q2",s:"emer"},
+  {name:"Lake Oliver Emergency Group, LLC",share:71.9,wins:133,disputes:185,q:"q1",s:"emer"},
+  {name:"GWINNETT EMERG SPEC OBSR",share:70.9,wins:73,disputes:103,q:"q1",s:"emer"},
+  {name:"NORTHSTAR ANESTHESIA OF MICHIGAN, LLC",share:70.9,wins:56,disputes:79,q:"q2",s:"emer"},
+  {name:"OSIRIS EMERGNECY SERVICES",share:70.6,wins:36,disputes:51,q:"q1",s:"emer"},
+  {name:"ROCKLEDGE EMERGENCY GROUP LLC",share:70.4,wins:285,disputes:405,q:"q2",s:"emer"},
+  {name:"GOLDEN TRIANGLE EMERGENCY SERVICES",share:70.3,wins:45,disputes:64,q:"q1",s:"emer"},
+  {name:"HOSPITALIST MEDICINE PHYSICIANS OF OK TCS",share:70.2,wins:40,disputes:57,q:"q2",s:"emer"},
+  {name:"RIDGEWOOD EMERG GROUP LLC",share:69.4,wins:129,disputes:186,q:"q2",s:"emer"},
+  {name:"See Submission Line Items Attachment",share:68.5,wins:115,disputes:168,q:"q1",s:"emer"},
+  {name:"COGENT HEALTHCARE OF TEXAS PA",share:68.2,wins:45,disputes:66,q:"q1",s:"emer"},
+  {name:"Parviz Soomekh MD PC",share:68.0,wins:100,disputes:147,q:"q1",s:"emer"},
+  {name:"EMERGENCY SERVICES OF KANSAS PA",share:67.8,wins:431,disputes:636,q:"q2",s:"emer"},
+  {name:"TOPEKA ER & HOSPITAL",share:67.3,wins:231,disputes:343,q:"q2",s:"emer"},
+  {name:"SURGICAL ASSISTANTS OF COLLIN COUNTY, PLLC",share:65.7,wins:46,disputes:70,q:"q2",s:"emer"},
+  {name:"MELBOURNE EMERGENCY GROUP LLC",share:64.9,wins:251,disputes:387,q:"q2",s:"emer"},
+  {name:"GOLDEN TRIANGLE EMERGENCY SERVICES - PROFESSIONAL",share:64.7,wins:108,disputes:167,q:"q2",s:"emer"},
+  {name:"DUVAL EMERGENCY GROUP LLC",share:63.6,wins:241,disputes:379,q:"q2",s:"emer"},
+  {name:"TEXARKANA ER, LLC",share:62.0,wins:634,disputes:1023,q:"q2",s:"emer"},
+  {name:"RR EMERGENCY PHYSICIANS PLLC",share:62.0,wins:31,disputes:50,q:"q2",s:"emer"},
+  {name:"SUNFLOWER HOSPITAL OF TOPEKA",share:61.2,wins:235,disputes:384,q:"q2",s:"emer"},
+  {name:"GRACE MEDICAL PA",share:61.0,wins:47,disputes:77,q:"q2",s:"emer"},
+  {name:"HOSPITALIST MEDICINE PHYSICIANS OF TEXAS PLLC",share:60.7,wins:65,disputes:107,q:"q1",s:"emer"},
+  {name:"OSIRIS EMERGENCY SERVICES",share:60.3,wins:38,disputes:63,q:"q1",s:"emer"},
+  {name:"IEMS Physician Services PLLC",share:60.0,wins:135,disputes:225,q:"q2",s:"emer"}
 ];
 const PROV_NORMAL = [
-  {name:"Singleton Associates, P.A.",share:22.3,wins:37653,disputes:168636,q:"q2",s:"emer"},
-  {name:"Singleton Associates, P.A.",share:22.2,wins:30682,disputes:138086,q:"q1",s:"emer"},
-  {name:"Sonoran Radiology, LTD",share:13.6,wins:6138,disputes:44987,q:"q2",s:"emer"},
-  {name:"Sonoran Radiology, LTD",share:20.0,wins:7018,disputes:35055,q:"q1",s:"emer"},
-  {name:"Mori, Bean, and Brooks, Inc.",share:38.2,wins:12853,disputes:33648,q:"q2",s:"emer"},
-  {name:"Mori, Bean, and Brooks, Inc.",share:36.7,wins:8049,disputes:21924,q:"q1",s:"emer"},
-  {name:"Houston Radiology Associated",share:3.1,wins:608,disputes:19348,q:"q2",s:"emer"},
-  {name:"Empire State Radiology, P.C.",share:18.2,wins:3346,disputes:18367,q:"q1",s:"emer"},
-  {name:"SOUTHEASTERN EMERGENCY PHYSICIANS LLC",share:6.3,wins:1134,disputes:18100,q:"q2",s:"emer"},
-  {name:"OrthoMed Staffing, LLC",share:20.8,wins:3697,disputes:17735,q:"q1",s:"emer"},
-  {name:"Empire State Radiology, P.C.",share:5.7,wins:1013,disputes:17731,q:"q2",s:"emer"},
-  {name:"Imaging Associates of Indiana, PC",share:5.7,wins:986,disputes:17294,q:"q2",s:"emer"},
-  {name:"EXCELLENCE EMERGENCY HOSPITAL LLC",share:42.9,wins:7192,disputes:16763,q:"q2",s:"emer"},
-  {name:"Harlingen Medical Center",share:33.4,wins:5401,disputes:16158,q:"q2",s:"emer"},
-  {name:"Baptist Memorial Hospital Memphis",share:22.8,wins:3652,disputes:16052,q:"q2",s:"emer"},
-  {name:"SOUTHEASTERN EMERGENCY PHYSICIANS LLC",share:8.2,wins:1302,disputes:15851,q:"q1",s:"emer"},
-  {name:"Houston Radiology Associated",share:13.2,wins:2079,disputes:15799,q:"q1",s:"emer"},
-  {name:"LONGVIEW ER OPERATIONS, LLC",share:11.2,wins:1725,disputes:15450,q:"q2",s:"emer"},
-  {name:"OrthoMed Staffing, LLC",share:23.0,wins:3097,disputes:13452,q:"q2",s:"emer"},
-  {name:"Imaging Associates of Indiana, PC",share:13.6,wins:1756,disputes:12902,q:"q1",s:"emer"},
-  {name:"PRECISION EMERGENCY PHYSICIANS",share:32.1,wins:3839,disputes:11948,q:"q2",s:"emer"},
-  {name:"FREMONT EMERGENCY SERVICES SCHERR LTD",share:7.5,wins:856,disputes:11434,q:"q2",s:"emer"},
-  {name:"Remote Neuromonitoring Physicians PC",share:38.7,wins:4248,disputes:10985,q:"q1",s:"emer"},
-  {name:"Remote Neuromonitoring Physicians PC",share:15.0,wins:1526,disputes:10178,q:"q2",s:"emer"},
-  {name:"Baptist Memorial Hospital Desoto",share:21.4,wins:2160,disputes:10077,q:"q2",s:"emer"},
-  {name:"TYLER ER OPERATIONS, LLC",share:14.3,wins:1416,disputes:9890,q:"q2",s:"emer"},
-  {name:"EXCEPTIONAL HEALTH CARE MARICOPA LLC",share:7.8,wins:704,disputes:9005,q:"q2",s:"emer"},
-  {name:"PARAGON CONTRACTING SERVICES LLC",share:12.0,wins:1003,disputes:8382,q:"q1",s:"emer"},
-  {name:"Baptist Memorial Hospital Memphis",share:36.4,wins:3018,disputes:8290,q:"q1",s:"emer"},
-  {name:"Harlingen Medical Center",share:7.4,wins:596,disputes:8103,q:"q1",s:"emer"},
-  {name:"EMERGENCY PROFESSIONALS OF INDIANA PC",share:3.9,wins:311,disputes:8076,q:"q2",s:"emer"},
-  {name:"USA EMERGENCY CENTERS SPRING LLC",share:30.0,wins:2416,disputes:8048,q:"q2",s:"emer"},
-  {name:"PARAGON CONTRACTING SERVICES LLC",share:5.1,wins:401,disputes:7871,q:"q2",s:"emer"},
-  {name:"ACS PRIMARY CARE PHYSICIANS - SOUTHEAST PC",share:6.5,wins:505,disputes:7711,q:"q2",s:"emer"},
-  {name:"NORTHWEST INDIANA ER",share:8.8,wins:665,disputes:7526,q:"q2",s:"emer"},
-  {name:"TEXARKANA ER, LLC",share:54.6,wins:4000,disputes:7328,q:"q2",s:"emer"},
-  {name:"LITTLE ROCK HOSPITAL 1, LLC",share:13.1,wins:958,disputes:7305,q:"q2",s:"emer"},
-  {name:"ACS PRIMARY CARE PHYSICIANS - SOUTHEAST PC",share:6.6,wins:478,disputes:7265,q:"q1",s:"emer"},
-  {name:"USA EMERGENCY CENTERS - ROUND ROCK, LLC",share:28.6,wins:2052,disputes:7187,q:"q2",s:"emer"},
-  {name:"EXCEPTIONAL HEALTH CARE MARICOPA LLC",share:18.8,wins:1344,disputes:7160,q:"q1",s:"emer"},
-  {name:"EXCELLENCE EMERGENCY HOSPITAL LLC",share:31.8,wins:2273,disputes:7152,q:"q1",s:"emer"},
-  {name:"TEXARKANA ER, LLC",share:25.5,wins:1782,disputes:6990,q:"q1",s:"emer"},
-  {name:"TEC Emergency Physicians of AZ",share:37.8,wins:2512,disputes:6649,q:"q2",s:"emer"},
-  {name:"FORT SMITH EMERGENCY HOSPITAL",share:16.6,wins:1086,disputes:6557,q:"q2",s:"emer"},
-  {name:"FREMONT EMERGENCY SERVICES SCHERR LTD",share:16.9,wins:1100,disputes:6523,q:"q1",s:"emer"},
-  {name:"WEST PLANO ER",share:32.4,wins:2032,disputes:6273,q:"q2",s:"emer"},
-  {name:"WRFER Denton, LLC",share:37.6,wins:2349,disputes:6246,q:"q2",s:"emer"},
-  {name:"NPPA SERVICES",share:33.2,wins:2063,disputes:6217,q:"q2",s:"emer"},
-  {name:"Baptist Memorial Hospital Desoto",share:52.6,wins:3263,disputes:6201,q:"q1",s:"emer"},
-  {name:"PRECISION EMERGENCY PHYSICIANS",share:26.0,wins:1605,disputes:6181,q:"q1",s:"emer"}
+  {name:"Singleton Associates, P.A.",share:12.5,wins:4975,disputes:39669,q:"q1",s:"emer"},
+  {name:"Singleton Associates, P.A.",share:13.5,wins:4781,disputes:35519,q:"q2",s:"emer"},
+  {name:"OrthoMed Staffing, LLC",share:20.9,wins:3694,disputes:17708,q:"q1",s:"emer"},
+  {name:"Houston Radiology Associated",share:15.9,wins:1933,disputes:12167,q:"q1",s:"emer"},
+  {name:"Sonoran Radiology, LTD",share:15.5,wins:1842,disputes:11918,q:"q1",s:"emer"},
+  {name:"Sonoran Radiology, LTD",share:12.6,wins:1388,disputes:10978,q:"q2",s:"emer"},
+  {name:"Houston Radiology Associated",share:3.1,wins:297,disputes:9492,q:"q2",s:"emer"},
+  {name:"OrthoMed Staffing, LLC",share:22.4,wins:1929,disputes:8613,q:"q2",s:"emer"},
+  {name:"SOUTHEASTERN EMERGENCY PHYSICIANS LLC",share:6.9,wins:528,disputes:7628,q:"q1",s:"emer"},
+  {name:"U.S. Anesthesia Partners of Texas, P.A.",share:9.9,wins:721,disputes:7307,q:"q2",s:"emer"},
+  {name:"Remote Neuromonitoring Physicians PC",share:32.9,wins:2381,disputes:7238,q:"q1",s:"emer"},
+  {name:"SOUTHEASTERN EMERGENCY PHYSICIANS LLC",share:5.6,wins:367,disputes:6562,q:"q2",s:"emer"},
+  {name:"Mori, Bean, and Brooks, Inc.",share:35.8,wins:2329,disputes:6502,q:"q2",s:"emer"},
+  {name:"Imaging Associates of Indiana, PC",share:6.5,wins:398,disputes:6097,q:"q2",s:"emer"},
+  {name:"Imaging Associates of Indiana, PC",share:12.0,wins:688,disputes:5739,q:"q1",s:"emer"},
+  {name:"PRECISION EMERGENCY PHYSICIANS",share:40.1,wins:2120,disputes:5285,q:"q2",s:"emer"},
+  {name:"FREMONT EMERGENCY SERVICES SCHERR LTD",share:6.8,wins:346,disputes:5100,q:"q2",s:"emer"},
+  {name:"Remote Neuromonitoring Physicians PC",share:14.2,wins:677,disputes:4769,q:"q2",s:"emer"},
+  {name:"Physician Oversight LLC",share:24.2,wins:1121,disputes:4625,q:"q1",s:"emer"},
+  {name:"Mori, Bean, and Brooks, Inc.",share:26.8,wins:1219,disputes:4541,q:"q1",s:"emer"},
+  {name:"SUMMIT ANESTHESIA PARTNERS",share:13.1,wins:586,disputes:4473,q:"q1",s:"emer"},
+  {name:"PRECISION EMERGENCY PHYSICIANS",share:36.4,wins:1486,disputes:4085,q:"q1",s:"emer"},
+  {name:"U.S. Anesthesia Partners of Florida, Inc.",share:42.2,wins:1670,disputes:3957,q:"q1",s:"emer"},
+  {name:"NPPA SERVICES",share:33.9,wins:1337,disputes:3939,q:"q2",s:"emer"},
+  {name:"FREMONT EMERGENCY SERVICES SCHERR LTD",share:13.0,wins:504,disputes:3874,q:"q1",s:"emer"},
+  {name:"EVOKES, LLC",share:13.7,wins:527,disputes:3836,q:"q1",s:"emer"},
+  {name:"Physician Oversight LLC",share:33.1,wins:1236,disputes:3734,q:"q2",s:"emer"},
+  {name:"PARAGON CONTRACTING SERVICES LLC",share:8.9,wins:330,disputes:3728,q:"q1",s:"emer"},
+  {name:"SUMMIT ANESTHESIA PARTNERS",share:6.8,wins:253,disputes:3707,q:"q2",s:"emer"},
+  {name:"Empire State Radiology, P.C.",share:10.1,wins:372,disputes:3687,q:"q1",s:"emer"},
+  {name:"EMERGENCY PROFESSIONALS OF INDIANA PC",share:4.0,wins:138,disputes:3446,q:"q2",s:"emer"},
+  {name:"ACS PRIMARY CARE PHYSICIANS - SOUTHEAST PC",share:6.5,wins:219,disputes:3375,q:"q1",s:"emer"},
+  {name:"NPPA SERVICES",share:16.1,wins:533,disputes:3318,q:"q1",s:"emer"},
+  {name:"EMERGENCY PROFESSIONALS OF INDIANA PC",share:6.5,wins:213,disputes:3264,q:"q1",s:"emer"},
+  {name:"EMERGENCY COVERAGE LLC",share:3.7,wins:116,disputes:3122,q:"q1",s:"emer"},
+  {name:"EMERGENCY COVERAGE CORPORATION",share:9.0,wins:270,disputes:2994,q:"q1",s:"emer"},
+  {name:"INPHYNET SOUTH BROWARD LLC",share:5.2,wins:153,disputes:2918,q:"q1",s:"emer"},
+  {name:"Empire State Radiology, P.C.",share:7.7,wins:219,disputes:2852,q:"q2",s:"emer"},
+  {name:"ACS PRIMARY CARE PHYSICIANS - SOUTHEAST PC",share:7.3,wins:196,disputes:2702,q:"q2",s:"emer"},
+  {name:"PARAGON CONTRACTING SERVICES LLC",share:6.2,wins:165,disputes:2653,q:"q2",s:"emer"},
+  {name:"U.S. Anesthesia Partners of Florida, Inc.",share:23.2,wins:601,disputes:2596,q:"q2",s:"emer"},
+  {name:"EMERGENCY PHYSICIANS SOUTHWEST PC",share:22.3,wins:535,disputes:2396,q:"q1",s:"emer"},
+  {name:"EMERGENCY PHYSICIANS SOUTHWEST PC",share:7.0,wins:161,disputes:2310,q:"q2",s:"emer"},
+  {name:"Anesthesia Medical Group, P.C.",share:56.0,wins:1288,disputes:2298,q:"q1",s:"emer"},
+  {name:"EMERGENCY COVERAGE LLC",share:2.6,wins:60,disputes:2298,q:"q2",s:"emer"},
+  {name:"TEXAS MEDICINE RESOURCES LLP",share:4.5,wins:103,disputes:2281,q:"q2",s:"emer"},
+  {name:"INPHYNET SOUTH BROWARD LLC",share:6.6,wins:143,disputes:2151,q:"q2",s:"emer"},
+  {name:"EVOKES, LLC",share:12.2,wins:260,disputes:2128,q:"q2",s:"emer"},
+  {name:"SOUTHEASTERN EMERGENCY SERVICE",share:3.7,wins:76,disputes:2070,q:"q1",s:"emer"},
+  {name:"TEXAS MEDICINE RESOURCES LLP",share:13.4,wins:277,disputes:2065,q:"q1",s:"emer"}
 ];
 const PLAN_FOCUS = [
-  {name:"uhc.com",wins:41701,share:10.8,disputes:384447,q:"q2",s:"emer"},
-  {name:"uhc.com",wins:37745,share:12.9,disputes:292751,q:"q1",s:"emer"},
-  {name:"bcbstx.com",wins:156451,share:55.7,disputes:281116,q:"q2",s:"emer"},
-  {name:"aetna.com",wins:67287,share:24.0,disputes:280375,q:"q2",s:"emer"},
-  {name:"aetna.com",wins:71211,share:37.6,disputes:189572,q:"q1",s:"emer"},
-  {name:"bcbstx.com",wins:62123,share:39.0,disputes:159363,q:"q1",s:"emer"},
-  {name:"multiplan.com",wins:17579,share:11.6,disputes:151369,q:"q2",s:"emer"},
-  {name:"multiplan.com",wins:13317,share:13.7,disputes:97294,q:"q1",s:"emer"},
-  {name:"cigna.com",wins:21087,share:22.2,disputes:95163,q:"q2",s:"emer"},
-  {name:"anthem.com",wins:12507,share:13.8,disputes:90842,q:"q2",s:"emer"},
-  {name:"clearhs.com",wins:5278,share:6.7,disputes:79329,q:"q2",s:"emer"},
-  {name:"anthem.com",wins:14287,share:21.6,disputes:66216,q:"q1",s:"emer"},
-  {name:"cigna.com",wins:24353,share:39.3,disputes:61942,q:"q1",s:"emer"},
-  {name:"azblue.com",wins:4274,share:9.2,disputes:46362,q:"q2",s:"emer"},
-  {name:"clearhealthcloud.com",wins:3039,share:7.4,disputes:40842,q:"q2",s:"emer"},
-  {name:"clearhs.com",wins:3595,share:9.0,disputes:40146,q:"q1",s:"emer"},
-  {name:"azblue.com",wins:3869,share:10.2,disputes:37822,q:"q1",s:"emer"},
-  {name:"centene.com",wins:13309,share:42.8,disputes:31083,q:"q2",s:"emer"},
-  {name:"clearhealthcloud.com",wins:1371,share:5.4,disputes:25557,q:"q1",s:"emer"},
-  {name:"bcbsil.com",wins:10916,share:49.4,disputes:22118,q:"q2",s:"emer"},
-  {name:"bcbsil.com",wins:7641,share:37.1,disputes:20593,q:"q1",s:"emer"},
-  {name:"bcbsfl.com",wins:16179,share:87.4,disputes:18516,q:"q1",s:"emer"},
-  {name:"centene.com",wins:13766,share:74.9,disputes:18374,q:"q1",s:"emer"},
-  {name:"zelis.com",wins:16747,share:91.7,disputes:18264,q:"q1",s:"emer"},
-  {name:"bcbsfl.com",wins:11697,share:65.4,disputes:17884,q:"q2",s:"emer"},
-  {name:"bcbsnm.com",wins:4967,share:42.5,disputes:11698,q:"q2",s:"emer"},
-  {name:"zelis.com",wins:5640,share:62.0,disputes:9094,q:"q2",s:"emer"},
-  {name:"bcbst.com",wins:831,share:11.2,disputes:7408,q:"q1",s:"emer"},
-  {name:"bcbsnm.com",wins:2309,share:31.8,disputes:7255,q:"q1",s:"emer"},
-  {name:"ibx.com",wins:6043,share:91.7,disputes:6588,q:"q2",s:"emer"},
-  {name:"hioscar.com",wins:609,share:9.7,disputes:6286,q:"q2",s:"emer"},
-  {name:"springtidehealth.com",wins:505,share:10.6,disputes:4771,q:"q2",s:"emer"},
-  {name:"hioscar.com",wins:259,share:6.8,disputes:3822,q:"q1",s:"emer"},
-  {name:"blueshieldca.com",wins:347,share:9.7,disputes:3590,q:"q2",s:"emer"},
-  {name:"hfbenefits.com",wins:524,share:15.3,disputes:3426,q:"q2",s:"emer"},
-  {name:"lablue.com",wins:256,share:7.5,disputes:3404,q:"q2",s:"emer"},
-  {name:"emblemhealth.com",wins:1357,share:46.0,disputes:2948,q:"q2",s:"emer"},
-  {name:"bcbsks.com",wins:2523,share:86.2,disputes:2928,q:"q2",s:"emer"},
-  {name:"horizonblue.com",wins:761,share:26.8,disputes:2839,q:"q2",s:"emer"},
-  {name:"springtidehealth.com",wins:520,share:19.8,disputes:2629,q:"q1",s:"emer"},
-  {name:"bcbsnc.com",wins:200,share:7.6,disputes:2620,q:"q2",s:"emer"},
-  {name:"uhsinc.com",wins:2619,share:100.0,disputes:2619,q:"q1",s:"emer"},
-  {name:"bcbst.com",wins:596,share:23.1,disputes:2581,q:"q2",s:"emer"},
-  {name:"carefirst.com",wins:453,share:19.5,disputes:2326,q:"q2",s:"emer"},
-  {name:"emblemhealth.com",wins:1657,share:72.2,disputes:2294,q:"q1",s:"emer"},
-  {name:"horizonblue.com",wins:851,share:42.2,disputes:2018,q:"q1",s:"emer"},
-  {name:"carefirst.com",wins:736,share:39.0,disputes:1887,q:"q1",s:"emer"},
-  {name:"bcbsok.com",wins:562,share:32.9,disputes:1707,q:"q1",s:"emer"},
-  {name:"bcbsks.com",wins:772,share:46.4,disputes:1664,q:"q1",s:"emer"},
-  {name:"lablue.com",wins:43,share:2.6,disputes:1641,q:"q1",s:"emer"},
-  {name:"bcbsm.com",wins:827,share:52.5,disputes:1574,q:"q2",s:"emer"},
-  {name:"blueshieldca.com",wins:146,share:9.3,disputes:1569,q:"q1",s:"emer"},
-  {name:"regence.com",wins:685,share:43.7,disputes:1567,q:"q2",s:"emer"},
-  {name:"highmark.com",wins:201,share:13.5,disputes:1493,q:"q1",s:"emer"},
-  {name:"alliedbenefit.com",wins:616,share:42.3,disputes:1455,q:"q2",s:"emer"},
-  {name:"bcbsok.com",wins:966,share:67.1,disputes:1439,q:"q2",s:"emer"},
-  {name:"fridayhealthplans.com",wins:1372,share:100.0,disputes:1372,q:"q1",s:"emer"},
-  {name:"bcbsnc.com",wins:160,share:12.4,disputes:1293,q:"q1",s:"emer"},
-  {name:"phiagroup.com",wins:310,share:25.0,disputes:1240,q:"q2",s:"emer"},
-  {name:"point32health.org",wins:785,share:63.7,disputes:1232,q:"q2",s:"emer"},
-  {name:"caresource.com",wins:438,share:38.9,disputes:1125,q:"q2",s:"emer"},
-  {name:"geha.com",wins:362,share:34.4,disputes:1051,q:"q2",s:"emer"},
-  {name:"boonchapman.com",wins:151,share:14.6,disputes:1031,q:"q2",s:"emer"},
-  {name:"webtpa.com",wins:259,share:27.2,disputes:951,q:"q2",s:"emer"},
-  {name:"mgb.org",wins:931,share:100.0,disputes:931,q:"q2",s:"emer"},
-  {name:"alliedbenefit.com",wins:345,share:39.2,disputes:881,q:"q1",s:"emer"},
-  {name:"bcbsm.com",wins:53,share:6.0,disputes:881,q:"q1",s:"emer"},
-  {name:"point32health.org",wins:585,share:68.1,disputes:859,q:"q1",s:"emer"},
-  {name:"highmark.com",wins:127,share:15.0,disputes:847,q:"q2",s:"emer"},
-  {name:"molinahealthcare.com",wins:50,share:6.2,disputes:807,q:"q2",s:"emer"},
-  {name:"bcbssc.com",wins:132,share:17.1,disputes:771,q:"q2",s:"emer"},
-  {name:"umr.com",wins:741,share:99.9,disputes:742,q:"q2",s:"emer"},
-  {name:"mutliplan.com",wins:618,share:88.7,disputes:697,q:"q1",s:"emer"},
-  {name:"1199funds.org",wins:88,share:12.6,disputes:696,q:"q2",s:"emer"},
-  {name:"ibx.com",wins:82,share:12.1,disputes:678,q:"q1",s:"emer"},
-  {name:"abadmin.com",wins:516,share:77.2,disputes:668,q:"q2",s:"emer"},
-  {name:"mutliplan.com",wins:491,share:77.0,disputes:638,q:"q2",s:"emer"},
-  {name:"90degreebenefits.com",wins:525,share:83.1,disputes:632,q:"q1",s:"emer"},
-  {name:"sanabenefits.com",wins:367,share:58.5,disputes:627,q:"q2",s:"emer"},
-  {name:"caresource.com",wins:21,share:3.4,disputes:623,q:"q1",s:"emer"},
-  {name:"90degreebenefits.com",wins:487,share:78.4,disputes:621,q:"q2",s:"emer"},
-  {name:"phs.org",wins:398,share:68.2,disputes:584,q:"q2",s:"emer"},
-  {name:"phiagroup.com",wins:100,share:17.6,disputes:567,q:"q1",s:"emer"},
-  {name:"healthplansinc.com",wins:49,share:8.9,disputes:548,q:"q2",s:"emer"},
-  {name:"regence.com",wins:139,share:25.4,disputes:547,q:"q1",s:"emer"},
-  {name:"bcbsla.com",wins:48,share:8.9,disputes:542,q:"q2",s:"emer"},
-  {name:"mgb.org",wins:542,share:100.0,disputes:542,q:"q1",s:"emer"},
-  {name:"humana.com",wins:123,share:22.8,disputes:540,q:"q2",s:"emer"},
-  {name:"bcbsla.com",wins:20,share:3.8,disputes:531,q:"q1",s:"emer"},
-  {name:"ameriben.com",wins:95,share:18.5,disputes:513,q:"q2",s:"emer"},
-  {name:"webtpa.com",wins:111,share:22.3,disputes:497,q:"q1",s:"emer"},
-  {name:"geha.com",wins:31,share:6.4,disputes:481,q:"q1",s:"emer"},
-  {name:"uhsinc.com",wins:480,share:100.0,disputes:480,q:"q2",s:"emer"},
-  {name:"boonchapman.com",wins:55,share:11.7,disputes:471,q:"q1",s:"emer"},
-  {name:"elevancehealth.com",wins:184,share:39.9,disputes:461,q:"q1",s:"emer"},
-  {name:"ccok.com",wins:416,share:93.3,disputes:446,q:"q2",s:"emer"},
-  {name:"priorityhealth.com",wins:441,share:99.5,disputes:443,q:"q2",s:"emer"},
-  {name:"healthplansinc.com",wins:62,share:14.7,disputes:422,q:"q1",s:"emer"},
-  {name:"personifyhealth.com",wins:75,share:18.2,disputes:412,q:"q2",s:"emer"},
-  {name:"medmutual.com",wins:304,share:74.0,disputes:411,q:"q2",s:"emer"},
-  {name:"lucenthealth.com",wins:125,share:31.3,disputes:399,q:"q2",s:"emer"},
-  {name:"humana.com",wins:101,share:26.2,disputes:385,q:"q1",s:"emer"},
-  {name:"gravie.com",wins:138,share:37.4,disputes:369,q:"q1",s:"emer"},
-  {name:"marpaihealth.com",wins:340,share:92.4,disputes:368,q:"q1",s:"emer"},
-  {name:"ameriben.com",wins:103,share:28.0,disputes:368,q:"q1",s:"emer"},
-  {name:"marpaihealth.com",wins:360,share:99.7,disputes:361,q:"q2",s:"emer"},
-  {name:"claim-doc.com",wins:82,share:23.3,disputes:352,q:"q1",s:"emer"},
-  {name:"lucenthealth.com",wins:106,share:31.2,disputes:340,q:"q1",s:"emer"},
-  {name:"gravie.com",wins:62,share:18.3,disputes:339,q:"q2",s:"emer"},
-  {name:"phs.org",wins:184,share:55.4,disputes:332,q:"q1",s:"emer"},
-  {name:"sanabenefits.com",wins:204,share:62.2,disputes:328,q:"q1",s:"emer"},
-  {name:"6degreeshealth.com",wins:37,share:11.3,disputes:327,q:"q2",s:"emer"},
-  {name:"emihealth.com",wins:162,share:49.5,disputes:327,q:"q2",s:"emer"},
-  {name:"umr.com",wins:306,share:93.6,disputes:327,q:"q1",s:"emer"},
-  {name:"1199funds.org",wins:48,share:14.9,disputes:323,q:"q1",s:"emer"},
-  {name:"uhcsr.com",wins:81,share:25.7,disputes:315,q:"q2",s:"emer"},
-  {name:"chp.org",wins:12,share:3.8,disputes:313,q:"q2",s:"emer"},
-  {name:"bcbssc.com",wins:29,share:9.5,disputes:304,q:"q1",s:"emer"},
-  {name:"magnacare.com",wins:25,share:8.3,disputes:300,q:"q2",s:"emer"},
-  {name:"bswhealth.org",wins:124,share:42.0,disputes:295,q:"q2",s:"emer"},
-  {name:"healthfirst.org",wins:292,share:100.0,disputes:292,q:"q2",s:"emer"},
-  {name:"elevancehealth.com",wins:106,share:37.1,disputes:286,q:"q2",s:"emer"},
-  {name:"personifyhealth.com",wins:14,share:4.9,disputes:284,q:"q1",s:"emer"},
-  {name:"nipponlifebenefits.com",wins:279,share:100.0,disputes:279,q:"q2",s:"emer"},
-  {name:"healthplan.org",wins:215,share:79.9,disputes:269,q:"q1",s:"emer"},
-  {name:"healthcomp.com",wins:98,share:37.1,disputes:264,q:"q1",s:"emer"},
-  {name:"billingnav.com",wins:14,share:5.5,disputes:255,q:"q1",s:"emer"},
-  {name:"zenith-american.com",wins:70,share:27.6,disputes:254,q:"q2",s:"emer"},
-  {name:"christushealth.org",wins:236,share:94.0,disputes:251,q:"q2",s:"emer"},
-  {name:"wellfleetinsurance.com",wins:31,share:12.4,disputes:250,q:"q2",s:"emer"},
-  {name:"claim-doc.com",wins:77,share:31.3,disputes:246,q:"q2",s:"emer"},
-  {name:"ibxtpa.com",wins:204,share:85.0,disputes:240,q:"q2",s:"emer"},
-  {name:"aitherhealth.zohodesk.com",wins:183,share:77.5,disputes:236,q:"q2",s:"emer"},
-  {name:"centivo.com",wins:115,share:49.8,disputes:231,q:"q2",s:"emer"},
-  {name:"billingnav.com",wins:23,share:10.0,disputes:230,q:"q2",s:"emer"},
-  {name:"ascension.org",wins:149,share:67.7,disputes:220,q:"q2",s:"emer"},
-  {name:"chp.org",wins:82,share:38.0,disputes:216,q:"q1",s:"emer"},
-  {name:"bluekc.com",wins:42,share:19.4,disputes:216,q:"q1",s:"emer"},
-  {name:"ccok.com",wins:174,share:80.9,disputes:215,q:"q1",s:"emer"},
-  {name:"blackhawktpa.com",wins:214,share:100.0,disputes:214,q:"q1",s:"emer"},
-  {name:"emihealth.com",wins:204,share:97.6,disputes:209,q:"q1",s:"emer"},
-  {name:"medmutual.com",wins:118,share:57.3,disputes:206,q:"q1",s:"emer"},
-  {name:"bswhealth.org",wins:20,share:9.9,disputes:203,q:"q1",s:"emer"},
-  {name:"healthcomp.com",wins:102,share:51.3,disputes:199,q:"q2",s:"emer"},
-  {name:"asrhealthbenefits.com",wins:198,share:100.0,disputes:198,q:"q2",s:"emer"},
-  {name:"modahealth.com",wins:92,share:46.5,disputes:198,q:"q2",s:"emer"},
-  {name:"6degreeshealth.com",wins:14,share:7.3,disputes:193,q:"q1",s:"emer"},
-  {name:"alliednational.com",wins:190,share:99.5,disputes:191,q:"q2",s:"emer"},
-  {name:"dataisight.com",wins:161,share:84.7,disputes:190,q:"q1",s:"emer"},
-  {name:"idr.com",wins:170,share:91.4,disputes:186,q:"q2",s:"emer"},
-  {name:"kemptongroup.com",wins:35,share:18.8,disputes:186,q:"q1",s:"emer"},
-  {name:"healthpartners.com",wins:64,share:36.2,disputes:177,q:"q1",s:"emer"},
-  {name:"nipponlifebenefits.com",wins:177,share:100.0,disputes:177,q:"q1",s:"emer"},
-  {name:"healthpartners.com",wins:169,share:96.0,disputes:176,q:"q2",s:"emer"},
-  {name:"totalplantpa.com",wins:176,share:100.0,disputes:176,q:"q2",s:"emer"},
-  {name:"centivo.com",wins:79,share:45.1,disputes:175,q:"q1",s:"emer"},
-  {name:"imail.org",wins:11,share:6.4,disputes:173,q:"q2",s:"emer"},
-  {name:"healthplan.org",wins:97,share:56.7,disputes:171,q:"q2",s:"emer"},
-  {name:"sentara.com",wins:164,share:97.0,disputes:169,q:"q2",s:"emer"},
-  {name:"mulitplan.com",wins:169,share:100.0,disputes:169,q:"q1",s:"emer"},
-  {name:"ss-healthcare.com",wins:165,share:98.8,disputes:167,q:"q1",s:"emer"},
-  {name:"evhc.com",wins:165,share:100.0,disputes:165,q:"q2",s:"emer"},
-  {name:"modahealth.com",wins:4,share:2.4,disputes:164,q:"q1",s:"emer"},
-  {name:"logixhealth.com",wins:163,share:100.0,disputes:163,q:"q2",s:"emer"},
-  {name:"imail.org",wins:62,share:38.3,disputes:162,q:"q1",s:"emer"},
-  {name:"omes.ok.gov",wins:1,share:0.6,disputes:160,q:"q2",s:"emer"},
-  {name:"alliednational.com",wins:157,share:100.0,disputes:157,q:"q1",s:"emer"},
-  {name:"fridayhealthplans.com",wins:157,share:100.0,disputes:157,q:"q2",s:"emer"},
-  {name:"meritain.com",wins:154,share:100.0,disputes:154,q:"q2",s:"emer"},
-  {name:"pacificsource.com",wins:131,share:85.6,disputes:153,q:"q2",s:"emer"},
-  {name:"hstechnology.com",wins:72,share:47.4,disputes:152,q:"q2",s:"emer"},
-  {name:"mbaadmin.com",wins:150,share:100.0,disputes:150,q:"q2",s:"emer"},
-  {name:"luminarehealth.com",wins:139,share:92.7,disputes:150,q:"q2",s:"emer"}
+  {name:"uhc.com",wins:14566,share:10.7,disputes:136487,q:"q1",s:"emer"},
+  {name:"uhc.com",wins:12753,share:10.8,disputes:118394,q:"q2",s:"emer"},
+  {name:"aetna.com",wins:10055,share:14.5,disputes:69367,q:"q2",s:"emer"},
+  {name:"bcbstx.com",wins:40031,share:58.1,disputes:68863,q:"q2",s:"emer"},
+  {name:"aetna.com",wins:19473,share:30.6,disputes:63591,q:"q1",s:"emer"},
+  {name:"bcbstx.com",wins:22962,share:39.0,disputes:58912,q:"q1",s:"emer"},
+  {name:"multiplan.com",wins:4607,share:10.1,disputes:45510,q:"q2",s:"emer"},
+  {name:"multiplan.com",wins:4057,share:9.9,disputes:40958,q:"q1",s:"emer"},
+  {name:"anthem.com",wins:6361,share:16.8,disputes:37872,q:"q1",s:"emer"},
+  {name:"anthem.com",wins:4253,share:12.4,disputes:34242,q:"q2",s:"emer"},
+  {name:"clearhs.com",wins:1550,share:7.1,disputes:21781,q:"q2",s:"emer"},
+  {name:"clearhs.com",wins:1484,share:7.5,disputes:19762,q:"q1",s:"emer"},
+  {name:"cigna.com",wins:5740,share:32.8,disputes:17506,q:"q1",s:"emer"},
+  {name:"cigna.com",wins:3303,share:19.4,disputes:17068,q:"q2",s:"emer"},
+  {name:"clearhealthcloud.com",wins:806,share:5.8,disputes:14011,q:"q2",s:"emer"},
+  {name:"clearhealthcloud.com",wins:622,share:4.8,disputes:12933,q:"q1",s:"emer"},
+  {name:"bcbsfl.com",wins:9699,share:86.7,disputes:11189,q:"q1",s:"emer"},
+  {name:"azblue.com",wins:700,share:6.9,disputes:10189,q:"q1",s:"emer"},
+  {name:"bcbsil.com",wins:3190,share:34.9,disputes:9130,q:"q1",s:"emer"},
+  {name:"azblue.com",wins:372,share:4.5,disputes:8306,q:"q2",s:"emer"},
+  {name:"bcbsil.com",wins:3728,share:60.1,disputes:6199,q:"q2",s:"emer"},
+  {name:"bcbsfl.com",wins:4018,share:67.2,disputes:5980,q:"q2",s:"emer"},
+  {name:"zelis.com",wins:3647,share:88.4,disputes:4127,q:"q1",s:"emer"},
+  {name:"centene.com",wins:1626,share:40.7,disputes:3991,q:"q2",s:"emer"},
+  {name:"bcbst.com",wins:391,share:11.4,disputes:3423,q:"q1",s:"emer"},
+  {name:"bcbsnm.com",wins:1507,share:44.7,disputes:3368,q:"q2",s:"emer"},
+  {name:"centene.com",wins:1581,share:54.6,disputes:2898,q:"q1",s:"emer"},
+  {name:"bcbsnm.com",wins:891,share:36.0,disputes:2472,q:"q1",s:"emer"},
+  {name:"centene.com",wins:1222,share:54.1,disputes:2258,q:"q1",s:"air"},
+  {name:"bcbstx.com",wins:35,share:1.7,disputes:2118,q:"q2",s:"air"},
+  {name:"lablue.com",wins:145,share:7.1,disputes:2041,q:"q2",s:"emer"},
+  {name:"zelis.com",wins:1208,share:60.0,disputes:2015,q:"q2",s:"emer"},
+  {name:"bcbsok.com",wins:534,share:33.3,disputes:1604,q:"q1",s:"emer"},
+  {name:"aetna.com",wins:1025,share:64.2,disputes:1596,q:"q1",s:"air"},
+  {name:"centene.com",wins:271,share:17.3,disputes:1565,q:"q2",s:"air"},
+  {name:"lablue.com",wins:19,share:1.3,disputes:1500,q:"q1",s:"emer"},
+  {name:"horizonblue.com",wins:457,share:34.2,disputes:1338,q:"q1",s:"emer"},
+  {name:"emblemhealth.com",wins:476,share:36.1,disputes:1318,q:"q2",s:"emer"},
+  {name:"horizonblue.com",wins:297,share:22.6,disputes:1314,q:"q2",s:"emer"},
+  {name:"carefirst.com",wins:529,share:41.2,disputes:1285,q:"q1",s:"emer"},
+  {name:"emblemhealth.com",wins:781,share:61.6,disputes:1267,q:"q1",s:"emer"},
+  {name:"springtidehealth.com",wins:195,share:16.7,disputes:1170,q:"q1",s:"emer"},
+  {name:"springtidehealth.com",wins:191,share:16.8,disputes:1139,q:"q2",s:"emer"},
+  {name:"bcbstx.com",wins:8,share:0.7,disputes:1073,q:"q1",s:"air"},
+  {name:"hioscar.com",wins:68,share:6.5,disputes:1049,q:"q2",s:"emer"},
+  {name:"carefirst.com",wins:194,share:18.7,disputes:1039,q:"q2",s:"emer"},
+  {name:"highmark.com",wins:173,share:17.2,disputes:1008,q:"q1",s:"emer"},
+  {name:"blueshieldca.com",wins:87,share:8.8,disputes:988,q:"q2",s:"emer"},
+  {name:"bcbsks.com",wins:825,share:87.7,disputes:941,q:"q2",s:"emer"},
+  {name:"multiplan.com",wins:92,share:9.9,disputes:931,q:"q2",s:"air"},
+  {name:"multiplan.com",wins:95,share:10.7,disputes:887,q:"q1",s:"air"},
+  {name:"ibx.com",wins:548,share:63.4,disputes:865,q:"q2",s:"emer"},
+  {name:"bcbsnc.com",wins:58,share:7.1,disputes:821,q:"q2",s:"emer"},
+  {name:"kp.org",wins:7,share:0.9,disputes:805,q:"q2",s:"air"},
+  {name:"aetna.com",wins:243,share:30.3,disputes:802,q:"q2",s:"air"},
+  {name:"blueshieldca.com",wins:64,share:8.5,disputes:757,q:"q1",s:"emer"},
+  {name:"bcbsks.com",wins:376,share:50.9,disputes:739,q:"q1",s:"emer"},
+  {name:"hioscar.com",wins:75,share:10.2,disputes:732,q:"q1",s:"emer"},
+  {name:"bcbsm.com",wins:427,share:58.7,disputes:727,q:"q2",s:"emer"},
+  {name:"anthem.com",wins:130,share:18.4,disputes:707,q:"q1",s:"air"},
+  {name:"bcbsok.com",wins:416,share:62.0,disputes:671,q:"q2",s:"emer"},
+  {name:"bcbsnc.com",wins:82,share:12.2,disputes:671,q:"q1",s:"emer"},
+  {name:"uhc.com",wins:69,share:10.5,disputes:655,q:"q2",s:"air"},
+  {name:"uhc.com",wins:60,share:10.1,disputes:593,q:"q1",s:"air"},
+  {name:"anthem.com",wins:51,share:8.6,disputes:590,q:"q2",s:"air"},
+  {name:"cigna.com",wins:107,share:18.2,disputes:588,q:"q2",s:"air"},
+  {name:"ibx.com",wins:69,share:11.9,disputes:582,q:"q1",s:"emer"},
+  {name:"bcbst.com",wins:142,share:24.5,disputes:580,q:"q2",s:"emer"},
+  {name:"clearhs.com",wins:35,share:6.6,disputes:532,q:"q1",s:"air"},
+  {name:"hfbenefits.com",wins:66,share:13.1,disputes:504,q:"q2",s:"emer"},
+  {name:"bcbsla.com",wins:18,share:3.6,disputes:499,q:"q1",s:"emer"},
+  {name:"bcbst.com",wins:40,share:8.1,disputes:495,q:"q1",s:"air"},
+  {name:"bcbssc.com",wins:73,share:15.3,disputes:477,q:"q2",s:"emer"},
+  {name:"alliedbenefit.com",wins:178,share:37.9,disputes:470,q:"q2",s:"emer"},
+  {name:"clearhs.com",wins:43,share:9.4,disputes:459,q:"q2",s:"air"},
+  {name:"highmark.com",wins:64,share:16.2,disputes:395,q:"q2",s:"emer"},
+  {name:"cigna.com",wins:167,share:44.7,disputes:374,q:"q1",s:"air"},
+  {name:"boonchapman.com",wins:61,share:17.4,disputes:351,q:"q2",s:"emer"},
+  {name:"bcbsil.com",wins:14,share:4.2,disputes:332,q:"q2",s:"air"},
+  {name:"bcbsil.com",wins:10,share:3.1,disputes:326,q:"q1",s:"air"},
+  {name:"geha.com",wins:113,share:35.1,disputes:322,q:"q2",s:"emer"},
+  {name:"bcbsla.com",wins:33,share:10.5,disputes:313,q:"q2",s:"emer"},
+  {name:"phiagroup.com",wins:81,share:26.2,disputes:309,q:"q2",s:"emer"},
+  {name:"alliedbenefit.com",wins:106,share:34.9,disputes:304,q:"q1",s:"emer"},
+  {name:"geha.com",wins:18,share:6.0,disputes:298,q:"q1",s:"emer"},
+  {name:"1199funds.org",wins:42,share:14.2,disputes:296,q:"q2",s:"emer"},
+  {name:"boonchapman.com",wins:38,share:13.1,disputes:290,q:"q1",s:"emer"},
+  {name:"mgb.org",wins:252,share:100.0,disputes:252,q:"q2",s:"emer"},
+  {name:"hioscar.com",wins:8,share:3.2,disputes:247,q:"q2",s:"air"},
+  {name:"point32health.org",wins:109,share:44.3,disputes:246,q:"q1",s:"emer"},
+  {name:"ameriben.com",wins:44,share:18.2,disputes:242,q:"q2",s:"emer"},
+  {name:"1199funds.org",wins:32,share:13.3,disputes:241,q:"q1",s:"emer"},
+  {name:"bcbsm.com",wins:89,share:37.2,disputes:239,q:"q2",s:"air"},
+  {name:"bcbsm.com",wins:18,share:7.5,disputes:239,q:"q1",s:"emer"},
+  {name:"webtpa.com",wins:60,share:25.5,disputes:235,q:"q2",s:"emer"},
+  {name:"ameriben.com",wins:51,share:21.7,disputes:235,q:"q1",s:"emer"},
+  {name:"umr.com",wins:233,share:100.0,disputes:233,q:"q2",s:"emer"},
+  {name:"azblue.com",wins:77,share:34.8,disputes:221,q:"q2",s:"air"},
+  {name:"ccok.com",wins:197,share:91.6,disputes:215,q:"q2",s:"emer"},
+  {name:"mutliplan.com",wins:187,share:88.2,disputes:212,q:"q1",s:"emer"},
+  {name:"humana.com",wins:51,share:24.4,disputes:209,q:"q1",s:"emer"},
+  {name:"uhsinc.com",wins:206,share:100.0,disputes:206,q:"q1",s:"emer"},
+  {name:"phiagroup.com",wins:42,share:20.6,disputes:204,q:"q1",s:"emer"},
+  {name:"azblue.com",wins:39,share:19.7,disputes:198,q:"q1",s:"air"},
+  {name:"point32health.org",wins:99,share:50.5,disputes:196,q:"q2",s:"emer"},
+  {name:"phs.org",wins:142,share:74.7,disputes:190,q:"q2",s:"emer"},
+  {name:"webtpa.com",wins:54,share:28.9,disputes:187,q:"q1",s:"emer"},
+  {name:"caresource.com",wins:77,share:43.0,disputes:179,q:"q2",s:"emer"},
+  {name:"regence.com",wins:31,share:17.8,disputes:174,q:"q2",s:"emer"},
+  {name:"bcbswy.com",wins:5,share:2.9,disputes:174,q:"q1",s:"air"},
+  {name:"medmutual.com",wins:128,share:74.0,disputes:173,q:"q2",s:"emer"},
+  {name:"priorityhealth.com",wins:170,share:99.4,disputes:171,q:"q2",s:"emer"},
+  {name:"mgb.org",wins:170,share:100.0,disputes:170,q:"q1",s:"emer"},
+  {name:"phs.org",wins:131,share:77.1,disputes:170,q:"q1",s:"emer"},
+  {name:"mutliplan.com",wins:140,share:85.4,disputes:164,q:"q2",s:"emer"},
+  {name:"sanabenefits.com",wins:97,share:59.9,disputes:162,q:"q2",s:"emer"},
+  {name:"medmutual.com",wins:88,share:54.7,disputes:161,q:"q1",s:"emer"},
+  {name:"healthplansinc.com",wins:19,share:11.9,disputes:160,q:"q1",s:"emer"},
+  {name:"90degreebenefits.com",wins:125,share:78.6,disputes:159,q:"q1",s:"emer"},
+  {name:"zelis.com",wins:144,share:91.1,disputes:158,q:"q1",s:"air"},
+  {name:"umr.com",wins:146,share:94.2,disputes:155,q:"q1",s:"emer"},
+  {name:"kp.org",wins:15,share:9.7,disputes:155,q:"q1",s:"air"},
+  {name:"90degreebenefits.com",wins:118,share:77.1,disputes:153,q:"q2",s:"emer"},
+  {name:"molinahealthcare.com",wins:15,share:10.5,disputes:143,q:"q2",s:"emer"},
+  {name:"premera.com",wins:2,share:1.4,disputes:143,q:"q2",s:"air"},
+  {name:"personifyhealth.com",wins:26,share:18.4,disputes:141,q:"q2",s:"emer"},
+  {name:"healthplansinc.com",wins:15,share:10.7,disputes:140,q:"q2",s:"emer"},
+  {name:"ibxtpa.com",wins:119,share:85.6,disputes:139,q:"q2",s:"emer"},
+  {name:"humana.com",wins:22,share:16.1,disputes:137,q:"q2",s:"emer"},
+  {name:"bcbssc.com",wins:27,share:20.0,disputes:135,q:"q1",s:"emer"},
+  {name:"lucenthealth.com",wins:29,share:21.6,disputes:134,q:"q1",s:"emer"},
+  {name:"bcbsfl.com",wins:6,share:4.5,disputes:134,q:"q2",s:"air"},
+  {name:"qualchoice.com",wins:10,share:7.6,disputes:132,q:"q1",s:"emer"},
+  {name:"ccok.com",wins:113,share:86.3,disputes:131,q:"q1",s:"emer"},
+  {name:"emihealth.com",wins:63,share:48.5,disputes:130,q:"q2",s:"emer"},
+  {name:"bcbsnm.com",wins:8,share:6.2,disputes:130,q:"q2",s:"air"},
+  {name:"christushealth.org",wins:120,share:93.8,disputes:128,q:"q2",s:"emer"},
+  {name:"sanabenefits.com",wins:68,share:53.1,disputes:128,q:"q1",s:"emer"},
+  {name:"magnacare.com",wins:13,share:10.3,disputes:126,q:"q2",s:"emer"},
+  {name:"regence.com",wins:16,share:12.9,disputes:124,q:"q1",s:"emer"},
+  {name:"magnacare.com",wins:35,share:28.7,disputes:122,q:"q1",s:"emer"},
+  {name:"modahealth.com",wins:4,share:3.3,disputes:121,q:"q1",s:"emer"},
+  {name:"fridayhealthplans.com",wins:117,share:100.0,disputes:117,q:"q1",s:"emer"},
+  {name:"lucenthealth.com",wins:33,share:28.7,disputes:115,q:"q2",s:"emer"},
+  {name:"molinahealthcare.com",wins:11,share:9.8,disputes:112,q:"q1",s:"air"},
+  {name:"healthcomp.com",wins:48,share:44.0,disputes:109,q:"q1",s:"emer"},
+  {name:"molinahealthcare.com",wins:3,share:2.9,disputes:105,q:"q2",s:"air"},
+  {name:"bcbsms.com",wins:36,share:34.6,disputes:104,q:"q1",s:"emer"},
+  {name:"premera.com",wins:4,share:3.9,disputes:103,q:"q1",s:"air"},
+  {name:"bcbst.com",wins:25,share:25.3,disputes:99,q:"q2",s:"air"},
+  {name:"clearhealthcloud.com",wins:5,share:5.1,disputes:98,q:"q1",s:"air"},
+  {name:"regence.com",wins:3,share:3.1,disputes:97,q:"q2",s:"air"},
+  {name:"bswhealth.org",wins:47,share:49.0,disputes:96,q:"q2",s:"emer"},
+  {name:"bcbsal.org",wins:3,share:3.1,disputes:96,q:"q2",s:"air"},
+  {name:"ibxtpa.com",wins:80,share:84.2,disputes:95,q:"q1",s:"emer"},
+  {name:"caresource.com",wins:20,share:21.1,disputes:95,q:"q1",s:"emer"},
+  {name:"bswhealth.org",wins:14,share:14.9,disputes:94,q:"q1",s:"emer"},
+  {name:"sentara.com",wins:91,share:97.8,disputes:93,q:"q2",s:"emer"},
+  {name:"centivo.com",wins:49,share:52.7,disputes:93,q:"q1",s:"emer"},
+  {name:"gravie.com",wins:24,share:25.8,disputes:93,q:"q1",s:"emer"},
+  {name:"uhcsr.com",wins:19,share:20.4,disputes:93,q:"q2",s:"emer"},
+  {name:"carefirst.com",wins:6,share:6.5,disputes:92,q:"q2",s:"air"},
+  {name:"bcbsnm.com",wins:3,share:3.3,disputes:92,q:"q1",s:"air"},
+  {name:"lablue.com",wins:7,share:7.7,disputes:91,q:"q2",s:"air"},
+  {name:"springtidehealth.com",wins:4,share:4.4,disputes:91,q:"q2",s:"air"},
+  {name:"gravie.com",wins:18,share:20.0,disputes:90,q:"q2",s:"emer"},
+  {name:"bcbswy.com",wins:4,share:4.4,disputes:90,q:"q2",s:"air"},
+  {name:"kemptongroup.com",wins:28,share:31.8,disputes:88,q:"q1",s:"emer"},
+  {name:"zelis.com",wins:52,share:59.8,disputes:87,q:"q2",s:"air"},
+  {name:"bluekc.com",wins:21,share:24.1,disputes:87,q:"q1",s:"emer"},
+  {name:"ascension.org",wins:55,share:66.3,disputes:83,q:"q2",s:"emer"},
+  {name:"personifyhealth.com",wins:5,share:6.0,disputes:83,q:"q1",s:"emer"},
+  {name:"imail.org",wins:25,share:30.5,disputes:82,q:"q1",s:"emer"},
+  {name:"6degreeshealth.com",wins:12,share:14.6,disputes:82,q:"q2",s:"emer"},
+  {name:"zenith-american.com",wins:22,share:27.2,disputes:81,q:"q2",s:"emer"},
+  {name:"bcbsks.com",wins:6,share:7.4,disputes:81,q:"q1",s:"air"},
+  {name:"emihealth.com",wins:75,share:93.8,disputes:80,q:"q1",s:"emer"},
+  {name:"caresource.com",wins:41,share:51.2,disputes:80,q:"q2",s:"air"},
+  {name:"modahealth.com",wins:16,share:20.0,disputes:80,q:"q2",s:"air"},
+  {name:"bcbsks.com",wins:21,share:26.9,disputes:78,q:"q2",s:"air"},
+  {name:"centivo.com",wins:50,share:64.9,disputes:77,q:"q2",s:"emer"},
+  {name:"hioscar.com",wins:12,share:15.6,disputes:77,q:"q1",s:"air"},
+  {name:"ahatpa.com",wins:30,share:39.5,disputes:76,q:"q2",s:"emer"},
+  {name:"bcbsal.org",wins:7,share:9.5,disputes:74,q:"q2",s:"emer"},
+  {name:"bcbsal.org",wins:3,share:4.1,disputes:74,q:"q1",s:"air"},
+  {name:"idr.com",wins:70,share:95.9,disputes:73,q:"q2",s:"emer"},
+  {name:"highmark.com",wins:5,share:6.8,disputes:73,q:"q2",s:"air"},
+  {name:"bcbsms.com",wins:9,share:12.5,disputes:72,q:"q1",s:"air"},
+  {name:"medmutual.com",wins:53,share:74.6,disputes:71,q:"q2",s:"air"},
+  {name:"premera.com",wins:2,share:2.8,disputes:71,q:"q2",s:"emer"},
+  {name:"healthpartners.com",wins:17,share:24.6,disputes:69,q:"q1",s:"emer"},
+  {name:"abadmin.com",wins:41,share:60.3,disputes:68,q:"q2",s:"emer"},
+  {name:"uhsinc.com",wins:67,share:100.0,disputes:67,q:"q2",s:"emer"},
+  {name:"modahealth.com",wins:24,share:35.8,disputes:67,q:"q2",s:"emer"},
+  {name:"bcbsm.com",wins:4,share:6.0,disputes:67,q:"q1",s:"air"},
+  {name:"chp.org",wins:12,share:18.2,disputes:66,q:"q1",s:"emer"},
+  {name:"elevancehealth.com",wins:33,share:50.8,disputes:65,q:"q1",s:"emer"},
+  {name:"medcost.com",wins:18,share:27.7,disputes:65,q:"q1",s:"emer"},
+  {name:"bcbsfl.com",wins:16,share:24.6,disputes:65,q:"q1",s:"air"},
+  {name:"regence.com",wins:6,share:9.2,disputes:65,q:"q1",s:"air"},
+  {name:"claim-doc.com",wins:10,share:15.9,disputes:63,q:"q1",s:"emer"},
+  {name:"christushealth.org",wins:54,share:87.1,disputes:62,q:"q1",s:"emer"},
+  {name:"6degreeshealth.com",wins:8,share:13.1,disputes:61,q:"q1",s:"emer"},
+  {name:"claim-doc.com",wins:18,share:30.0,disputes:60,q:"q2",s:"emer"},
+  {name:"zenith-american.com",wins:7,share:11.7,disputes:60,q:"q1",s:"emer"},
+  {name:"springtidehealth.com",wins:3,share:5.0,disputes:60,q:"q1",s:"air"},
+  {name:"jhhp.org",wins:59,share:100.0,disputes:59,q:"q2",s:"emer"},
+  {name:"marpaihealth.com",wins:54,share:91.5,disputes:59,q:"q1",s:"emer"},
+  {name:"healthpartners.com",wins:55,share:94.8,disputes:58,q:"q2",s:"emer"},
+  {name:"molinahealthcare.com",wins:10,share:17.2,disputes:58,q:"q1",s:"emer"},
+  {name:"healthfirst.org",wins:57,share:100.0,disputes:57,q:"q1",s:"emer"},
+  {name:"uhcsr.com",wins:8,share:14.0,disputes:57,q:"q1",s:"emer"},
+  {name:"azcompletehealth.com",wins:56,share:100.0,disputes:56,q:"q2",s:"emer"},
+  {name:"chgsd.com",wins:56,share:100.0,disputes:56,q:"q2",s:"emer"},
+  {name:"fabianbyrn.com",wins:56,share:100.0,disputes:56,q:"q1",s:"emer"},
+  {name:"ascension.org",wins:43,share:76.8,disputes:56,q:"q1",s:"emer"},
+  {name:"healthfirst.org",wins:54,share:100.0,disputes:54,q:"q2",s:"emer"},
+  {name:"nipponlifebenefits.com",wins:54,share:100.0,disputes:54,q:"q2",s:"emer"},
+  {name:"omes.ok.gov",wins:1,share:1.9,disputes:54,q:"q2",s:"emer"},
+  {name:"fabianbyrn.com",wins:51,share:96.2,disputes:53,q:"q2",s:"emer"},
+  {name:"ameriben.com",wins:9,share:17.3,disputes:52,q:"q2",s:"air"},
+  {name:"premera.com",wins:2,share:3.8,disputes:52,q:"q1",s:"emer"},
+  {name:"marpaihealth.com",wins:49,share:98.0,disputes:50,q:"q2",s:"emer"},
+  {name:"healthcomp.com",wins:22,share:44.0,disputes:50,q:"q2",s:"emer"},
+  {name:"highmark.com",wins:5,share:10.0,disputes:50,q:"q1",s:"air"}
 ];
 const PLAN_NORMAL = [];
 
@@ -3431,7 +3162,7 @@ function tipBubble(d, cfg) {
       '<div class="tt-row"><span>Lost by default</span><span>'+(d.wins||0).toLocaleString()+'</span></div>'+tier;
   }
   const tc = d.share>=98?'t3':d.share>=95?'t2':d.share>=90?'t1':'';
-  const tl = d.share>=98?'Critical ≥98%':d.share>=95?'High ≥95%':d.share>=90?'Elevated ≥90%':d.share>=60?'Flagged 60–89%':'';
+  const tl = d.share>=98?'Critical ≥98%':d.share>=95?'High ≥95%':d.share>=90?'Elevated ≥90%':d.share>=60?'Review signal 60–89%':'';
   const badge = tc ? '<span class="tt-badge '+tc+'">'+tl+'</span>' : '';
   return '<div class="tt-title">'+d.name+'</div>'+
     '<div class="tt-row"><span>Default win share</span><span>'+d.share+'%</span></div>'+
@@ -3527,7 +3258,7 @@ function riskBadge(share){
   if(share>=98) return '<span class="bar-badge badge-critical">Critical</span>';
   if(share>=95) return '<span class="bar-badge badge-high">High</span>';
   if(share>=90) return '<span class="bar-badge badge-elevated">Elevated</span>';
-  return '<span class="bar-badge badge-flagged">Flagged</span>';
+  return '<span class="bar-badge badge-flagged">Review signal</span>';
 }
 function planRiskBadge(share){
   if(share>=80) return '<span class="bar-badge badge-critical">Critical</span>';
@@ -3547,7 +3278,7 @@ function computePlanRisk(plans){
   plans.forEach(function(d){
     var l=d.wins||0, t=Math.max(d.disputes||0,1), r=l/t;
     d.lossRate=r; d.riskScore=r*100;
-    d.tierLabel='Not flagged'; d.tier=0;
+    d.tierLabel='Baseline range'; d.tier=0;
     if(t<50) return;
     if(r>=0.80){d.tier=3;d.tierLabel='Critical (≥80% loss rate)';}
     else if(r>=0.60){d.tier=2;d.tierLabel='High (≥60% loss rate)';}
@@ -3587,7 +3318,7 @@ function renderProvTable(pFg){
 /* -- PLAN TABLE -- */
 function renderPlanTable(allPlans){
   var tbody=document.getElementById('planTableBody'); if(!tbody) return;
-  /* Show all flagged plans (tier > 0 = loss rate ≥ 40% with 50+ disputes), sorted by rate desc */
+  /* Show all review-signaled plans (tier > 0 = loss rate ≥ 40% with 50+ disputes), sorted by rate desc */
   var sorted=allPlans.filter(function(d){return (d.disputes||0)>=50 && d.tier>0;})
     .slice().sort(function(a,b){
       var ra=(a.wins||0)/Math.max(a.disputes||1,1);
@@ -3642,14 +3373,14 @@ function updateProviderTierSummary(pFg,pBg){
   var c3=pFg.filter(function(d){return d.share>=95&&d.share<98;}).length;
   var c4=pFg.filter(function(d){return d.share>=98;}).length;
   var uniqueCount = new Set(pFg.map(function(d){return d.name;})).size;
-  el.innerHTML='<strong>'+uniqueCount+' flagged providers</strong> ('+pFg.length+' quarter-entries): '+c4+' critical (≥98%), '+c3+' high (≥95%), '+c2+' elevated (≥90%), '+c1+' flagged (60–89%). '+pBg.length+' context providers shown for comparison.';
+  el.innerHTML='<strong>'+uniqueCount+' review-signaled providers</strong> ('+pFg.length+' quarter-entries): '+c4+' critical (≥98%), '+c3+' high (≥95%), '+c2+' elevated (≥90%), '+c1+' review signal (60–89%). '+pBg.length+' context providers shown for comparison.';
 }
 
 function updatePlanFlagSummary(planFg,allPlans){
   var el=document.getElementById('planFlagSummary'); if(!el) return;
   var elig=allPlans.filter(function(d){return (d.disputes||0)>=50;}).length;
   var uniquePlans = new Set(planFg.map(function(d){return d.name;})).size;
-  el.innerHTML='<strong>'+uniquePlans+' plans flagged</strong> out of '+elig+' with 50+ disputes. In this extract those plans show elevated default-loss counts relative to volume.';
+  el.innerHTML='<strong>'+uniquePlans+' plans with review signals</strong> out of '+elig+' with 50+ disputes. In this extract those plans show elevated default-loss counts relative to volume.';
 }
 
 /* -- GEOGRAPHIC RENDER FUNCTIONS -- */
@@ -4358,11 +4089,10 @@ function l4FillRiskPriorityTable(bubbleData) {
 }
 
 function l4CreateRiskScatter(bubbleData) {
-  var HIGH_MULTIPLE = 5000;
-  var HIGH_WIN = 93;
-  var MAX_POINTS = 5;
-  var BUBBLE_FILL = 'rgba(30, 58, 95, 0.88)';
-  var BUBBLE_BORDER = 'rgba(15, 39, 67, 1)';
+  var MAX_POINTS = 15;
+  var axisColor = '#475569';
+  var gridColor = '#eef2f6';
+  var tickFont = {size: 11, family: 'Inter, system-ui, sans-serif'};
 
   l4DestroyChart('riskScatter');
   var canvas = document.getElementById('riskMatrixScatter');
@@ -4370,9 +4100,10 @@ function l4CreateRiskScatter(bubbleData) {
   var emptyEl = document.getElementById('riskScatterEmpty');
   if (!canvas || !cw) return;
 
-  var pool = l4GetPriorityRows(bubbleData, MAX_POINTS).filter(function (d) {
-    return d.ask > 0;
-  });
+  var pool = (bubbleData || [])
+    .filter(function (d) { return d && d.ask > 0 && d.wr != null; })
+    .sort(function (a, b) { return b.ask - a.ask; })
+    .slice(0, MAX_POINTS);
 
   if (!pool.length) {
     cw.style.display = 'none';
@@ -4385,160 +4116,66 @@ function l4CreateRiskScatter(bubbleData) {
   cw.style.display = '';
   if (emptyEl) emptyEl.style.display = 'none';
 
-  function bubbleR(n) {
-    return Math.min(16, 3.5 + Math.sqrt(n || 0) * 0.65);
-  }
+  var labels = pool.map(function (d) {
+    var n = d.name || '';
+    return n.length > 31 ? n.slice(0, 31).trim() + '...' : n;
+  });
+  var values = pool.map(function (d) { return Math.max(d.ask, 1); });
+  var winRates = pool.map(function (d) { return d.wr; });
+  var maxVal = Math.max.apply(null, values);
+  var xMin = 800;
+  var xMax = Math.max(15000, maxVal * 1.03);
 
-  var pts = pool.map(function (d) {
-    return {
-      x: Math.max(d.ask, 1),
-      y: d.wr,
-      r: bubbleR(d.claims),
-      meta: d,
-    };
+  var barColors = pool.map(function (d, i) {
+    var n = (d.name || '').toUpperCase();
+    if (n.indexOf('SOUTH SOUND') >= 0 || n.indexOf('WALKER LAKE') >= 0) return 'rgba(242, 137, 66, 0.96)';
+    if (n.indexOf('YU, SAMMY') >= 0 || n.indexOf('KARLI GOLDSTEIN') >= 0 || n.indexOf('GUARDIAN NEUROLOGY') >= 0 || n.indexOf('NAP DIAGNOSTICS') >= 0) return 'rgba(123, 143, 168, 0.92)';
+    return 'rgba(121, 88, 238, 0.94)';
   });
 
-  var xVals = pts.map(function (p) {
-    return p.x;
-  });
-  var xMin = Math.max(40, Math.min.apply(null, xVals) * 0.92);
-  var xMax = Math.max.apply(null, xVals) * 1.08;
-
-  var yVals = pts.map(function (p) {
-    return p.y;
-  });
-  var yMinData = Math.min.apply(null, yVals);
-  var yMaxData = Math.max.apply(null, yVals);
-  var ySpan = Math.max(yMaxData - yMinData, 4);
-  var yAxisMin = Math.min(yMinData - ySpan * 0.22, HIGH_WIN - 3);
-  yAxisMin = Math.max(72, Math.floor(yAxisMin));
-  if (yMinData < 70) {
-    yAxisMin = Math.max(55, Math.floor(yMinData - 4));
-  }
-  var yAxisMax = Math.min(101, Math.ceil(yMaxData + ySpan * 0.14));
-  if (yAxisMax <= yAxisMin + 6) {
-    yAxisMax = Math.min(101, yAxisMin + 9);
-  }
-
-  var lineVert = [{x: HIGH_MULTIPLE, y: yAxisMin}, {x: HIGH_MULTIPLE, y: yAxisMax}];
-  var lineHorz = [{x: xMin, y: HIGH_WIN}, {x: xMax, y: HIGH_WIN}];
-
-  var axisColor = '#475569';
-  var gridColor = '#eef2f6';
-  var tickFont = {size: 11, family: 'Inter, system-ui, sans-serif'};
-
-  var prioZonePlugin = {
-    id: 'riskExecPrioZone',
-    beforeDatasetsDraw: function (chart) {
-      var xScale = chart.scales.x;
-      var yScale = chart.scales.y;
-      var ca = chart.chartArea;
-      if (!xScale || !yScale) return;
-      var xThr = xScale.getPixelForValue(HIGH_MULTIPLE);
-      var yThr = yScale.getPixelForValue(HIGH_WIN);
-      var left = Math.max(ca.left, Math.min(xThr, ca.right));
-      var right = ca.right;
-      var top = ca.top;
-      var bot = yThr;
-      if (left >= right || bot <= top) return;
+  var winLabelPlugin = {
+    id: 'riskExecWinLabels',
+    afterDatasetsDraw: function (chart) {
       var ctx = chart.ctx;
+      var meta = chart.getDatasetMeta(0);
+      if (!meta || !meta.data) return;
       ctx.save();
-      ctx.fillStyle = 'rgba(254, 226, 226, 0.42)';
-      ctx.fillRect(left, top, right - left, bot - top);
-      ctx.strokeStyle = 'rgba(196, 80, 80, 0.38)';
-      ctx.lineWidth = 1.25;
-      ctx.setLineDash([4, 3]);
-      ctx.strokeRect(left + 0.5, top + 0.5, right - left - 1, bot - top - 1);
-      ctx.setLineDash([]);
-      // Draw label in a small boxed callout; shift down if a bubble is nearby.
-      var label1 = 'Priority Review Zone';
-      var label2 = 'High billing levels + consistently high dispute win rates';
       ctx.font = '600 11px Inter, system-ui, sans-serif';
-      var w1 = ctx.measureText(label1).width;
-      ctx.font = '500 10px Inter, system-ui, sans-serif';
-      var w2 = ctx.measureText(label2).width;
-      var boxW = Math.max(w1, w2) + 14;
-      var boxH = 30;
-      var boxX = Math.min(left + 8, right - boxW - 6);
-      var boxY = top + 6;
-
-      var hasCollision = pts.some(function (p) {
-        var px = xScale.getPixelForValue(p.x);
-        var py = yScale.getPixelForValue(p.y);
-        var pr = p.r + 2;
-        return px + pr > boxX && px - pr < boxX + boxW && py + pr > boxY && py - pr < boxY + boxH;
+      ctx.fillStyle = '#2f3d52';
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      meta.data.forEach(function (bar, i) {
+        if (!bar) return;
+        var x = bar.x + 10;
+        var y = bar.y;
+        var wrTxt = (winRates[i] || 0).toFixed(1).replace(/\.0$/, '');
+        ctx.fillText(wrTxt + '% win', x, y);
       });
-      if (hasCollision) {
-        boxY = Math.min(top + 34, bot - boxH - 4);
-      }
-
-      if (boxX + boxW < right && boxY + boxH < bot) {
-        ctx.fillStyle = 'rgba(255,255,255,0.82)';
-        ctx.fillRect(boxX, boxY, boxW, boxH);
-        ctx.strokeStyle = 'rgba(196, 80, 80, 0.35)';
-        ctx.lineWidth = 0.75;
-        ctx.strokeRect(boxX + 0.5, boxY + 0.5, boxW - 1, boxH - 1);
-        ctx.fillStyle = '#9b3c3c';
-        ctx.font = '600 11px Inter, system-ui, sans-serif';
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';
-        ctx.fillText(label1, boxX + 7, boxY + 4);
-        ctx.font = '500 10px Inter, system-ui, sans-serif';
-        ctx.fillText(label2, boxX + 7, boxY + 16);
-      }
       ctx.restore();
     },
   };
 
   L4_CHARTS.riskScatter = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
     data: {
-      datasets: [
-        {
-          type: 'bubble',
-          label: 'Providers',
-          data: pts.map(function (p) {
-            return {x: p.x, y: p.y, r: p.r};
-          }),
-          backgroundColor: pts.map(function () {
-            return BUBBLE_FILL;
-          }),
-          borderColor: pts.map(function () {
-            return BUBBLE_BORDER;
-          }),
-          borderWidth: 1.25,
-          clip: false,
-          order: 0,
-        },
-        {
-          type: 'line',
-          label: '',
-          data: lineVert,
-          borderColor: 'rgba(71, 85, 105, 0.55)',
-          borderDash: [4, 4],
-          borderWidth: 1.25,
-          pointRadius: 0,
-          fill: false,
-          order: 10,
-          tension: 0,
-        },
-        {
-          type: 'line',
-          label: '',
-          data: lineHorz,
-          borderColor: 'rgba(71, 85, 105, 0.55)',
-          borderDash: [4, 4],
-          borderWidth: 1.25,
-          pointRadius: 0,
-          fill: false,
-          order: 11,
-          tension: 0,
-        },
-      ],
+      labels: labels,
+      datasets: [{
+        label: 'Average benchmark multiple',
+        data: values,
+        borderRadius: 6,
+        borderSkipped: false,
+        backgroundColor: barColors,
+        borderColor: barColors.map(function (c) { return c.replace('0.92', '1').replace('0.90', '1'); }),
+        borderWidth: 1.1,
+        barPercentage: 0.68,
+        categoryPercentage: 0.92
+      }]
     },
     options: {
+      indexAxis: 'y',
       maintainAspectRatio: false,
       animation: {duration: 400},
-      interaction: {mode: 'nearest', intersect: true},
+      layout: {padding: {right: 96, left: 6, top: 8, bottom: 6}},
       plugins: {
         legend: {display: false},
         tooltip: {
@@ -4550,67 +4187,49 @@ function l4CreateRiskScatter(bubbleData) {
           callbacks: {
             title: function (items) {
               var it = items[0];
-              if (!it || it.datasetIndex !== 0) return '';
-              return pts[it.dataIndex].meta.name;
+              return it ? pool[it.dataIndex].name : '';
             },
             label: function (ctx) {
-              if (ctx.datasetIndex !== 0) return '';
-              var d = pts[ctx.dataIndex].meta;
+              var d = pool[ctx.dataIndex];
               var kLabel = d.ask >= 1000 ? (d.ask / 1000).toFixed(1) + 'k×' : Math.round(d.ask) + '×';
-              return ['Billing multiple: ' + kLabel, 'Win rate: ' + d.wr + '%', 'Volume: ' + (d.claims || 0).toLocaleString()];
-            },
-          },
-        },
+              return ['Average multiple: ' + kLabel, 'Win rate: ' + d.wr + '%', 'Volume: ' + (d.claims || 0).toLocaleString()];
+            }
+          }
+        }
       },
       scales: {
         x: {
           type: 'logarithmic',
+          min: xMin,
+          max: xMax,
           title: {
             display: true,
-            text: 'Billing multiple (× benchmark)',
+            text: 'Average billed multiple vs QPA (log scale) — drives row order',
             font: {size: 12, weight: '700', family: 'Inter, system-ui, sans-serif'},
             color: axisColor,
-            padding: {top: 8},
+            padding: {top: 12}
           },
-          grid: {color: gridColor, lineWidth: 1},
+          grid: {color: 'rgba(71,85,105,0.09)', lineWidth: 1},
           ticks: {
-            font: tickFont,
+            font: {size: 11, family: 'Inter, system-ui, sans-serif'},
             color: axisColor,
-            maxRotation: 0,
             callback: function (v) {
-              var ok = [100, 500, 1000, 5000, 10000, 50000, 100000, 500000];
-              if (ok.indexOf(v) >= 0) {
-                if (v >= 1000) return (v / 1000).toFixed(0).replace(/\.0$/, '') + 'k×';
-                return v + '×';
-              }
+              var ok = [1000, 10000];
+              if (ok.indexOf(v) >= 0) return (v / 1000).toFixed(0) + 'k×';
               return null;
-            },
-          },
-          min: xMin,
-          suggestedMax: xMax,
+            }
+          }
         },
         y: {
-          title: {
-            display: true,
-            text: 'Win rate',
-            font: {size: 12, weight: '700', family: 'Inter, system-ui, sans-serif'},
-            color: axisColor,
-          },
-          min: yAxisMin,
-          max: yAxisMax,
-          grid: {color: gridColor, lineWidth: 1},
+          grid: {display: false},
           ticks: {
-            font: tickFont,
-            color: axisColor,
-            maxTicksLimit: 8,
-            callback: function (val) {
-              return val + '%';
-            },
-          },
-        },
-      },
+            font: {size: 10.5, family: 'Inter, system-ui, sans-serif', weight: '600'},
+            color: '#556273'
+          }
+        }
+      }
     },
-    plugins: [prioZonePlugin],
+    plugins: [winLabelPlugin]
   });
 }
 
@@ -4787,7 +4406,7 @@ function l4CreatePairs(filteredPairs) {
   L4_CHARTS.pairs = new Chart(canvas, {
     type:'bar',
     data:{labels:top.map(function(d){return d.prov.split(',')[0].substring(0,20)+' + '+l4PlanShortName(d.plan);}),
-          datasets:[{label:'Avg overcharge multiple',data:top.map(function(d){return d.avg;}),
+          datasets:[{label:'Avg benchmark multiple',data:top.map(function(d){return d.avg;}),
                      backgroundColor:top.map(function(d){return d.wr>=95?'rgba(180,35,24,0.82)':d.wr>=85?'rgba(192,86,33,0.82)':'rgba(163,110,14,0.82)';}),borderRadius:4}]},
     options:{indexAxis:'y',maintainAspectRatio:false,animation:{duration:600},
       plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){var d=top[ctx.dataIndex];return['Multiple: '+Math.round(ctx.raw).toLocaleString()+'×','Win rate: '+d.wr+'%','Claims: '+d.n.toLocaleString()];}}}},
