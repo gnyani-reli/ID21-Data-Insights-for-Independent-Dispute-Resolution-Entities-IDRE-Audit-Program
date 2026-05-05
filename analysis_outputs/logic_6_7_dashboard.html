@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Are some providers filing too many disputes — and asking too much?</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --surface2: #f2f2f1;
+  --border: #dfe1e2;
+  --text: #1b1b1b;
+  --muted: #565c65;
+  --faint: #6f777f;
+  --red: #c0392b;
+  --orange: #d35400;
+  --amber: #ba7517;
+  --blue: #185fa5;
+  --blue-lt: #dce8f5;
+  --green: #1a7a4a;
+}
+body {
+  font-family: Inter, "Segoe UI", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.page { width: 100%; padding: 12px clamp(8px, 1.4vw, 16px) 22px; margin: 0 auto; }
+.story-block { margin-bottom: 24px; }
+
+.header { margin-bottom: 14px; }
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface2);
+  border: 1px solid #d5d7da;
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+.header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0f1923;
+}
+.header-meta {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.45;
+}
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #565c65;
+  margin-bottom: 10px;
+}
+
+.idr-observational-banner {
+  background: #f5f7fa;
+  border-left: 3px solid #c5cad4;
+  font-size: 12px;
+  color: #5a6475;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.insight {
+  background: var(--blue-lt);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #3d4a5c;
+  line-height: 1.65;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}
+.insight p + p { margin-top: 10px; }
+.insight strong { font-weight: 700; }
+
+.kpi-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.kpi {
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e2e6ed;
+  border-top: 3px solid #dfe1e2;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+.kpi.k-blue { border-top-color: var(--blue); }
+.kpi.k-red { border-top-color: var(--red); }
+.kpi.k-orange { border-top-color: var(--orange); }
+.kpi.k-amber { border-top-color: var(--amber); }
+.kpi.k-green { border-top-color: var(--green); }
+.kpi-lbl {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a2332;
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+.kpi-val { font-size: 32px; font-weight: 700; line-height: 1; margin-bottom: 6px; }
+.kpi.k-blue .kpi-val { color: var(--blue); }
+.kpi.k-red .kpi-val { color: var(--red); }
+.kpi.k-orange .kpi-val { color: var(--orange); }
+.kpi.k-amber .kpi-val { color: var(--amber); }
+.kpi.k-green .kpi-val { color: var(--green); }
+.kpi-desc { font-size: 12px; color: #5a6475; margin-top: 6px; line-height: 1.5; }
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.card-header { padding: 14px 18px 12px; border-bottom: 1px solid #edf0f2; }
+.card-title { font-size: 15px; font-weight: 700; color: #0f1923; margin-bottom: 3px; line-height: 1.35; }
+.card-sub { font-size: calc(1em + 0.5px); color: #4a5568; line-height: 1.55; }
+.card-body { padding: 16px 18px; overflow-x: auto; }
+
+.chart-about {
+  font-size: calc(1em + 0.5px);
+  color: #3d4a5c;
+  line-height: 1.65;
+  margin-bottom: 12px;
+}
+.chart-about dt { font-weight: 700; margin-top: 8px; }
+.chart-about dt:first-child { margin-top: 0; }
+.chart-about dd { margin-left: 0; margin-top: 4px; }
+
+.chart-wrap,
+.scatter-wrap {
+  position: relative;
+  width: 100%;
+  background: #fafaf8;
+  border: 1.5px solid #111;
+  border-radius: 8px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+}
+.scatter-wrap { overflow: hidden; }
+
+.note { font-size: 11px; color: #6f777f; margin-top: 8px; }
+svg { display: block; width: 100%; height: auto; }
+.axis { stroke: #b9c0c8; stroke-width: 1; }
+.gridline { stroke: #edf0f2; stroke-width: 1; }
+.tick { fill: var(--faint); font-size: 10px; }
+.point { fill: var(--blue); opacity: .74; stroke: #0c447c; stroke-width: 1; }
+.point.review { fill: var(--red); stroke: #7d1f17; }
+.point.high { fill: var(--orange); stroke: #8c3b00; }
+.ref-line { stroke: #9ca3af; stroke-width: 1; stroke-dasharray: 4 4; }
+.bar-row { display: grid; grid-template-columns: 168px 1fr 72px; gap: 10px; align-items: center; margin: 9px 0; }
+.bar-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); }
+.bar-track { height: 10px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--blue); border-radius: 4px; }
+.bar-fill.orange { background: var(--orange); }
+.bar-fill.red { background: var(--red); }
+.bar-val { text-align: right; font-family: "DM Mono", Consolas, monospace; font-size: 11px; }
+
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th {
+  background: var(--surface2);
+  border-bottom: 1px solid #edf0f2;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.data-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #edf0f2;
+  vertical-align: top;
+}
+.data-table tr:hover td { background: var(--surface2); }
+td.r, th.r { text-align: right; font-variant-numeric: tabular-nums; }
+
+.badge { display: inline-block; padding: 2px 7px; border-radius: 999px; font-size: 10px; font-weight: 600; white-space: nowrap; }
+.badge-high { background: #fdeee0; color: var(--orange); }
+.badge-review { background: #fde8e8; color: var(--red); }
+.badge-monitor { background: var(--surface2); color: var(--muted); }
+
+/* ===== Funnel table ===== */
+.funnel-table { width: 100%; border-collapse: collapse; }
+.funnel-table th {
+  text-align: left; font-size: 10.5px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .5px; color: var(--muted); padding: 7px 10px; border-bottom: 2px solid var(--border);
+}
+.funnel-table th.r { text-align: right; }
+.funnel-table td { padding: 10px 10px; border-bottom: 1px solid #edf0f2; vertical-align: middle; }
+.funnel-table td.r { text-align: right; font-variant-numeric: tabular-nums; font-family: "DM Mono", Consolas, monospace; font-size: 13px; }
+.funnel-table tr:last-child td { border-bottom: none; font-weight: 700; }
+.funnel-step { font-size: 10px; font-weight: 700; color: var(--blue); width: 18px; text-align: center; }
+.funnel-label { color: var(--text); }
+.funnel-bar-cell { width: 38%; }
+.funnel-bar-outer { background: var(--surface2); border-radius: 4px; height: 14px; overflow: hidden; }
+.funnel-bar-inner { height: 100%; border-radius: 4px; transition: width .3s ease; }
+.funnel-bar-inner.tone-blue { background: var(--blue); }
+.funnel-bar-inner.tone-orange { background: var(--orange); }
+.funnel-bar-inner.tone-red { background: var(--red); }
+.funnel-drop { font-size: 11px; color: var(--faint); }
+.funnel-arrow { text-align: center; color: #b0b6c0; font-size: 14px; padding: 0 10px; line-height: 1; }
+.funnel-arrow td { padding: 2px 10px; border-bottom: none; }
+
+/* ===== Two-column split layout (scatter+table, map+bars) ===== */
+.split-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;
+}
+.split-row .scatter-wrap {
+  height: 420px;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.split-row .scatter-wrap svg { width: 100%; height: 100%; }
+.split-table-wrap {
+  height: 420px;
+  overflow-y: auto;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.split-table-wrap thead th { position: sticky; top: 0; z-index: 2; }
+.split-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.split-table th {
+  background: var(--surface2); border-bottom: 1px solid #edf0f2;
+  padding: 6px 8px; text-align: left; font-size: 9.5px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .4px; color: var(--muted); white-space: nowrap;
+}
+.split-table td { padding: 6px 8px; border-bottom: 1px solid #edf0f2; vertical-align: middle; }
+.split-table tr:hover td { background: var(--surface2); }
+.split-table .r { text-align: right; font-variant-numeric: tabular-nums; }
+.split-table .provider-cell { max-width: 170px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Map container in split-row */
+.split-row .map-wrap {
+  background: #fafaf8;
+  border: 1.5px solid #111;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+}
+.split-row .map-wrap svg { display: block; width: 100%; flex: 1; }
+.map-legend { margin-top: 8px; }
+.split-row .bars-col { display: flex; flex-direction: column; justify-content: center; }
+
+/* Tooltip (shared) */
+.tooltip { position: fixed; pointer-events: none; display: none; z-index: 200; background: #1a1916; color: #f3f0eb; padding: 12px 15px; border-radius: 8px; font-size: 12px; line-height: 1.5; max-width: 280px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); border: 1px solid #333; }
+.tt-title { font-weight: 600; font-size: 13px; margin-bottom: 8px; padding-bottom: 7px; border-bottom: 1px solid rgba(255,255,255,0.12); color: #fff; }
+.tt-row { display: flex; justify-content: space-between; gap: 16px; font-size: 12px; color: #ccc; }
+.tt-row span:last-child { font-weight: 600; color: #fff; }
+
+.footnote {
+  font-size: 10.5px;
+  color: #6f777f;
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid #edf0f2;
+  padding-top: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 1100px) {
+  .split-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .header-meta { text-align: left; }
+  .bar-row { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+  .bar-val { grid-column: 1 / -1; text-align: left; }
+}
+@media (max-width: 480px) {
+  .kpi-strip { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="story-block">
+    <div class="header">
+      <div class="header-top">
+        <div>
+          <h1>Are certain providers filing too many disputes on the same code — and asking far more than their peers?</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <p>Two patterns stood out in the public dispute data. First, some providers are filing a disproportionate number of disputes for a single procedure code in a single region — far more than any of their peers. Second, those same providers are often requesting payment amounts that dwarf what other providers ask for the exact same service. When both patterns show up together, and the provider keeps winning, that combination is worth a closer look.</p>
+      <p>This page walks through the analysis step by step — first the volume screen, then the price comparison. The 25 records in the final table are flagged for follow-up review, not accused of wrongdoing. Case files would need to be pulled before any conclusions are drawn.</p>
+    </div>
+
+    <div class="kpi-strip" id="overviewKpis"></div>
+  </div>
+
+  <!-- STEP 1 — Funnel -->
+  <section class="story-block">
+    <div class="section-label">Step 1 — How the population narrows before price is considered</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Starting with 195,870 combinations, five successive screens narrow to 25</div>
+        <div class="card-sub">Each row is a screening gate applied in order. Dollar amounts are not part of this step — this is purely about dispute volume behavior.</div>
+      </div>
+      <div class="card-body">
+        <dl class="chart-about">
+          <dd>We started with every unique combination of provider, procedure code, and region in the data. Most providers file a handful of disputes per code and look completely normal. We progressively filter out the ordinary ones: first removing combinations with too few disputes to be statistically meaningful, then those with too few peer providers to compare against, and finally narrowing to only those where one provider's share of disputes stands out as highly concentrated. By the end, 25 combinations survive and move to Step 2.</dd>
+          
+          <dd>Filing a lot of disputes isn't automatically a red flag. What we're looking for is a provider filing a <em>disproportionate share</em> of all disputes for one particular code in one region versus every peer nearby. By keeping price out of this step, the two concerns (volume concentration and pricing behavior) can be weighed separately.</dd>
+        </dl>
+        <table class="funnel-table" id="funnelTable"></table>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 2 — Scatter (left) + summary table (right) -->
+  <section class="story-block">
+    <div class="section-label">Step 2 — Are the high-volume providers also asking far more than their peers?</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Providers who concentrate disputes also tend to request amounts their peers would never dream of — and they keep winning</div>
+        <div class="card-sub">Left: each bubble is one provider-code-region combination from the final 25. Right: the same records ranked by composite score.</div>
+      </div>
+      <div class="card-body">
+        <dl class="chart-about">
+          <dt>How to read the scatter</dt>
+          <dd>Horizontal axis = how many times the provider's offer exceeds the peer median for that same procedure and region. Vertical axis = provider-favorable rate. Bubbles in the upper-right are asking far more than anyone else and still winning most disputes. Dashed lines mark 3× peer median and 80% win rate.</dd>
+        </dl>
+        <div class="split-row">
+          <div class="scatter-wrap"><svg id="scatterMain" viewBox="0 0 680 420"></svg></div>
+          <div class="split-table-wrap">
+            <table class="split-table" id="scatterTable"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Geography -->
+  <section class="story-block">
+    <div class="section-label">Where are these providers located?</div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">The flagged combinations are geographically concentrated — Texas, Oklahoma, and Arizona account for the bulk</div>
+        <div class="card-sub">Left: US map shaded by dispute-line volume from the flagged set. Right: state-by-state bar breakdown.</div>
+      </div>
+      <div class="card-body">
+        <dl class="chart-about">
+          <dd>These are the states where the flagged providers rendered the disputed services. Texas alone accounts for more than 3,200 dispute lines. The patterns are clustered, not uniform — a useful frame for prioritizing audits.</dd>
+        </dl>
+        <div class="split-row">
+          <div class="map-wrap" id="geoMapContainer">
+            <div style="text-align:center;padding:80px 0;color:var(--faint);font-size:11px;">Loading US map&hellip;</div>
+          </div>
+          <div class="bars-col">
+            <div class="chart-wrap"><div id="geoBars"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full top-10 detail table -->
+  <section class="story-block">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">The 10 highest-priority cases — who they are, what they're billing, and how often they win</div>
+        <div class="card-sub">Ranked by a composite score combining peer-price ratio, win rate, volume concentration, and default rate. All 25 flagged records are in the underlying export.</div>
+      </div>
+      <div class="card-body">
+        <dl class="chart-about">
+          
+          <dd>Each row is a specific provider (or provider group) disputing a specific procedure code in a specific state. Where the provider name is listed as N/R, it wasn't available in the public data — but the billing domain and NPI are. The "Peer × median" column shows how many times over the typical peer ask their offer was. The "Prov.-favorable" column shows how often the IDRE ruled in their favor. The pattern badge summarizes the combined signal.</dd>
+          
+          <dd>Several of these providers are requesting 5×, 6×, even 9× what their peers ask for the exact same ED visit code — and winning 88–94% of the time. A handful share billing domains, suggesting they may be part of the same network or managed by the same billing operation. These are the records where pulling the actual case files would be most informative.</dd>
+        </dl>
+        <table id="reviewTableTop" class="data-table"></table>
+      </div>
+    </div>
+  </section>
+
+  <div class="footnote">These findings are based on publicly available dispute data and are intended to identify patterns that may warrant further review. Flagged records are starting points for auditors, not conclusions about any provider's conduct.</div>
+</div>
+<div class="tooltip" id="tooltip"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+const rowCounts = [
+  {quarter:"Q1_2025", category:"OON_Air_Ambulance", total:13398, disputes:11461, usable:13394, peerRows:9705, qpaRows:12863, prevailingRows:13113, missPeer:.2756381549484998, missQpa:.03993133303478131},
+  {quarter:"Q1_2025", category:"OON_Emergency_NonEmergency", total:1114674, disputes:454763, usable:1110139, peerRows:811652, qpaRows:918947, prevailingRows:941471, missPeer:.27184809190848624, missQpa:.1755912491006339},
+  {quarter:"Q2_2025", category:"OON_Air_Ambulance", total:14349, disputes:12262, usable:14348, peerRows:12719, qpaRows:13739, prevailingRows:13984, missPeer:.11359676632517945, missQpa:.0425116732873371},
+  {quarter:"Q2_2025", category:"OON_Emergency_NonEmergency", total:1632680, disputes:603751, usable:1626065, peerRows:1205714, qpaRows:1266712, prevailingRows:1300963, missPeer:.26151236004605927, missQpa:.2241517014969253}
+];
+const funnel = [
+  {step:"All provider-code-region combinations", rows:195870, gate:"Starting population"},
+  {step:"Minimum volume screen", rows:12729, gate:"Removes low-count combos"},
+  {step:"Minimum peer-group screen", rows:10625, gate:"Requires enough peers to compare"},
+  {step:"Volume-concentration shortlist", rows:1274, gate:"One provider holds outsized share"},
+  {step:"Eligible for peer-price metrics", rows:1200, gate:"Peer-price data available"},
+  {step:"Final review set", rows:25, gate:"Pass all screens"}
+];
+const geoReview = [
+  {state:"TX", regions:13, providers:13, codes:2, lines:3250, peer:3.76, p90:6.02, win:.8625},
+  {state:"OK", regions:2, providers:2, codes:1, lines:1738, peer:4.78, p90:5.30, win:.8782},
+  {state:"AZ", regions:4, providers:4, codes:2, lines:1321, peer:4.24, p90:5.32, win:.8937},
+  {state:"SC", regions:1, providers:1, codes:1, lines:615, peer:4.23, p90:4.23, win:.8520},
+  {state:"LA", regions:1, providers:1, codes:1, lines:449, peer:3.71, p90:3.71, win:.8196},
+  {state:"KS", regions:1, providers:1, codes:1, lines:92, peer:1.06, p90:1.06, win:.8043},
+  {state:"NY", regions:1, providers:1, codes:1, lines:53, peer:3.54, p90:3.54, win:.8679},
+  {state:"GA", regions:1, providers:1, codes:1, lines:32, peer:4.32, p90:4.32, win:.8750},
+  {state:"FL", regions:1, providers:1, codes:1, lines:31, peer:7.85, p90:7.85, win:.8065}
+];
+const reviewRows = [
+  {rank:1,name:"N/R",domain:"clearchoiceer.com",npi:"1699244624",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:9.54,win:.9443,vol:377,def:.4668,volRatio:75.4,share:.7100,score:5,label:"Very high peer ratio + high win rate"},
+  {rank:2,name:"HARBOR EMERGENCY PHYSICIANS PA",domain:"mdcapitaladvisors.com",npi:"1669457404",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:6.02,win:.9038,vol:52,def:.2308,volRatio:10.4,share:.5843,score:5,label:"Very high peer ratio + high win rate"},
+  {rank:3,name:"N/R",domain:"erkaty.com",npi:"1013355387",code:"99285",desc:"ED visit, high MDM",pos:23,state:"TX",peer:5.45,win:.8880,vol:125,def:.0800,volRatio:20.83,share:.5896,score:5,label:"Very high peer ratio + high win rate"},
+  {rank:4,name:"N/R",domain:"wellstar.org",npi:"1619997079",code:"99283",desc:"ED visit, low MDM",pos:23,state:"GA",peer:4.32,win:.8750,vol:32,def:.1563,volRatio:6.4,share:.5246,score:5,label:"High peer ratio + high win rate"},
+  {rank:5,name:"N/R",domain:"hcahealthcare.com",npi:"1891741849",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"FL",peer:7.85,win:.8065,vol:31,def:.2581,volRatio:5.17,share:.5849,score:4,label:"Very high peer ratio + high win rate"},
+  {rank:6,name:"HARBOR EMERGENCY PHYSICIANS PA",domain:"mdcapitaladvisors.com",npi:"1295757060",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:6.02,win:.8660,vol:97,def:.1649,volRatio:19.4,share:.4874,score:4,label:"Very high peer ratio + high win rate"},
+  {rank:7,name:"N/R",domain:"ihcsaz.com",npi:"1609496397",code:"99285",desc:"ED visit, high MDM",pos:23,state:"AZ",peer:5.32,win:.8389,vol:298,def:.1611,volRatio:33.11,share:.4313,score:4,label:"Very high peer ratio + high win rate"},
+  {rank:8,name:"IES OKLAHOMA LLC",domain:"halomd.com",npi:"1437916525",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"OK",peer:5.30,win:.8455,vol:110,def:.2455,volRatio:7.86,share:.6433,score:4,label:"Very high peer ratio + high win rate"},
+  {rank:9,name:"OKLAHOMA EP",domain:"halomd.com",npi:"1437629581",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"OK",peer:4.26,win:.9109,vol:1628,def:.3870,volRatio:116.29,share:.6014,score:4,label:"High peer ratio + high win rate"},
+  {rank:10,name:"EAST VALLEY EP",domain:"halomd.com",npi:"1659039618",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"AZ",peer:4.00,win:.8922,vol:510,def:.0863,volRatio:31.88,share:.4222,score:4,label:"High peer ratio + high win rate"},
+  {rank:11,name:"N/R",domain:"erevenuebilling.com",npi:"1235857699",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"AZ",peer:3.64,win:.9880,vol:83,def:.0120,volRatio:5.19,share:.4536,score:4,label:"High peer ratio + high win rate"},
+  {rank:12,name:"PROCARE EMERGENCY PHYSICIANS NACOGDOCHES PLLC",domain:"fam-llc.com",npi:"1861185928",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:2.87,win:.8730,vol:890,def:.6337,volRatio:178.0,share:.5282,score:4,label:"Monitor"},
+  {rank:13,name:"DS EMERGENCY PHYSICIANS PLLC",domain:"fam-llc.com",npi:"1861693152",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:2.00,win:.8710,vol:31,def:.3871,volRatio:6.2,share:.4247,score:4,label:"Monitor"},
+  {rank:14,name:"N/R",domain:"roundtmc.com",npi:"1104391119",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:1.09,win:.9304,vol:158,def:.2532,volRatio:31.6,share:.4702,score:4,label:"Monitor"},
+  {rank:15,name:"N/R",domain:"expresserbilling.com",npi:"1134570922",code:"99284",desc:"ED visit, moderate MDM",pos:13,state:"TX",peer:4.82,win:.8539,vol:89,def:.4270,volRatio:29.67,share:.7607,score:3,label:"High peer ratio + high win rate"},
+  {rank:16,name:"IES SOUTH CAROLINA LLC",domain:"halomd.com",npi:"1821779695",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"SC",peer:4.23,win:.8520,vol:615,def:.2276,volRatio:30.75,share:.5742,score:3,label:"High peer ratio + high win rate"},
+  {rank:17,name:"PHOENIX PHYSICIAN GROUP",domain:"halomd.com",npi:"1154898435",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"AZ",peer:4.00,win:.8558,vol:430,def:.0628,volRatio:26.88,share:.5733,score:3,label:"High peer ratio + high win rate"},
+  {rank:18,name:"COVINGTON EP",domain:"halomd.com",npi:"1871290163",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"LA",peer:3.71,win:.8196,vol:449,def:.0891,volRatio:34.54,share:.4454,score:3,label:"High peer ratio + high win rate"},
+  {rank:19,name:"HOSPITALIST MEDICINE PHYSICIANS OF NEW YORK, PLLC",domain:"halomd.com",npi:"1205944329",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"NY",peer:3.54,win:.8679,vol:53,def:.0377,volRatio:26.5,share:.6310,score:3,label:"High peer ratio + high win rate"},
+  {rank:20,name:"FOREFRONT PHYSICIANS PLLC",domain:"fam-llc.com",npi:"1386009462",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:3.22,win:.8273,vol:278,def:.4496,volRatio:55.6,share:.4618,score:3,label:"High peer ratio + high win rate"},
+  {rank:21,name:"RICE EMERGENCY DOCTORS PLLC",domain:"fam-llc.com",npi:"1619600772",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:3.22,win:.8213,vol:554,def:.4458,volRatio:110.8,share:.4248,score:3,label:"High peer ratio + high win rate"},
+  {rank:22,name:"BDTX EMERGENCY PHYSICIANS PLLC",domain:"fam-llc.com",npi:"1588438279",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:1.80,win:.8111,vol:434,def:.4493,volRatio:86.8,share:.4849,score:3,label:"Monitor"},
+  {rank:23,name:"RR EMERGENCY PHYSICIANS, PLLC",domain:"fam-llc.com",npi:"1063488187",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:1.43,win:.8172,vol:93,def:.4301,volRatio:18.6,share:.4170,score:3,label:"Monitor"},
+  {rank:24,name:"RR EMERGENCY PHYSICIANS, PLLC",domain:"fam-llc.com",npi:"1427085497",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"TX",peer:1.36,win:.8056,vol:72,def:.4722,volRatio:14.4,share:.5180,score:3,label:"Monitor"},
+  {rank:25,name:"N/R",domain:"hcahealthcare.com",npi:"1447299649",code:"99284",desc:"ED visit, moderate MDM",pos:23,state:"KS",peer:1.06,win:.8043,vol:92,def:.3587,volRatio:23.0,share:.4360,score:3,label:"Monitor"}
+];
+
+const fmt = new Intl.NumberFormat("en-US");
+const pct = v => (v * 100).toFixed(1) + "%";
+const total = rowCounts.reduce((s,d)=>s+d.total,0);
+const elevatedFiveX = reviewRows.filter(d => d.peer >= 5 && d.win >= .8).length;
+
+/* ---- KPIs ---- */
+function kpis(el, items) {
+  document.getElementById(el).innerHTML = items.map(i => `
+    <div class="kpi k-${i.tone || 'blue'}">
+      <div class="kpi-lbl">${i.label}</div>
+      <div class="kpi-val">${i.value}</div>
+      <div class="kpi-desc">${i.desc}</div>
+    </div>`).join("");
+}
+
+/* ---- Funnel table ---- */
+function buildFunnel(el, data) {
+  const startRows = data[0].rows;
+  let html = `<thead><tr>
+    <th style="width:28px"></th>
+    <th>Screen</th>
+    <th style="width:34%">Remaining</th>
+    <th class="r">Count</th>
+    <th class="r">Removed</th>
+  </tr></thead><tbody>`;
+
+  data.forEach((d, i) => {
+    const prev = i === 0 ? d.rows : data[i-1].rows;
+    const removed = prev - d.rows;
+    const pctWidth = Math.max(1, (d.rows / startRows) * 100);
+    const tone = d.rows <= 25 ? "tone-red" : d.rows <= 1274 ? "tone-orange" : "tone-blue";
+
+    if (i > 0) {
+      html += `<tr class="funnel-arrow"><td colspan="5">\u2193</td></tr>`;
+    }
+    html += `<tr>
+      <td class="funnel-step">${i + 1}</td>
+      <td class="funnel-label">${d.step}<br/><span class="funnel-drop">${d.gate}</span></td>
+      <td class="funnel-bar-cell"><div class="funnel-bar-outer"><div class="funnel-bar-inner ${tone}" style="width:${pctWidth}%"></div></div></td>
+      <td class="r">${fmt.format(d.rows)}</td>
+      <td class="r" style="color:${removed > 0 ? 'var(--red)' : 'var(--muted)'}">${i === 0 ? '\u2014' : '\u2212' + fmt.format(removed)}</td>
+    </tr>`;
+  });
+  html += "</tbody>";
+  document.getElementById(el).innerHTML = html;
+}
+
+/* ---- Bar chart ---- */
+function bars(el, data, valueKey, labelFn, valueFn, toneFn) {
+  const max = Math.max(...data.map(d => d[valueKey]));
+  document.getElementById(el).innerHTML = data.map(d => `
+    <div class="bar-row">
+      <div class="bar-name" title="${labelFn(d)}">${labelFn(d)}</div>
+      <div class="bar-track"><div class="bar-fill ${toneFn ? toneFn(d) : ''}" style="width:${Math.max(2, d[valueKey] / max * 100)}%"></div></div>
+      <div class="bar-val">${valueFn(d)}</div>
+    </div>`).join("");
+}
+
+/* ---- Full detail table ---- */
+function table(el, headers, rows) {
+  document.getElementById(el).innerHTML = `
+    <thead><tr>${headers.map(h => `<th class="${h.r ? 'r' : ''}">${h.t}</th>`).join("")}</tr></thead>
+    <tbody>${rows.join("")}</tbody>`;
+}
+
+/* ---- Scatter ---- */
+function scatter(elId, data, w, h) {
+  const svg = document.getElementById(elId);
+  const pad = {l:52, r:20, t:18, b:44};
+  const xMax = 10;
+  const yMin = .78, yMax = 1.0;
+  const x = v => pad.l + (Math.min(v, xMax) / xMax) * (w - pad.l - pad.r);
+  const y = v => pad.t + ((yMax - v) / (yMax - yMin)) * (h - pad.t - pad.b);
+  const r = v => 3.5 + Math.sqrt(v) / Math.sqrt(1628) * 13;
+  let html = "";
+  for (const gx of [1,3,5,10]) html += `<line class="gridline" x1="${x(gx)}" y1="${pad.t}" x2="${x(gx)}" y2="${h-pad.b}"/><text class="tick" x="${x(gx)}" y="${h-22}" text-anchor="middle">${gx}x</text>`;
+  for (const gy of [.8,.85,.9,.95,1]) html += `<line class="gridline" x1="${pad.l}" y1="${y(gy)}" x2="${w-pad.r}" y2="${y(gy)}"/><text class="tick" x="8" y="${y(gy)+4}">${Math.round(gy*100)}%</text>`;
+  html += `<line class="ref-line" x1="${x(3)}" y1="${pad.t}" x2="${x(3)}" y2="${h-pad.b}"/>`;
+  html += `<line class="ref-line" x1="${pad.l}" y1="${y(.8)}" x2="${w-pad.r}" y2="${y(.8)}"/>`;
+  html += `<line class="axis" x1="${pad.l}" y1="${h-pad.b}" x2="${w-pad.r}" y2="${h-pad.b}"/><line class="axis" x1="${pad.l}" y1="${pad.t}" x2="${pad.l}" y2="${h-pad.b}"/>`;
+  html += `<text class="tick" x="${w/2}" y="${h-6}" text-anchor="middle">Provider offer \u00f7 peer median</text>`;
+  html += `<text class="tick" transform="translate(14 ${h/2}) rotate(-90)" text-anchor="middle">Provider-favorable rate</text>`;
+  data.forEach(d => {
+    const cls = d.peer >= 5 && d.win >= .8 ? "review" : d.peer >= 3 && d.win >= .8 ? "high" : "";
+    html += `<circle class="point ${cls}" cx="${x(d.peer)}" cy="${y(d.win)}" r="${r(d.vol)}"><title>#${d.rank} ${d.name} | ${d.domain} | ${d.state} ${d.code} | peer ${d.peer.toFixed(2)}x | ${pct(d.win)} | lines ${fmt.format(d.vol)}</title></circle>`;
+  });
+  html += `<text class="tick" x="${x(3)+5}" y="${pad.t+12}" style="font-size:9px">3\u00d7 peer</text>`;
+  html += `<text class="tick" x="${w-pad.r-90}" y="${y(.8)-5}" style="font-size:9px">80% ref</text>`;
+  svg.innerHTML = html;
+}
+
+/* ---- Scatter companion table (right column) ---- */
+function buildScatterTable(el, data) {
+  let html = `<thead><tr>
+    <th class="r">#</th>
+    <th>Provider</th>
+    <th>St</th>
+    <th class="r">Peer&times;</th>
+    <th class="r">Win %</th>
+    <th class="r">Lines</th>
+    <th>Signal</th>
+  </tr></thead><tbody>`;
+  data.forEach(d => {
+    const shortName = d.name.length > 22 ? d.name.slice(0, 20) + "\u2026" : d.name;
+    const badge = d.label.includes("Very high") ? "badge-review"
+      : d.label.includes("High") ? "badge-high" : "badge-monitor";
+    const tag = d.label.includes("Very high") ? "High"
+      : d.label.includes("High") ? "Elevated" : "Monitor";
+    html += `<tr>
+      <td class="r">${d.rank}</td>
+      <td class="provider-cell" title="${d.name}\n${d.domain}">${shortName}</td>
+      <td>${d.state}</td>
+      <td class="r">${d.peer.toFixed(1)}\u00d7</td>
+      <td class="r">${pct(d.win)}</td>
+      <td class="r">${fmt.format(d.vol)}</td>
+      <td><span class="badge ${badge}">${tag}</span></td>
+    </tr>`;
+  });
+  html += "</tbody>";
+  document.getElementById(el).innerHTML = html;
+}
+
+/* ---- US Choropleth (dispute-line volume by state) ---- */
+function renderGeoMap(containerId, data) {
+  const container = document.getElementById(containerId);
+  if (!container || typeof d3 === 'undefined') return;
+  const tip = document.getElementById('tooltip');
+
+  const DATA = {};
+  const maxLines = Math.max(...data.map(d => d.lines));
+  data.forEach(d => { DATA[d.state] = d; });
+
+  const FIPS = {
+    '01':'AL','02':'AK','04':'AZ','05':'AR','06':'CA','08':'CO','09':'CT',
+    '10':'DE','11':'DC','12':'FL','13':'GA','15':'HI','16':'ID','17':'IL',
+    '18':'IN','19':'IA','20':'KS','21':'KY','22':'LA','23':'ME','24':'MD',
+    '25':'MA','26':'MI','27':'MN','28':'MS','29':'MO','30':'MT','31':'NE',
+    '32':'NV','33':'NH','34':'NJ','35':'NM','36':'NY','37':'NC','38':'ND',
+    '39':'OH','40':'OK','41':'OR','42':'PA','44':'RI','45':'SC','46':'SD',
+    '47':'TN','48':'TX','49':'UT','50':'VT','51':'VA','53':'WA','54':'WV',
+    '55':'WI','56':'WY'
+  };
+  const STATE_NAME = {
+    'AL':'Alabama','AK':'Alaska','AZ':'Arizona','AR':'Arkansas','CA':'California',
+    'CO':'Colorado','CT':'Connecticut','DE':'Delaware','FL':'Florida','GA':'Georgia',
+    'HI':'Hawaii','ID':'Idaho','IL':'Illinois','IN':'Indiana','IA':'Iowa',
+    'KS':'Kansas','KY':'Kentucky','LA':'Louisiana','ME':'Maine','MD':'Maryland',
+    'MA':'Massachusetts','MI':'Michigan','MN':'Minnesota','MS':'Mississippi',
+    'MO':'Missouri','MT':'Montana','NE':'Nebraska','NV':'Nevada','NH':'New Hampshire',
+    'NJ':'New Jersey','NM':'New Mexico','NY':'New York','NC':'North Carolina',
+    'ND':'North Dakota','OH':'Ohio','OK':'Oklahoma','OR':'Oregon','PA':'Pennsylvania',
+    'RI':'Rhode Island','SC':'South Carolina','SD':'South Dakota','TN':'Tennessee',
+    'TX':'Texas','UT':'Utah','VT':'Vermont','VA':'Virginia','WA':'Washington',
+    'WV':'West Virginia','WI':'Wisconsin','WY':'Wyoming'
+  };
+
+  const COLOR_STOPS = [[0,'#f0f4f8'],[200,'#a3c4e0'],[800,'#3a7ec2'],[1500,'#1d4f8a'],[3500,'#0a1f3d']];
+  function lerpHex(a,b,t) {
+    const h = c => [parseInt(c.slice(1,3),16),parseInt(c.slice(3,5),16),parseInt(c.slice(5,7),16)];
+    const ca=h(a), cb=h(b);
+    return 'rgb('+Math.round(ca[0]+(cb[0]-ca[0])*t)+','+Math.round(ca[1]+(cb[1]-ca[1])*t)+','+Math.round(ca[2]+(cb[2]-ca[2])*t)+')';
+  }
+  function linesToColor(lines) {
+    const v = Math.max(0, Math.min(maxLines, lines));
+    for (let i=1;i<COLOR_STOPS.length;i++) {
+      if (v <= COLOR_STOPS[i][0]) {
+        const lo=COLOR_STOPS[i-1], hi=COLOR_STOPS[i];
+        return lerpHex(lo[1], hi[1], (v-lo[0])/(hi[0]-lo[0]));
+      }
+    }
+    return COLOR_STOPS[COLOR_STOPS.length-1][1];
+  }
+
+  const W = container.clientWidth || 400;
+  const H = Math.min(Math.round(W * 0.62), 320);
+
+  fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json')
+    .then(r => r.json())
+    .then(us => {
+      const states = topojson.feature(us, us.objects.states);
+      const borders = topojson.mesh(us, us.objects.states, (a,b) => a!==b);
+
+      const svg = d3.create('svg')
+        .attr('width',W).attr('height',H)
+        .attr('viewBox','0 0 '+W+' '+H)
+        .style('display','block').style('width','100%').style('height','auto');
+
+      const projection = d3.geoAlbersUsa().fitExtent([[6,6],[W-6,H-6]], states);
+      const path = d3.geoPath().projection(projection);
+
+      svg.selectAll('path')
+        .data(states.features).enter().append('path')
+        .attr('d', path)
+        .attr('fill', d => {
+          const abbr = FIPS[String(d.id).padStart(2,'0')];
+          return DATA[abbr] ? linesToColor(DATA[abbr].lines) : '#dde3e8';
+        })
+        .attr('stroke','#fff').attr('stroke-width',0.5)
+        .style('cursor','pointer')
+        .on('mouseover', function(event, d) {
+          const abbr = FIPS[String(d.id).padStart(2,'0')];
+          d3.select(this).attr('stroke','#222').attr('stroke-width',1.6);
+          const nm = STATE_NAME[abbr]||abbr;
+          let html = '<div class="tt-title">'+nm+' ('+abbr+')</div>';
+          const info = DATA[abbr];
+          if (info) {
+            html += '<div class="tt-row"><span>Dispute lines</span><span>'+fmt.format(info.lines)+'</span></div>';
+            html += '<div class="tt-row"><span>Providers flagged</span><span>'+info.providers+'</span></div>';
+            html += '<div class="tt-row"><span>Avg peer \u00d7 median</span><span>'+info.peer.toFixed(2)+'\u00d7</span></div>';
+            html += '<div class="tt-row"><span>Provider-favorable</span><span>'+(info.win*100).toFixed(1)+'%</span></div>';
+          } else {
+            html += '<div class="tt-row"><span style="color:#aaa">Not in flagged set</span><span>\u2014</span></div>';
+          }
+          if (tip) { tip.innerHTML=html; tip.style.display='block'; }
+        })
+        .on('mousemove', function(event) {
+          if (!tip) return;
+          const r=tip.getBoundingClientRect();
+          let x=event.clientX+14, y=event.clientY-r.height/2;
+          if (x+r.width>innerWidth-8) x=event.clientX-r.width-14;
+          if (y<4) y=4; if (y+r.height>innerHeight-4) y=innerHeight-r.height-4;
+          tip.style.left=x+'px'; tip.style.top=y+'px';
+        })
+        .on('mouseout', function() {
+          d3.select(this).attr('stroke','#fff').attr('stroke-width',0.5);
+          if (tip) tip.style.display='none';
+        });
+
+      svg.append('path').datum(borders)
+        .attr('d',path).attr('fill','none')
+        .attr('stroke','#fff').attr('stroke-width',0.5).attr('stroke-linejoin','round');
+
+      svg.selectAll('text.st-lbl')
+        .data(states.features.filter(d => !!DATA[FIPS[String(d.id).padStart(2,'0')]]))
+        .enter().append('text').attr('class','st-lbl')
+        .attr('x', d => { const c=path.centroid(d); return isNaN(c[0])?-999:c[0]; })
+        .attr('y', d => { const c=path.centroid(d); return isNaN(c[1])?-999:c[1]; })
+        .attr('text-anchor','middle').attr('dominant-baseline','middle')
+        .attr('font-size',8).attr('font-weight',700)
+        .attr('font-family','DM Mono,monospace')
+        .attr('pointer-events','none')
+        .attr('fill', d => {
+          const abbr=FIPS[String(d.id).padStart(2,'0')];
+          return DATA[abbr] && DATA[abbr].lines > 800 ? '#fff' : '#555';
+        })
+        .text(d => FIPS[String(d.id).padStart(2,'0')]||'');
+
+      container.innerHTML = '';
+      container.appendChild(svg.node());
+
+      const legDiv = document.createElement('div');
+      legDiv.className = 'map-legend';
+      const stops = [];
+      for (let i=0;i<=20;i++) stops.push(linesToColor(i/20*maxLines));
+      legDiv.innerHTML =
+        '<div style="display:flex;align-items:center;gap:8px;font-size:10px;color:var(--muted);">'+
+          '<span style="font-family:DM Mono,monospace;font-size:9px;">0</span>'+
+          '<div style="flex:1;height:10px;border-radius:3px;background:linear-gradient(to right,'+stops.join(',')+')"></div>'+
+          '<span style="font-family:DM Mono,monospace;font-size:9px;">'+fmt.format(maxLines)+'</span>'+
+          '<span style="font-size:9px;">dispute lines</span>'+
+        '</div>'+
+        '<div style="margin-top:4px;font-size:9px;color:var(--faint);">\u25A0 Grey = not in flagged set &nbsp;|&nbsp; Hover for details</div>';
+      container.appendChild(legDiv);
+    })
+    .catch(() => {
+      container.innerHTML =
+        '<div style="color:var(--muted);font-size:11px;padding:24px;text-align:center;border:1px dashed var(--border);border-radius:8px;">'+
+          'US map requires an internet connection to load state boundaries.<br>'+
+          '<span style="font-size:10px;color:var(--faint);">Data is available in the bar chart to the right.</span>'+
+        '</div>';
+    });
+}
+
+/* ---- Render everything ---- */
+kpis("overviewKpis", [
+  {label:"Rows in export", value:fmt.format(total), desc:"Total dispute line rows across Q1 and Q2 2025, covering both emergency and air ambulance services", tone:"blue"},
+  {label:"Volume shortlist", value:"1,274", desc:"Provider-code-region combinations that passed the volume and peer-group concentration screens", tone:"orange"},
+  {label:"Final review set", value:"25", desc:"Combinations that passed every screen \u2014 " + elevatedFiveX + " of them are asking 5\u00d7 or more than their peers and winning 80%+ of their disputes", tone:"red"}
+]);
+
+buildFunnel("funnelTable", funnel);
+
+scatter("scatterMain", reviewRows, 680, 420);
+buildScatterTable("scatterTable", reviewRows);
+
+bars("geoBars", geoReview, "lines", d => d.state + " (" + fmt.format(d.lines) + " lines)", d => fmt.format(d.lines), d => d.lines >= 1000 ? "orange" : "");
+renderGeoMap("geoMapContainer", geoReview);
+
+table("reviewTableTop",
+  [{t:"Rank",r:true},{t:"Provider / domain"},{t:"Code"},{t:"State"},{t:"Peer \u00d7 median",r:true},{t:"Prov.-favorable",r:true},{t:"Lines",r:true},{t:"Pattern"}],
+  reviewRows.slice(0, 10).map(d => {
+    const displayLabel = d.label.includes("Very high")
+      ? "Higher peer level, higher outcome rate"
+      : d.label.includes("High")
+        ? "Elevated peer level, higher outcome rate"
+        : "In review set";
+    const badge = d.label.includes("Very high") ? "badge-review" : d.label.includes("High") ? "badge-high" : "badge-monitor";
+    return `<tr><td class="r">${d.rank}</td><td><strong>${d.name}</strong><br/><span class="note">${d.domain} \u00b7 NPI ${d.npi}</span></td><td>${d.code}<br/><span class="note">${d.desc}</span></td><td>${d.state}</td><td class="r">${d.peer.toFixed(2)}\u00d7</td><td class="r">${pct(d.win)}</td><td class="r">${fmt.format(d.vol)}</td><td><span class="badge ${badge}">${displayLabel}</span></td></tr>`;
+  })
+);
+</script>
+</body>
+</html>
