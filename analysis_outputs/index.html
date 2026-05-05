@@ -627,15 +627,15 @@ html, body, body * { font-size: 15px !important; }
   <div class="kpi-strip">
     <div class="kpi k-blue">
       <div class="kpi-lbl">Review-flagged providers</div>
-      <div class="kpi-desc" style="margin-bottom:8px;">Providers winning 60%+ of disputes via plan non-response (min. 10 wins, 50 disputes)</div>
+      <div class="kpi-desc" style="margin-bottom:8px;">Providers winning 60%+ of disputes via default determination (min. 10 wins, 50 disputes)</div>
       <div class="kpi-val" id="kpiFlaggedProviders">—</div>
       <p class="kpi-context">providers meeting the default-win share rule in this view (10+ wins, 50+ disputes)</p>
     </div>
     <div class="kpi k-red">
       <div class="kpi-lbl">Default-win disputes</div>
-      <div class="kpi-desc" style="margin-bottom:8px;">Total cases won automatically because the plan never responded — updates with filters above</div>
+      <div class="kpi-desc" style="margin-bottom:8px;">Total disputes that closed through a default determination — updates with filters above</div>
       <div class="kpi-val" id="kpiDefaultWins">—</div>
-      <p class="kpi-context">disputes the provider won because the plan did not respond in time</p>
+      <p class="kpi-context">disputes that closed through a default determination in this view</p>
     </div>
     <div class="kpi k-orange">
       <div class="kpi-lbl">Overall default-win rate</div>
@@ -649,8 +649,8 @@ html, body, body * { font-size: 15px !important; }
   <div class="two-col paired-row">
     <div class="card">
       <div class="card-header">
-        <div class="card-title">Providers with more than 60% default-win share due to plan non-response</div>
-        <div class="card-sub">Showing top 20 review-flagged providers by default-win share. A "default win" means the plan never responded to the dispute.</div>
+        <div class="card-title">Providers with more than 60% default-win share</div>
+        <div class="card-sub">Showing top 20 review-flagged providers by default-win share. A "default win" means one party did not submit an offer or pay their IDR fees.</div>
       </div>
       <div class="card-body">
         <div class="legend-row">
@@ -704,8 +704,8 @@ html, body, body * { font-size: 15px !important; }
     </div>
   </div>
   <div class="two-col" style="margin-top:-8px;margin-bottom:18px;gap:10px;">
-    <p class="chart-insight chart-insight-plain" style="margin:0;">When a health plan misses the federal IDR deadline, the dispute can close in the provider&#39;s favor without a hearing — a <strong>default win</strong>. Each dot is one provider: left-to-right is dispute volume; up-and-down is the <strong>share of wins</strong> attributable to plan non-response rather than merits decisions.<br><br>Dots <strong>above the 60% line</strong> indicate elevated default-driven outcomes, particularly when combined with high volume, and should be treated as monitoring signals for follow-up review.</p>
-    <p class="chart-insight chart-insight-plain" style="margin:0;">This panel ranks every <strong>review-flagged</strong> provider by default-win share — the proportion of disputes that ended because the plan did not respond (subject to minimum wins and dispute counts).<br><br><strong>Rank order</strong> helps prioritize follow-up by highlighting high-share, high-volume patterns alongside other monitoring indicators. Hover a row to see the full legal entity name.</p>
+    <p class="chart-insight chart-insight-plain" style="margin:0;">When one party does not submit an offer or pay their IDR fees, the dispute closes automatically in the other party's favor — a <strong>default win</strong>. Each dot is one provider: left-to-right is dispute volume; up-and-down is the <strong>share of disputes</strong> that closed through a default determination rather than a merits decision.<br><br>Dots <strong>above the 60% line</strong> indicate elevated default-driven outcomes, particularly when combined with high volume, and should be treated as monitoring signals for follow-up review.</p>
+    <p class="chart-insight chart-insight-plain" style="margin:0;">This panel ranks every <strong>review-flagged</strong> provider by default-win share — the proportion of disputes that closed through a default determination (subject to minimum wins and dispute counts).<br><br><strong>Rank order</strong> helps prioritize follow-up by highlighting high-share, high-volume patterns alongside other monitoring indicators. Hover a row to see the full legal entity name.</p>
   </div>
 
   <!-- ROW 2: Plan Scatter + Plan Table -->
@@ -775,11 +775,11 @@ html, body, body * { font-size: 15px !important; }
     <div class="card">
       <div class="card-header">
         <div class="card-title">Top providers by raw default-win volume</div>
-        <div class="card-sub">How many disputes each provider won purely because the plan went silent</div>
+        <div class="card-sub">How many disputes each provider won through a default determination</div>
       </div>
       <div class="card-body">
         <div class="bar-list" id="provBarList"></div>
-        <p class="chart-insight chart-insight-plain">These bars rank providers by <strong>raw count</strong> of default wins — how many disputes each provider won solely because the opposing plan never responded.<br><br>The longest bars mark where <strong>sheer volume</strong> shows the largest payment flows moving without arbitration — entries that warrant further review even when the provider&#39;s <em>rate</em> is not the highest on the scatter plot.</p>
+        <p class="chart-insight chart-insight-plain">These bars rank providers by <strong>raw count</strong> of default wins — how many disputes each provider won through a default determination.<br><br>The longest bars mark where <strong>sheer volume</strong> shows the largest payment flows moving without a merits hearing — entries that warrant further review even when the provider&#39;s <em>rate</em> is not the highest on the scatter plot.</p>
       </div>
     </div>
     <div class="card">
@@ -801,12 +801,12 @@ html, body, body * { font-size: 15px !important; }
   <div class="card full-card">
     <div class="card-header">
       <div class="card-title">Default-win rate by state — US choropleth</div>
-      <div class="card-sub">Darker red = higher share of disputes won by default (plan non-response). Grey = states not in dataset. Hover any state for detail.</div>
+      <div class="card-sub">Darker red = higher share of disputes that closed through a default determination. Grey = states not in dataset. Hover any state for detail.</div>
     </div>
     <div class="card-body" style="padding:14px 18px 12px;">
       <div id="l3GeoMap" style="width:100%;"></div>
       <div id="l3GeoLegend" style="margin-top:10px;"></div>
-      <p class="chart-insight chart-insight-plain" style="margin-top:12px;">This map colors each <strong>state (by service location)</strong> by the share of disputes in that state that ended in a provider default win — the plan never filed a response. Darker red = a larger share of in-state disputes closed that way. Grey = not enough data in the extract.<br><br>The deepest red states show <strong>where</strong> plan non-response clusters in the map — useful for regional oversight, not just a single national rate. Hover a state for its exact share, win count, and dispute count.</p>
+      <p class="chart-insight chart-insight-plain" style="margin-top:12px;">This map colors each <strong>state (by service location)</strong> by the share of disputes in that state that closed through a default determination. Darker red = a larger share of in-state disputes closed that way. Grey = not enough data in the extract.<br><br>The deepest red states show <strong>where</strong> default determinations are most concentrated geographically — useful for regional oversight, not just a single national rate. Hover a state for its exact share, win count, and dispute count.</p>
     </div>
   </div>
 
