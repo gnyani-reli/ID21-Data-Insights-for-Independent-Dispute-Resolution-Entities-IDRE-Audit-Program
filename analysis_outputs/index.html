@@ -287,27 +287,6 @@ html, body, body * { font-size: 15px !important; }
 #tab-l3 .l3-post-chart-meta { align-items: start; }
 #tab-l3 .l3-post-chart-meta > div:first-child .callout { margin-top: 0; }
 #tab-l3 .l3-post-chart-meta-spacer { min-height: 1px; }
-/* Section divider rows inside provider/plan tables */
-#tab-l3 #provTableBody tr.section-divider-row,
-#tab-l3 #planTableBody tr.section-divider-row {
-  height: 26px !important;
-  max-height: 26px !important;
-}
-#tab-l3 #provTableBody tr.section-divider-row td,
-#tab-l3 #planTableBody tr.section-divider-row td {
-  height: 26px !important;
-  max-height: 26px !important;
-  padding: 0 8px !important;
-  font-size: 10px !important;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--muted);
-  background: #f0f4f8;
-  border-top: 2px solid #e2e8f0;
-  text-align: left !important;
-  white-space: nowrap;
-}
 /* Equal-height rows: ranked provider/plan tables (review-flagged lists) */
 #tab-l3 #provTableBody tr,
 #tab-l3 #planTableBody tr {
@@ -727,7 +706,7 @@ html, body, body * { font-size: 15px !important; }
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
       <div class="card-header" style="flex-shrink:0;">
         <div class="card-title">Providers with highest default-win share</div>
-        <div class="card-sub">Top 5 by default-win share · Top 5 by total default wins. Review flag = 60%+ share with 10+ wins and 50+ disputes.</div>
+        <div class="card-sub">Top 10 review-flagged providers by default-win share. Review flag = 60%+ share with 10+ wins and 50+ disputes.</div>
       </div>
       <div class="card-body l3-table-static">
         <table class="data-table centered-table fit-table" style="width:100%;">
@@ -793,7 +772,7 @@ html, body, body * { font-size: 15px !important; }
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
       <div class="card-header" style="flex-shrink:0;">
         <div class="card-title">Plans most exposed to default losses</div>
-        <div class="card-sub">Top 5 by default loss rate · Top 5 by total default losses. Review flag = 40%+ loss rate with 50+ disputes.</div>
+        <div class="card-sub">Top 10 review-flagged plans by default loss rate. Review flag = 40%+ loss rate with 50+ disputes.</div>
       </div>
       <div class="card-body l3-table-static">
         <table class="data-table centered-table fit-table" style="width:100%;">
@@ -3900,34 +3879,28 @@ function updateKpis(pFg, allPlans){
 /* -- PROVIDER TABLE -- */
 function renderProvTable(pFg){
   var tbody=document.getElementById('provTableBody'); if(!tbody) return;
-  var byShare=pFg.slice().sort(function(a,b){return b.share-a.share;}).slice(0,5);
-  var byVol=pFg.slice().sort(function(a,b){return (b.wins||0)-(a.wins||0);}).slice(0,5);
-  function provRow(d,i){return '<tr>'+
+  var sorted=pFg.slice().sort(function(a,b){return b.share-a.share;}).slice(0,10);
+  tbody.innerHTML=sorted.map(function(d,i){return '<tr>'+
     '<td style="color:var(--faint);font-family:\'DM Mono\',monospace;">'+(i+1)+'</td>'+
     '<td class="name-cell" style="font-weight:500;" title="'+d.name+'">'+d.name+'</td>'+
     '<td class="r">'+(d.disputes||0).toLocaleString()+'</td>'+
     '<td class="r">'+(d.wins||0).toLocaleString()+'</td>'+
     '<td class="r '+pctClass(d.share)+'">'+d.share.toFixed(1)+'%</td>'+
     '<td>'+riskBadge(d.share)+'</td>'+
-    '</tr>';}
-  tbody.innerHTML=
-    '<tr class="section-divider-row"><td colspan="6">By default-win share</td></tr>'+
-    byShare.map(provRow).join('')+
-    '<tr class="section-divider-row"><td colspan="6">By total default wins (volume)</td></tr>'+
-    byVol.map(provRow).join('');
+    '</tr>';}).join('');
 }
 
 /* -- PLAN TABLE -- */
 function renderPlanTable(allPlans){
   var tbody=document.getElementById('planTableBody'); if(!tbody) return;
-  var eligible=allPlans.filter(function(d){return (d.disputes||0)>=50 && d.tier>0;});
-  var byRate=eligible.slice().sort(function(a,b){
-    var ra=(a.wins||0)/Math.max(a.disputes||1,1);
-    var rb=(b.wins||0)/Math.max(b.disputes||1,1);
-    return rb-ra;
-  }).slice(0,5);
-  var byVol=eligible.slice().sort(function(a,b){return (b.wins||0)-(a.wins||0);}).slice(0,5);
-  function planRow(d,i){
+  /* Show all review-signaled plans (tier > 0 = loss rate ≥ 40% with 50+ disputes), sorted by rate desc */
+  var sorted=allPlans.filter(function(d){return (d.disputes||0)>=50 && d.tier>0;})
+    .slice().sort(function(a,b){
+      var ra=(a.wins||0)/Math.max(a.disputes||1,1);
+      var rb=(b.wins||0)/Math.max(b.disputes||1,1);
+      return rb-ra;
+    }).slice(0,10);
+  tbody.innerHTML=sorted.map(function(d,i){
     var pct=((d.wins/d.disputes)*100).toFixed(1);
     return '<tr>'+
       '<td style="color:var(--faint);font-family:\'DM Mono\',monospace;">'+(i+1)+'</td>'+
@@ -3936,12 +3909,8 @@ function renderPlanTable(allPlans){
       '<td class="r">'+(d.wins||0).toLocaleString()+'</td>'+
       '<td class="r '+pctClass(parseFloat(pct))+'">'+pct+'%</td>'+
       '<td>'+planRiskBadge(parseFloat(pct))+'</td>'+
-      '</tr>';}
-  tbody.innerHTML=
-    '<tr class="section-divider-row"><td colspan="6">By default loss rate</td></tr>'+
-    byRate.map(planRow).join('')+
-    '<tr class="section-divider-row"><td colspan="6">By total default losses (volume)</td></tr>'+
-    byVol.map(planRow).join('');
+      '</tr>';
+  }).join('');
 }
 
 /* -- BAR LISTS -- */
