@@ -772,9 +772,9 @@ html, body, body * { font-size: 15px !important; }
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
       <div class="card-header" style="flex-shrink:0;">
         <div class="card-title">Plans most exposed to default losses</div>
-        <div class="card-sub">All review-flagged plans sorted by default loss rate — scroll within this panel to see all. Review flag = 40%+ loss rate with 50+ disputes.</div>
+        <div class="card-sub">Top 10 review-flagged plans by default loss rate. Review flag = 40%+ loss rate with 50+ disputes.</div>
       </div>
-      <div class="card-body l3-table-scroll">
+      <div class="card-body l3-table-static">
         <table class="data-table centered-table fit-table" style="width:100%;">
           <colgroup>
             <col style="width:5%">
@@ -3899,7 +3899,7 @@ function renderPlanTable(allPlans){
       var ra=(a.wins||0)/Math.max(a.disputes||1,1);
       var rb=(b.wins||0)/Math.max(b.disputes||1,1);
       return rb-ra;
-    });
+    }).slice(0,10);
   tbody.innerHTML=sorted.map(function(d,i){
     var pct=((d.wins/d.disputes)*100).toFixed(1);
     return '<tr>'+
