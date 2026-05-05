@@ -268,7 +268,35 @@ html, body, body * { font-size: 15px !important; }
 #tab-l3 .paired-row { align-items: stretch; margin-bottom: 16px; }
 #tab-l3 .paired-row > .card { display: flex; flex-direction: column; height: 100%; }
 #tab-l3 .paired-row > .card > .card-body { flex: 1; display: flex; flex-direction: column; min-height: 0; }
-#tab-l3 .paired-row .scatter-wrap { flex: 1; height: auto; min-height: 380px; }
+#tab-l3 .paired-row > .card > .card-body.l3-paired-chart-body { padding: 16px 18px; }
+#tab-l3 .paired-row .l3-paired-chart-body .scatter-wrap { flex: 1 1 auto; height: auto; min-height: 380px; }
+#tab-l3 .paired-row > .card > .card-body.l3-table-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  padding: 0;
+}
+#tab-l3 .l3-post-chart-meta { align-items: start; }
+#tab-l3 .l3-post-chart-meta > div:first-child .callout { margin-top: 0; }
+#tab-l3 .l3-post-chart-meta-spacer { min-height: 1px; }
+/* Equal-height rows: ranked provider/plan tables (review-flagged lists) */
+#tab-l3 #provTableBody tr,
+#tab-l3 #planTableBody tr {
+  height: 38px;
+}
+#tab-l3 #provTableBody td,
+#tab-l3 #planTableBody td {
+  height: 38px;
+  padding: 4px 6px;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+#tab-l3 #provTableBody .bar-badge,
+#tab-l3 #planTableBody .bar-badge {
+  white-space: nowrap;
+}
 #tab-l3 .table-body-fill { flex: 1 !important; overflow-y: auto !important; padding: 0 !important; display: block !important; }
 /* -- FIT TABLE (Logic3) -- */
 #tab-l3 .fit-table { table-layout: fixed; }
@@ -652,7 +680,7 @@ html, body, body * { font-size: 15px !important; }
         <div class="card-title">Providers with more than 60% default-win share</div>
         <div class="card-sub">Showing top 20 review-flagged providers by default-win share. A "default win" means one party did not submit an offer or pay their IDR fees.</div>
       </div>
-      <div class="card-body">
+      <div class="card-body l3-paired-chart-body">
         <div class="legend-row">
           <span class="li"><span class="dot" style="background:rgba(140,152,163,0.45);border:1.5px solid #8C98A3;"></span>Baseline range</span>
           <span class="li"><span class="dot" style="background:#1a4d8f;"></span>Review signal 60–89%</span>
@@ -662,15 +690,6 @@ html, body, body * { font-size: 15px !important; }
           <span class="li"><span class="dash-line" style="background:#a09d99;"></span>60% flag threshold</span>
         </div>
         <div class="scatter-wrap"><svg id="svgProv" width="100%" height="100%"></svg></div>
-        <div class="callout" id="providerTierSummary">Loading provider tiers…</div>
-        <div class="criteria-box">
-          <strong>Provider review criteria</strong>
-          <ul>
-            <li>Each dot represents one provider.</li>
-            <li>Default win share = won by default / total disputes.</li>
-            <li>Review signal at 60%+ default win share (line shown at 60%).</li>
-          </ul>
-        </div>
       </div>
     </div>
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
@@ -678,7 +697,7 @@ html, body, body * { font-size: 15px !important; }
         <div class="card-title">Providers with highest default-win share</div>
         <div class="card-sub">All review-flagged providers sorted by default-win share — scroll within this panel to see all. Review flag = 60%+ share with 10+ wins and 50+ disputes.</div>
       </div>
-      <div class="card-body" style="padding:0;overflow-y:scroll;overflow-x:hidden;overscroll-behavior:contain;max-height:calc(100vh - 260px);">
+      <div class="card-body l3-table-scroll">
         <table class="data-table centered-table fit-table" style="width:100%;">
           <colgroup>
             <col style="width:5%">
@@ -703,6 +722,20 @@ html, body, body * { font-size: 15px !important; }
       </div>
     </div>
   </div>
+  <div class="two-col l3-post-chart-meta" style="margin-top:-8px;margin-bottom:8px;gap:8px;">
+    <div>
+      <div class="callout" id="providerTierSummary">Loading provider tiers…</div>
+      <div class="criteria-box">
+        <strong>Provider review criteria</strong>
+        <ul>
+          <li>Each dot represents one provider.</li>
+          <li>Default win share = won by default / total disputes.</li>
+          <li>Review signal at 60%+ default win share (line shown at 60%).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="l3-post-chart-meta-spacer" aria-hidden="true"></div>
+  </div>
   <div class="two-col" style="margin-top:-8px;margin-bottom:18px;gap:10px;">
     <p class="chart-insight chart-insight-plain" style="margin:0;">When one party does not submit an offer or pay their IDR fees, the dispute closes automatically in the other party's favor — a <strong>default win</strong>. Each dot is one provider: left-to-right is dispute volume; up-and-down is the <strong>share of disputes</strong> that closed through a default determination rather than a merits decision.<br><br>Dots <strong>above the 60% line</strong> indicate elevated default-driven outcomes, particularly when combined with high volume, and should be treated as monitoring signals for follow-up review.</p>
     <p class="chart-insight chart-insight-plain" style="margin:0;">This panel ranks every <strong>review-flagged</strong> provider by default-win share — the proportion of disputes that closed through a default determination (subject to minimum wins and dispute counts).<br><br><strong>Rank order</strong> helps prioritize follow-up by highlighting high-share, high-volume patterns alongside other monitoring indicators. Hover a row to see the full legal entity name.</p>
@@ -715,7 +748,7 @@ html, body, body * { font-size: 15px !important; }
         <div class="card-title">Which plans lose the most disputes because they do not respond?</div>
         <div class="card-sub">Plans ranked by how often they lose disputes due to non-response.</div>
       </div>
-      <div class="card-body">
+      <div class="card-body l3-paired-chart-body">
         <div class="legend-row">
           <span class="li"><span class="dot" style="background:rgba(140,152,163,0.45);border:1.5px solid #8C98A3;"></span>Baseline range (&lt;40%)</span>
           <span class="li"><span class="dot" style="background:#9a7022;"></span>Elevated ≥40%</span>
@@ -723,16 +756,6 @@ html, body, body * { font-size: 15px !important; }
           <span class="li"><span class="dot" style="background:#c0392b;"></span>Critical ≥80%</span>
         </div>
         <div class="scatter-wrap"><svg id="svgPlan" width="100%" height="100%"></svg></div>
-        <div class="callout" id="planFlagSummary">Loading plan risk summary…</div>
-        <div class="criteria-box">
-          <strong>Plan review criteria</strong>
-          <ul>
-            <li>Each dot represents one plan.</li>
-            <li>Default loss rate = lost by default / total disputes.</li>
-            <li>Only plans with 50+ disputes are eligible for risk flagging.</li>
-            <li>Tiers: 40%+ elevated, 60%+ high, 80%+ critical.</li>
-          </ul>
-        </div>
       </div>
     </div>
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
@@ -740,7 +763,7 @@ html, body, body * { font-size: 15px !important; }
         <div class="card-title">Plans most exposed to default losses</div>
         <div class="card-sub">All review-flagged plans sorted by default loss rate — scroll within this panel to see all. Review flag = 40%+ loss rate with 50+ disputes.</div>
       </div>
-      <div class="card-body" style="padding:0;overflow-y:scroll;overflow-x:hidden;overscroll-behavior:contain;max-height:calc(100vh - 260px);">
+      <div class="card-body l3-table-scroll">
         <table class="data-table centered-table fit-table" style="width:100%;">
           <colgroup>
             <col style="width:5%">
@@ -764,6 +787,21 @@ html, body, body * { font-size: 15px !important; }
         </table>
       </div>
     </div>
+  </div>
+  <div class="two-col l3-post-chart-meta" style="margin-top:-8px;margin-bottom:8px;gap:8px;">
+    <div>
+      <div class="callout" id="planFlagSummary">Loading plan risk summary…</div>
+      <div class="criteria-box">
+        <strong>Plan review criteria</strong>
+        <ul>
+          <li>Each dot represents one plan.</li>
+          <li>Default loss rate = lost by default / total disputes.</li>
+          <li>Only plans with 50+ disputes are eligible for risk flagging.</li>
+          <li>Tiers: 40%+ elevated, 60%+ high, 80%+ critical.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="l3-post-chart-meta-spacer" aria-hidden="true"></div>
   </div>
   <div class="two-col" style="margin-top:-8px;margin-bottom:18px;gap:10px;">
     <p class="chart-insight chart-insight-plain" style="margin:0;">Each dot is one <strong>health plan</strong>. Left-to-right is how many disputes involved that plan; up-and-down is what share of those disputes the plan <strong>lost because it never responded</strong> (default loss rate). Dot color shows severity tiers starting at 40%.<br><br>Plans <strong>high and to the right</strong> combine large volume with a high default-loss rate, so many cases exit without the plan engaging IDR — a pattern that is statistically unusual at scale relative to low-volume plans and warrants further review.</p>
