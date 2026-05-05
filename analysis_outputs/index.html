@@ -620,7 +620,7 @@ html, body, body * { font-size: 15px !important; }
   <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
   <div class="insight">
-  In <strong>more than 1 out of every 4 disputes</strong>, health plans do not respond, and the dispute can close in the provider&#39;s favor through default procedures. In this dataset, <strong>119 providers</strong> exceeded a <strong>60%</strong> default-win share. <strong>Key observation:</strong> plan non-response aligns with materially higher average payment outcomes and serves as a compliance-monitoring trigger for further review.
+  In <strong>about 22% of disputes</strong>, health plans do not respond, and the dispute can close in the provider&#39;s favor through default procedures. In this dataset, <strong>119 providers</strong> exceeded a <strong>60%</strong> default-win share. <strong>Key observation:</strong> plan non-response aligns with materially higher average payment outcomes and serves as a compliance-monitoring trigger for further review.
   </div>
 
   <!-- KPIs -->
@@ -3498,21 +3498,55 @@ const PLAN_NORMAL = [];
 
 /* -- GEOGRAPHIC DATA ARRAYS -- */
 const L3_GEO = [
-  {state:"TX",disputes:1153353,default_wins:359151,rate:31.1},
-  {state:"FL",disputes:208646,default_wins:78357,rate:37.6},
-  {state:"AZ",disputes:250577,default_wins:37531,rate:15.0},
-  {state:"TN",disputes:123179,default_wins:25832,rate:21.0},
-  {state:"GA",disputes:78835,default_wins:19173,rate:24.3},
-  {state:"OK",disputes:54946,default_wins:17421,rate:31.7},
-  {state:"CA",disputes:75497,default_wins:17210,rate:22.8},
-  {state:"NY",disputes:91347,default_wins:15819,rate:17.3},
-  {state:"NJ",disputes:74388,default_wins:15656,rate:21.0},
-  {state:"NV",disputes:44700,default_wins:12238,rate:27.4},
-  {state:"PA",disputes:25602,default_wins:9825,rate:38.4},
-  {state:"NM",disputes:28287,default_wins:8788,rate:31.1},
-  {state:"IN",disputes:70894,default_wins:8156,rate:11.5},
-  {state:"MS",disputes:30390,default_wins:8089,rate:26.6},
-  {state:"VA",disputes:34183,default_wins:8035,rate:23.5}
+  {state:"TX",disputes:401525,default_wins:113230,rate:28.2},
+  {state:"AZ",disputes:84967,default_wins:11216,rate:13.2},
+  {state:"FL",disputes:80762,default_wins:26732,rate:33.1},
+  {state:"NJ",disputes:46147,default_wins:8168,rate:17.7},
+  {state:"NY",disputes:40337,default_wins:7140,rate:17.7},
+  {state:"TN",disputes:37838,default_wins:7151,rate:18.9},
+  {state:"IN",disputes:37156,default_wins:4273,rate:11.5},
+  {state:"GA",disputes:35950,default_wins:6471,rate:18.0},
+  {state:"OH",disputes:27158,default_wins:3531,rate:13.0},
+  {state:"OK",disputes:24210,default_wins:6779,rate:28.0},
+  {state:"CA",disputes:23762,default_wins:3944,rate:16.6},
+  {state:"MO",disputes:23727,default_wins:3251,rate:13.7},
+  {state:"LA",disputes:21750,default_wins:2523,rate:11.6},
+  {state:"VA",disputes:19211,default_wins:3592,rate:18.7},
+  {state:"NV",disputes:18082,default_wins:2712,rate:15.0},
+  {state:"AR",disputes:17723,default_wins:2180,rate:12.3},
+  {state:"IL",disputes:11406,default_wins:3034,rate:26.6},
+  {state:"NC",disputes:11197,default_wins:1344,rate:12.0},
+  {state:"NM",disputes:10949,default_wins:3602,rate:32.9},
+  {state:"SC",disputes:10339,default_wins:1334,rate:12.9},
+  {state:"PA",disputes:9448,default_wins:2107,rate:22.3},
+  {state:"AL",disputes:9138,default_wins:1462,rate:16.0},
+  {state:"KY",disputes:8375,default_wins:1089,rate:13.0},
+  {state:"MS",disputes:6861,default_wins:1262,rate:18.4},
+  {state:"MI",disputes:5994,default_wins:1756,rate:29.3},
+  {state:"CO",disputes:5873,default_wins:1257,rate:21.4},
+  {state:"KS",disputes:4670,default_wins:2097,rate:44.9},
+  {state:"WI",disputes:4314,default_wins:600,rate:13.9},
+  {state:"MD",disputes:3936,default_wins:1141,rate:29.0},
+  {state:"CT",disputes:3020,default_wins:634,rate:21.0},
+  {state:"WA",disputes:2867,default_wins:378,rate:13.2},
+  {state:"WV",disputes:2078,default_wins:305,rate:14.7},
+  {state:"MA",disputes:1704,default_wins:382,rate:22.4},
+  {state:"DE",disputes:1256,default_wins:250,rate:19.9},
+  {state:"IA",disputes:1255,default_wins:184,rate:14.7},
+  {state:"RI",disputes:1147,default_wins:267,rate:23.3},
+  {state:"UT",disputes:932,default_wins:317,rate:34.0},
+  {state:"OR",disputes:853,default_wins:174,rate:20.4},
+  {state:"ID",disputes:647,default_wins:125,rate:19.3},
+  {state:"ME",disputes:608,default_wins:60,rate:9.9},
+  {state:"MN",disputes:547,default_wins:136,rate:24.9},
+  {state:"NH",disputes:402,default_wins:144,rate:35.8},
+  {state:"AK",disputes:374,default_wins:77,rate:20.6},
+  {state:"SD",disputes:284,default_wins:60,rate:21.1},
+  {state:"MT",disputes:239,default_wins:58,rate:24.3},
+  {state:"NE",disputes:236,default_wins:55,rate:23.3},
+  {state:"DC",disputes:174,default_wins:37,rate:21.3},
+  {state:"WY",disputes:89,default_wins:29,rate:32.6},
+  {state:"HI",disputes:66,default_wins:47,rate:71.2}
 ];
 
 const L3_STATE_TREND = [
@@ -3918,16 +3952,16 @@ function renderL3Geo(){
   };
 
   /* Anchor scale to actual data range so every state gets a distinct shade */
-  var MIN_RATE = 10;   /* data floor — actual min is 11.5% */
-  var MAX_RATE = 40;   /* data ceiling — actual max is 38.4% */
+  var MIN_RATE = 10;   /* data floor — ME 9.9%, clipped to 10 */
+  var MAX_RATE = 50;   /* data ceiling — KS 44.9% is practical max; HI 71.2% clips to max */
 
   /* 5-stop piecewise colour ramp: pale blush → vivid rose → deep red → dark crimson */
   var COLOR_STOPS = [
     [10, '#fde8e6'],
-    [18, '#e8907e'],
-    [25, '#c03030'],
-    [32, '#8a0c0c'],
-    [40, '#3d0000']
+    [20, '#e8907e'],
+    [30, '#c03030'],
+    [40, '#8a0c0c'],
+    [50, '#3d0000']
   ];
 
   function lerpHex(a, b, t){
