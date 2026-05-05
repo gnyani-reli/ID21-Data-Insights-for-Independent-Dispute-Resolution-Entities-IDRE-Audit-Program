@@ -3899,7 +3899,7 @@ function updateProviderTierSummary(pFg,pBg){
   var q=normalizeQuarter(qSel ? qSel.value : 'all');
   var s=normalizeService(sSel ? sSel.value : 'all');
   if(q==='all' && s==='all'){
-    el.innerHTML='<strong>119 flagged providers</strong> (142 quarter-entries): 5 critical (≥98%), 4 high (95–98%), 8 elevated (90–95%), 125 flagged (60–90%). Context providers shown for comparison.';
+    el.innerHTML='<strong>119 flagged providers</strong> (142 quarter-entries — each entry is one provider in one quarter; 23 providers were flagged in both Q1 and Q2, showing the pattern persisted across quarters): 5 critical (≥98%), 4 high (95–98%), 8 elevated (90–95%), 125 flagged (60–90%). Context providers shown for comparison.';
     return;
   }
   var c1=pFg.filter(function(d){return d.share>=60&&d.share<90;}).length;
@@ -3907,7 +3907,7 @@ function updateProviderTierSummary(pFg,pBg){
   var c3=pFg.filter(function(d){return d.share>=95&&d.share<98;}).length;
   var c4=pFg.filter(function(d){return d.share>=98;}).length;
   var uniqueCount = new Set(pFg.map(function(d){return d.name;})).size;
-  el.innerHTML='<strong>'+uniqueCount+' review-signaled providers</strong> ('+pFg.length+' quarter-entries): '+c4+' critical (≥98%), '+c3+' high (≥95%), '+c2+' elevated (≥90%), '+c1+' review signal (60–89%). '+pBg.length+' context providers shown for comparison.';
+  el.innerHTML='<strong>'+uniqueCount+' review-signaled providers</strong> ('+pFg.length+' quarter-entries — each entry is one provider in one quarter): '+c4+' critical (≥98%), '+c3+' high (≥95%), '+c2+' elevated (≥90%), '+c1+' review signal (60–89%). '+pBg.length+' context providers shown for comparison.';
 }
 
 function updatePlanFlagSummary(planFg,allPlans){
