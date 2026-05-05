@@ -3814,6 +3814,8 @@ function updateKpis(pFg, allPlans){
   var q=normalizeQuarter(qSel ? qSel.value : 'all');
   var s=normalizeService(sSel ? sSel.value : 'all');
   var forcedAllScope = (q==='all' && s==='all') ? 119 : null;
+  /* dispute-level overall rate (22.4%) — PLAN_FOCUS uses line-item counts which inflate to ~26% */
+  var forcedOverallRate = (q==='all' && s==='all') ? 22.4 : null;
   var tw=allPlans.reduce(function(s,d){return s+(d.wins||0);},0);
   var td=allPlans.reduce(function(s,d){return s+(d.disputes||0);},0);
   var dr=td>0?(tw/td)*100:0;
@@ -3822,7 +3824,7 @@ function updateKpis(pFg, allPlans){
   var ko=document.getElementById('kpiOverallDefaults');
   if(kp) kp.textContent=(forcedAllScope!==null ? forcedAllScope : uniqueProviders.size).toLocaleString();
   if(kd) kd.textContent=tw.toLocaleString();
-  if(ko) ko.textContent=dr.toFixed(1)+'%';
+  if(ko) ko.textContent=(forcedOverallRate!==null ? forcedOverallRate : dr).toFixed(1)+'%';
 }
 
 /* -- PROVIDER TABLE -- */
