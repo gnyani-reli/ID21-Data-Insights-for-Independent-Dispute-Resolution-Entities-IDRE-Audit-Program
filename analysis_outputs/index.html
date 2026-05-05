@@ -4267,8 +4267,9 @@ function drawCharts(){
     var ds=normalizeService(d.s);
     return (q==='all'||dq===q) && (s==='all'||ds===s);
   };
-  var pFg=PROV_FOCUS.filter(fn);
-  var pBg=PROV_NORMAL.filter(fn);
+  var allProvFocus=PROV_FOCUS.filter(fn);
+  var pFg=allProvFocus.filter(function(d){return (d.share||0)>=60;});
+  var pBg=allProvFocus.filter(function(d){return (d.share||0)<60;}).concat(PROV_NORMAL.filter(fn));
   var allPlans=computePlanRisk(PLAN_FOCUS.concat(PLAN_NORMAL).filter(fn).map(function(d){return Object.assign({},d);}));
   var planFg=allPlans.filter(function(d){return d.tier>0;});
   var planBg=allPlans.filter(function(d){return d.tier===0;});
