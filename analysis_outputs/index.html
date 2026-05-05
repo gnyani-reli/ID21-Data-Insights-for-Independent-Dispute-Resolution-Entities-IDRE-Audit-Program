@@ -284,14 +284,19 @@ html, body, body * { font-size: 15px !important; }
 /* Equal-height rows: ranked provider/plan tables (review-flagged lists) */
 #tab-l3 #provTableBody tr,
 #tab-l3 #planTableBody tr {
-  height: 38px;
+  height: 36px !important;
+  max-height: 36px !important;
+  overflow: hidden;
 }
 #tab-l3 #provTableBody td,
 #tab-l3 #planTableBody td {
-  height: 38px;
-  padding: 4px 6px;
-  box-sizing: border-box;
+  height: 36px !important;
+  max-height: 36px !important;
+  padding: 0 8px !important;
+  box-sizing: border-box !important;
   vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
 }
 #tab-l3 #provTableBody .bar-badge,
 #tab-l3 #planTableBody .bar-badge {
