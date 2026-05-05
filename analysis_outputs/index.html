@@ -273,9 +273,7 @@ html, body, body * { font-size: 15px !important; }
 #tab-l3 .paired-row > .card > .card-body.l3-table-scroll {
   flex: 1 1 auto;
   min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
+  overflow: hidden;
   padding: 0;
 }
 #tab-l3 .l3-post-chart-meta { align-items: start; }
@@ -683,7 +681,7 @@ html, body, body * { font-size: 15px !important; }
     <div class="card">
       <div class="card-header">
         <div class="card-title">Providers with more than 60% default-win share</div>
-        <div class="card-sub">Showing top 20 review-flagged providers by default-win share. A "default win" means one party did not submit an offer or pay their IDR fees.</div>
+        <div class="card-sub">Top 10 review-flagged providers by default-win share. A "default win" means one party did not submit an offer or pay their IDR fees.</div>
       </div>
       <div class="card-body l3-paired-chart-body">
         <div class="legend-row">
@@ -700,7 +698,7 @@ html, body, body * { font-size: 15px !important; }
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
       <div class="card-header" style="flex-shrink:0;">
         <div class="card-title">Providers with highest default-win share</div>
-        <div class="card-sub">All review-flagged providers sorted by default-win share — scroll within this panel to see all. Review flag = 60%+ share with 10+ wins and 50+ disputes.</div>
+        <div class="card-sub">Top 10 review-flagged providers by default-win share. Review flag = 60%+ share with 10+ wins and 50+ disputes.</div>
       </div>
       <div class="card-body l3-table-scroll">
         <table class="data-table centered-table fit-table" style="width:100%;">
@@ -3873,7 +3871,7 @@ function updateKpis(pFg, allPlans){
 /* -- PROVIDER TABLE -- */
 function renderProvTable(pFg){
   var tbody=document.getElementById('provTableBody'); if(!tbody) return;
-  var sorted=pFg.slice().sort(function(a,b){return b.share-a.share;});
+  var sorted=pFg.slice().sort(function(a,b){return b.share-a.share;}).slice(0,10);
   tbody.innerHTML=sorted.map(function(d,i){return '<tr>'+
     '<td style="color:var(--faint);font-family:\'DM Mono\',monospace;">'+(i+1)+'</td>'+
     '<td class="name-cell" style="font-weight:500;" title="'+d.name+'">'+d.name+'</td>'+
