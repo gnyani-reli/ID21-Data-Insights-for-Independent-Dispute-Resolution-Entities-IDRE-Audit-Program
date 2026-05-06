@@ -633,7 +633,7 @@ html, body, body * { font-size: 15px !important; }
   <div class="header">
     <div class="header-top">
       <div>
-        <h1>119 providers had a default-win share above 60%, against a dataset-wide default determination rate of 22%</h1>
+        <h1>383 providers had a default-win share above 60%, against a dataset-wide default determination rate of 26.2%</h1>
       </div>
       <div class="filters">
         <div class="filter-group">
@@ -659,7 +659,7 @@ html, body, body * { font-size: 15px !important; }
   <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
   <div class="insight">
-  A default determination occurs when one party fails to submit an offer or pay their IDR fees — the other party wins automatically. In this dataset (Q1–Q2 2025, OON emergency and air ambulance), <strong>22% of disputes</strong> closed this way. Among providers with at least 50 disputes and 10 default wins, <strong>119 exceeded a 60% default-win share</strong> — meaning the majority of their IDR outcomes were uncontested. These providers are flagged for statistical review; the pattern does not indicate a determination of non-compliance or wrongdoing.
+  A default determination occurs when one party fails to submit an offer or pay their IDR fees — the other party wins automatically. In this dataset (Q1–Q2 2025, OON emergency and air ambulance), <strong>26.2% of disputes</strong> closed this way. Among providers with at least 50 disputes and 10 default wins, <strong>383 exceeded a 60% default-win share</strong> — meaning the majority of their IDR outcomes were uncontested. These providers are flagged for statistical review; the pattern does not indicate a determination of non-compliance or wrongdoing.
   </div>
 
   <!-- KPIs -->
@@ -671,16 +671,16 @@ html, body, body * { font-size: 15px !important; }
       <p class="kpi-context">providers meeting the default-win share rule in this view (10+ wins, 50+ disputes)</p>
     </div>
     <div class="kpi k-red">
-      <div class="kpi-lbl">Default-win disputes</div>
-      <div class="kpi-desc" style="margin-bottom:8px;">Total disputes that closed through a default determination — updates with filters above</div>
+      <div class="kpi-lbl">Disputes with a default determination</div>
+      <div class="kpi-desc" style="margin-bottom:8px;">Total disputes closed with a default determination (Default Decision = Yes) — updates with filters above</div>
       <div class="kpi-val" id="kpiDefaultWins">—</div>
-      <p class="kpi-context">disputes that closed through a default determination in this view</p>
+      <p class="kpi-context">disputes where one party did not submit an offer or pay IDR fees, causing an automatic outcome</p>
     </div>
     <div class="kpi k-orange">
-      <div class="kpi-lbl">Overall default-win rate</div>
-      <div class="kpi-desc" style="margin-bottom:8px;">Share of all disputes that end in a provider default win — updates with filters above</div>
+      <div class="kpi-lbl">Default determination rate</div>
+      <div class="kpi-desc" style="margin-bottom:8px;">Share of all disputes that closed with a default determination — updates with filters above</div>
       <div class="kpi-val" id="kpiOverallDefaults">—</div>
-      <p class="kpi-context">share of all disputes in the extract that close as provider default wins</p>
+      <p class="kpi-context">share of all disputes in this view where a default determination was issued</p>
     </div>
   </div>
 
@@ -723,8 +723,8 @@ html, body, body * { font-size: 15px !important; }
               <th>No.</th>
               <th>Provider</th>
               <th class="r">Disputes</th>
-              <th class="r">Won by default</th>
-              <th class="r">Default win %</th>
+              <th class="r">Default determinations</th>
+              <th class="r">Default determination rate</th>
               <th>Risk</th>
             </tr>
           </thead>
@@ -756,8 +756,8 @@ html, body, body * { font-size: 15px !important; }
   <div class="two-col paired-row">
     <div class="card">
       <div class="card-header">
-        <div class="card-title">Which plans lose the most disputes because they do not respond?</div>
-        <div class="card-sub">Plans ranked by how often they lose disputes due to non-response.</div>
+        <div class="card-title">Plans with the highest default determination loss rate</div>
+        <div class="card-sub">Plans ranked by share of disputes decided by default determination against them (Default Decision = Yes, provider prevails).</div>
       </div>
       <div class="card-body l3-paired-chart-body">
         <div class="legend-row">
@@ -771,8 +771,8 @@ html, body, body * { font-size: 15px !important; }
     </div>
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
       <div class="card-header" style="flex-shrink:0;">
-        <div class="card-title">Plans most exposed to default losses</div>
-        <div class="card-sub">Top 10 review-flagged plans by default loss rate. Review flag = 40%+ loss rate with 50+ disputes.</div>
+        <div class="card-title">Plans with the highest default determination loss rate</div>
+        <div class="card-sub">Top 10 plans by default determination loss rate (share of disputes where Default Decision = Yes and plan is the losing party). Minimum 50 disputes.</div>
       </div>
       <div class="card-body l3-table-static">
         <table class="data-table centered-table fit-table" style="width:100%;">
@@ -898,14 +898,14 @@ html, body, body * { font-size: 15px !important; }
 <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
 <div class="l4-insight">
-  In Q1-Q2 2025, <strong>10,453 providers</strong> submitted offers at <strong>6 times or more</strong> the federal benchmark rate for out-of-network emergency care, with high provider-favorable outcome rates in this extract. Cross-checking against the Medicare fee schedule identified <strong>619 providers</strong> with elevated values on both benchmarks, suggesting the full distribution is not explained by QPA level alone. <strong>Key observation:</strong> the highest observed claim in this period was billed at <strong>3,857,500 times</strong> the benchmark rate.
+  In Q1-Q2 2025, <strong>10,453 providers</strong> submitted offers at <strong>6 times or more</strong> the qualifying payment amount (QPA) — the federally calculated benchmark rate — for out-of-network emergency care, with high provider-favorable outcome rates in this extract. Cross-checking against the Medicare fee schedule identified <strong>619 providers</strong> with offers above both the QPA and Medicare fee schedule thresholds simultaneously, suggesting the full distribution is not explained by a low QPA alone. <strong>Key observation:</strong> the highest observed offer in this period was submitted at <strong>3,857,500 times</strong> the QPA.
 </div>
 
 <div class="l4-kpi-strip">
   <div class="l4-kpi l4-k-blue">
-    <div class="l4-kpi-desc">Providers who met the 6× federal benchmark threshold on at least one line and filed disputes in this extract</div>
+    <div class="l4-kpi-desc">Providers who filed offers at 6× or more the qualifying payment amount (QPA) on at least one line item in this extract</div>
     <div class="l4-kpi-val" id="kpi1">10,453</div>
-    <p class="kpi-context">providers who billed at least 6× the federal benchmark</p>
+    <p class="kpi-context">providers who filed offers at 6× or more the QPA</p>
   </div>
   <div class="l4-kpi l4-k-red">
     <div class="l4-kpi-desc">Total disputed claims submitted at elevated benchmark multiples, with high provider-favorable outcomes in this extract</div>
@@ -935,13 +935,13 @@ html, body, body * { font-size: 15px !important; }
 
       <div class="risk-exec-chart-row">
         <div class="risk-exec-chart-main">
-          <h3 class="risk-exec-chart-heading">Most extreme providers - ranked by average overcharge multiple</h3>
-          <p class="risk-exec-chart-subhead">Bar length = how far above the federal QPA benchmark a provider typically bills. Win rate % shown on each bar.</p>
+          <h3 class="risk-exec-chart-heading">Providers ranked by average offer-to-QPA ratio</h3>
+          <p class="risk-exec-chart-subhead">Bar length = how far above the QPA a provider's median offer sits. Provider-favorable outcome rate shown on each bar.</p>
           <div class="risk-matrix-scatter-canvas-wrap risk-exec-canvas">
             <canvas id="riskMatrixScatter"></canvas>
           </div>
           <div id="riskScatterEmpty" class="risk-exec-empty" style="display:none;">No matching providers for current filters.</div>
-          <p class="risk-exec-chart-foot">Each bar is one provider ranked by how far the median charge exceeds the federal QPA benchmark - a bar at 100× means the median offer is 100 times the benchmark in the data. The percentage on each bar is dispute win rate, which is analytically separate from billing multiples. Providers with very high multiples and high win rates represent elevated financial exposure in the model and may warrant follow-up sampling for payment integrity.</p>
+          <p class="risk-exec-chart-foot">Each bar is one provider ranked by their median offer-to-QPA ratio (Provider/Facility Offer as % of QPA ÷ 100). A bar at 100× means the median offer is 100 times the qualifying payment amount. The percentage on each bar is the provider-favorable outcome rate across all dispute types, which is analytically separate from billing multiples. Providers with high offer-to-QPA ratios and high outcome rates represent elevated financial exposure in the model and may warrant follow-up sampling.</p>
         </div>
       </div>
 
@@ -953,8 +953,8 @@ html, body, body * { font-size: 15px !important; }
               <thead>
                 <tr>
                   <th>Provider</th>
-                  <th class="risk-exec-num">Billing multiple</th>
-                  <th class="risk-exec-num">Win rate</th>
+                  <th class="risk-exec-num">Avg offer as × QPA</th>
+                  <th class="risk-exec-num">Outcome rate (all)</th>
                   <th class="risk-exec-num">Dispute volume</th>
                 </tr>
               </thead>
@@ -1209,7 +1209,7 @@ html, body, body * { font-size: 15px !important; }
         <thead>
           <tr class="l4-sticky-head">
             <th>#</th><th>Provider</th><th class="l4r">Claims</th>
-            <th class="l4r">Avg × Federal Benchmark</th><th class="l4r">Avg × Medicare Rate</th><th class="l4r">Win Rate</th>
+            <th class="l4r">Avg × Federal Benchmark</th><th class="l4r">Avg × Medicare Rate</th><th class="l4r">Win Rate (all outcomes)</th>
           </tr>
         </thead>
         <tbody id="dualFlaggedBody"></tbody>
@@ -1284,8 +1284,8 @@ html, body, body * { font-size: 15px !important; }
       </div>
       <div class="card">
         <div class="card-header">
-          <div class="card-title">Merit win rate vs. default win rate by domain</div>
-          <div class="card-sub">X = merit win rate · Y = default win rate · Size ∝ national dispute share · <span style="color:var(--red)">●</span> Default &gt;30% &nbsp;<span style="color:var(--amber)">●</span> Default 15–30% &nbsp;<span style="color:var(--blue)">●</span> Default &lt;15%</div>
+          <div class="card-title">Provider-favorable outcome rate vs. default determination rate by domain</div>
+          <div class="card-sub">X = merit win rate (Payment Determination Outcome: In Favor of Provider, defaults excluded) · Y = default determination rate (Default Decision = Yes) · Size ∝ national dispute share · <span style="color:var(--red)">●</span> Default &gt;30% &nbsp;<span style="color:var(--amber)">●</span> Default 15–30% &nbsp;<span style="color:var(--blue)">●</span> Default &lt;15%</div>
         </div>
         <div class="chart-wrap chart-wrap--md"><canvas id="c_vol_scatter"></canvas></div>
       </div>
@@ -3733,8 +3733,8 @@ function tipBubble(d, cfg) {
   const tl = d.share>=98?'Critical ≥98%':d.share>=95?'High ≥95%':d.share>=90?'Elevated ≥90%':d.share>=60?'Review signal 60–89%':'';
   const badge = tc ? '<span class="tt-badge '+tc+'">'+tl+'</span>' : '';
   return '<div class="tt-title">'+d.name+'</div>'+
-    '<div class="tt-row"><span>Default win share</span><span>'+d.share+'%</span></div>'+
-    '<div class="tt-row"><span>Won by default</span><span>'+(d.wins||0).toLocaleString()+'</span></div>'+
+    '<div class="tt-row"><span>Default determination rate</span><span>'+d.share+'%</span></div>'+
+    '<div class="tt-row"><span>Default determinations</span><span>'+(d.wins||0).toLocaleString()+'</span></div>'+
     '<div class="tt-row"><span>Total disputes</span><span>'+(d.disputes||0).toLocaleString()+'</span></div>'+badge;
 }
 
@@ -3862,9 +3862,8 @@ function updateKpis(pFg, allPlans){
   var sSel=document.getElementById('fs');
   var q=normalizeQuarter(qSel ? qSel.value : 'all');
   var s=normalizeService(sSel ? sSel.value : 'all');
-  var forcedAllScope = (q==='all' && s==='all') ? 119 : null;
-  /* dispute-level overall rate (22.4%) — PLAN_FOCUS uses line-item counts which inflate to ~26% */
-  var forcedOverallRate = (q==='all' && s==='all') ? 22.4 : null;
+  var forcedAllScope = null;
+  var forcedOverallRate = null;
   var tw=allPlans.reduce(function(s,d){return s+(d.wins||0);},0);
   var td=allPlans.reduce(function(s,d){return s+(d.disputes||0);},0);
   var dr=td>0?(tw/td)*100:0;
@@ -3948,7 +3947,7 @@ function updateProviderTierSummary(pFg,pBg){
   var q=normalizeQuarter(qSel ? qSel.value : 'all');
   var s=normalizeService(sSel ? sSel.value : 'all');
   if(q==='all' && s==='all'){
-    el.innerHTML='<strong>119 flagged providers</strong> (142 quarter-entries — each entry is one provider in one quarter; 23 providers were flagged in both Q1 and Q2, showing the pattern persisted across quarters): 5 critical (≥98%), 4 high (95–98%), 8 elevated (90–95%), 125 flagged (60–90%). Context providers shown for comparison.';
+    el.innerHTML='<strong>383 flagged providers</strong> (554 quarter-entries — each entry is one provider in one quarter; 23 providers were flagged in both Q1 and Q2, showing the pattern persisted across quarters): 327 critical (≥98%), 16 high (95–98%), 23 elevated (90–95%), 188 flagged (60–90%). Context providers shown for comparison.';
     return;
   }
   var c1=pFg.filter(function(d){return d.share>=60&&d.share<90;}).length;
@@ -4439,7 +4438,7 @@ const L4_PAIRS = [
   {prov:"ADVANCED MEDICAL RESOURCES, LLC",plan:"bcbstx.com",avg:5552.8,wr:100,n:227,q:"q1"}
 ];
 const L4_TRENDS = [
-  {name:"DAPPER, JESSICA",q1:13.3,q2:72389.0,chg:544178.0},
+  {name:"DAPPER, JESSICA",q1:13.3,q2:52648.0,chg:395693.0},
   {name:"NARANG, ASHISH",q1:14.8,q2:6775.7,chg:45682.0},
   {name:"WALKER LAKE EMERGENCY GROUP PC",q1:8.9,q2:4057.9,chg:45494.0},
   {name:"RIDGEWOOD EMERGENCY GROUP LLC",q1:11.7,q2:5146.8,chg:43890.0},
