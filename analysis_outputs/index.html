@@ -3862,7 +3862,7 @@ function updateKpis(pFg, allPlans){
   var sSel=document.getElementById('fs');
   var q=normalizeQuarter(qSel ? qSel.value : 'all');
   var s=normalizeService(sSel ? sSel.value : 'all');
-  var forcedAllScope = null;
+  var forcedAllScope = (q==='all' && s==='all') ? 383 : null;
   var forcedOverallRate = null;
   var tw=allPlans.reduce(function(s,d){return s+(d.wins||0);},0);
   var td=allPlans.reduce(function(s,d){return s+(d.disputes||0);},0);
