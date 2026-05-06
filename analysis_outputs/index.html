@@ -838,7 +838,7 @@ html, body, body * { font-size: 15px !important; }
       </div>
       <div class="card-body">
         <div class="bar-list" id="planBarList"></div>
-        <p class="chart-insight chart-insight-plain">These bars rank plans by <strong>total default losses</strong> — how many disputes each plan forfeited because it did not respond in time.<br><br>Top entries show where <strong>mass-scale</strong> forfeitures concentrate at large national insurers: even a modest non-response rate across millions of members yields tens of thousands of uncontested outcomes — a concentration pattern in the data, not a single-week blip.</p>
+        <p class="chart-insight chart-insight-plain">These bars rank plans by <strong>total default determination losses</strong> — how many disputes each plan lost because one party did not submit an offer or pay IDR fees in time (Default Decision = Yes, provider prevails).<br><br>Top entries show where <strong>mass-scale</strong> default determinations concentrate at large national insurers: even a modest default determination rate across millions of members yields tens of thousands of uncontested outcomes — a concentration pattern in the data, not a single-week blip.</p>
       </div>
     </div>
   </div>
@@ -4218,14 +4218,14 @@ function renderL3PlanMatrixSummary(){
   };
 
   var INSIGHTS={
-    'zelis.com':'Payment processor for many insurers — non-response spans its entire client base across 8 states',
+    'zelis.com':'Payment processor for many insurers — default determination losses span its entire client base across 8 states',
     'ibx.com':'Independence Blue Cross — 7,077 disputes lost in PA, the single largest volume in this dataset',
     'ibxtpa.com':'IBC TPA arm — mirrors the PA concentration seen for ibx.com in this extract',
     'centene.com':'TX (3,766) + IN (679) at 83%+ — multi-state pattern in the data, not isolated to one state',
-    'uhsinc.com':'Universal Health Services — 100% non-response for 3,053 disputes in NV',
-    'fridayhealthplans.com':'Friday Health Plans went bankrupt in 2023 — explains 100% non-response in TX',
-    'marpaihealth.com':'100% non-response in both NJ and TX — small plan; rate is an extreme tail in this extract',
-    'mgb.org':'Mass General Brigham in AR — likely a self-funded employer plan, 100% non-response',
+    'uhsinc.com':'Universal Health Services — 100% default determination loss rate for 3,053 disputes in NV',
+    'fridayhealthplans.com':'Friday Health Plans went bankrupt in 2023 — explains 100% default determination loss rate in TX',
+    'marpaihealth.com':'100% default determination loss rate in both NJ and TX — small plan; rate is an extreme tail in this extract',
+    'mgb.org':'Mass General Brigham in AR — likely a self-funded employer plan, 100% default determination loss rate',
     'umr.com':'UMR (UnitedHealthcare subsidiary) — 98.6% loss rate in TX, 499 disputes'
   };
 
@@ -4246,7 +4246,7 @@ function renderL3PlanMatrixSummary(){
 
   var header='<p style="font-size:11px;color:var(--muted);margin-bottom:12px;line-height:1.55;">'+
     '<strong style="color:var(--text);">State = service location</strong> — where care was physically delivered. '+
-    'Plans appearing across multiple states show a repeated non-response pattern in the data, not a single-state blip. '+
+    'Plans appearing across multiple states show a repeated default determination loss pattern in the data, not a single-state blip. '+
     'Each card below summarises one plan\'s exposure; state chips are colored by loss-rate severity.</p>';
 
   var cards=plans.map(function(p){
