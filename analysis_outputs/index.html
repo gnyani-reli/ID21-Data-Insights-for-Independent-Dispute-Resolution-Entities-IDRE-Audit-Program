@@ -3947,7 +3947,7 @@ function updateProviderTierSummary(pFg,pBg){
   var q=normalizeQuarter(qSel ? qSel.value : 'all');
   var s=normalizeService(sSel ? sSel.value : 'all');
   if(q==='all' && s==='all'){
-    el.innerHTML='<strong>383 flagged providers</strong> (554 quarter-entries — each entry is one provider in one quarter; 23 providers were flagged in both Q1 and Q2, showing the pattern persisted across quarters): 327 critical (≥98%), 16 high (95–98%), 23 elevated (90–95%), 188 flagged (60–90%). Context providers shown for comparison.';
+    el.innerHTML='<strong>383 flagged providers</strong> — each winning 60%+ of their disputes via default determination (min. 10 wins, 50 disputes). Context providers shown for comparison.';
     return;
   }
   var c1=pFg.filter(function(d){return d.share>=60&&d.share<90;}).length;
