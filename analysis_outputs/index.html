@@ -3867,7 +3867,7 @@ function updateProviderTierSummary(pFg,pBg){
   var q=normalizeQuarter(qSel ? qSel.value : 'all');
   var s=normalizeService(sSel ? sSel.value : 'all');
   if(q==='all' && s==='all'){
-    el.innerHTML='<strong>57 provider NPIs flagged across Q1–Q2 2025</strong> — each with 60%+ of their disputes closed via default determination (min. 10 defaulted disputes, 50 total disputes). All are shown in the chart above; grey dots are the comparison group.';
+    el.innerHTML='<strong>57 provider NPIs flagged across Q1–Q2 2025</strong> — each with 60%+ of their disputes closed via default determination (min. 10 defaulted disputes, 50 total disputes). The chart shows up to 113 dots for these 57 providers because each provider can have a separate dot for Q1 and Q2; use the quarter filter above to view one quarter at a time. Grey dots are the comparison group.';
     return;
   }
   var c1=pFg.filter(function(d){return d.share>=60&&d.share<90;}).length;
