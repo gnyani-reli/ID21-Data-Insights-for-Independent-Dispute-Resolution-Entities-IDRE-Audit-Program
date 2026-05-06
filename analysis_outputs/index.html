@@ -659,16 +659,16 @@ html, body, body * { font-size: 15px !important; }
   <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
 
   <div class="insight">
-  A default determination occurs when one party fails to submit an offer or pay their IDR fees — the other party wins automatically. In this dataset (Q1–Q2 2025, OON emergency and air ambulance), <strong>26.2% of disputes</strong> closed this way. Among providers with at least 50 disputes and 10 default wins, <strong>383 exceeded a 60% default-win share</strong> — meaning the majority of their IDR outcomes were uncontested. These providers are flagged for statistical review; the pattern does not indicate a determination of non-compliance or wrongdoing.
+  A default determination occurs when one party fails to submit an offer or pay their IDR fees — the other party wins automatically. In this dataset (Q1–Q2 2025, OON emergency and air ambulance), <strong>26.2% of disputes</strong> closed this way. Across the full dataset, <strong>383 unique provider NPIs exceeded a 60% default-win share</strong> (min. 10 wins, 50 disputes) — meaning the majority of their IDR outcomes were uncontested. The chart below shows the top providers by concentration; 383 is the total count across the full dataset. These providers are flagged for statistical review; the pattern does not indicate a determination of non-compliance or wrongdoing.
   </div>
 
   <!-- KPIs -->
   <div class="kpi-strip">
     <div class="kpi k-blue">
       <div class="kpi-lbl">Review-flagged providers</div>
-      <div class="kpi-desc" style="margin-bottom:8px;">Providers winning 60%+ of disputes via default determination (min. 10 wins, 50 disputes)</div>
+      <div class="kpi-desc" style="margin-bottom:8px;">Total provider NPIs flagged across the full dataset with 60%+ default-win share (min. 10 wins, 50 disputes)</div>
       <div class="kpi-val" id="kpiFlaggedProviders">—</div>
-      <p class="kpi-context">providers meeting the default-win share rule in this view (10+ wins, 50+ disputes)</p>
+      <p class="kpi-context">provider NPIs flagged in full dataset; chart shows top providers by share</p>
     </div>
     <div class="kpi k-red">
       <div class="kpi-lbl">Disputes with a default determination</div>
@@ -689,7 +689,7 @@ html, body, body * { font-size: 15px !important; }
     <div class="card">
       <div class="card-header">
         <div class="card-title">Providers with more than 60% default-win share</div>
-        <div class="card-sub">Top 10 review-flagged providers by default-win share. A "default win" means one party did not submit an offer or pay their IDR fees.</div>
+        <div class="card-sub">Top providers by default-win share — 383 provider NPIs flagged across the full dataset; highest-concentration subset shown here. A "default win" means one party did not submit an offer or pay their IDR fees.</div>
       </div>
       <div class="card-body l3-paired-chart-body">
         <div class="legend-row">
@@ -706,7 +706,7 @@ html, body, body * { font-size: 15px !important; }
     <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
       <div class="card-header" style="flex-shrink:0;">
         <div class="card-title">Providers with highest default-win share</div>
-        <div class="card-sub">Top 10 review-flagged providers by default-win share. Review flag = 60%+ share with 10+ wins and 50+ disputes.</div>
+        <div class="card-sub">Top 10 providers by default-win share (383 total flagged across full dataset). Review flag = 60%+ share with 10+ wins and 50+ disputes.</div>
       </div>
       <div class="card-body l3-table-static">
         <table class="data-table centered-table fit-table" style="width:100%;">
@@ -739,7 +739,7 @@ html, body, body * { font-size: 15px !important; }
       <div class="criteria-box">
         <strong>Provider review criteria</strong>
         <ul>
-          <li>Each dot represents one provider.</li>
+          <li>Each dot represents one provider (top subset of 383 flagged NPIs shown).</li>
           <li>Default win share = won by default / total disputes.</li>
           <li>Review signal at 60%+ default win share (line shown at 60%).</li>
         </ul>
@@ -748,7 +748,7 @@ html, body, body * { font-size: 15px !important; }
     <div class="l3-post-chart-meta-spacer" aria-hidden="true"></div>
   </div>
   <div class="two-col" style="margin-top:-8px;margin-bottom:18px;gap:10px;">
-    <p class="chart-insight chart-insight-plain" style="margin:0;">When one party does not submit an offer or pay their IDR fees, the dispute closes automatically in the other party's favor — a <strong>default win</strong>. Each dot is one provider: left-to-right is dispute volume; up-and-down is the <strong>share of disputes</strong> that closed through a default determination rather than a merits decision.<br><br>Dots <strong>above the 60% line</strong> indicate elevated default-driven outcomes, particularly when combined with high volume, and should be treated as monitoring signals for follow-up review.</p>
+    <p class="chart-insight chart-insight-plain" style="margin:0;">When one party does not submit an offer or pay their IDR fees, the dispute closes automatically in the other party's favor — a <strong>default win</strong>. Each dot is one provider (top subset of <strong>383 total flagged provider NPIs</strong> across the full dataset): left-to-right is dispute volume; up-and-down is the <strong>share of disputes</strong> that closed through a default determination rather than a merits decision.<br><br>Dots <strong>above the 60% line</strong> indicate elevated default-driven outcomes, particularly when combined with high volume, and should be treated as monitoring signals for follow-up review.</p>
     <p class="chart-insight chart-insight-plain" style="margin:0;">This panel ranks every <strong>review-flagged</strong> provider by default-win share — the proportion of disputes that closed through a default determination (subject to minimum wins and dispute counts).<br><br><strong>Rank order</strong> helps prioritize follow-up by highlighting high-share, high-volume patterns alongside other monitoring indicators. Hover a row to see the full legal entity name.</p>
   </div>
 
@@ -3947,7 +3947,7 @@ function updateProviderTierSummary(pFg,pBg){
   var q=normalizeQuarter(qSel ? qSel.value : 'all');
   var s=normalizeService(sSel ? sSel.value : 'all');
   if(q==='all' && s==='all'){
-    el.innerHTML='<strong>383 flagged providers</strong> — each winning 60%+ of their disputes via default determination (min. 10 wins, 50 disputes). Context providers shown for comparison.';
+    el.innerHTML='<strong>383 provider NPIs flagged across the full dataset</strong> — each with 60%+ of their disputes closed via default determination (min. 10 wins, 50 disputes). Chart shows the highest-concentration subset; grey dots are the comparison group.';
     return;
   }
   var c1=pFg.filter(function(d){return d.share>=60&&d.share<90;}).length;
