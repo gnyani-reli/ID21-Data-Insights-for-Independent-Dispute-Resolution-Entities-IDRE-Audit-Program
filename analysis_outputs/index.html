@@ -509,18 +509,22 @@ html, body, body * { font-size: 15px !important; }
 #tab-l1 .insight-green{background:#e8f5ee;border-left:4px solid #1a7a4a;border-radius:0 8px 8px 0;padding:12px 16px;font-size:13px;color:#0e3d22;line-height:1.6;margin-top:12px}
 #tab-l1 .kpi-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px}
 #tab-l1 .kpi.k-green .kpi-val{color:#1a7a4a}
-#tab-l1 h3.act-title{font-size:14px;font-weight:600;color:var(--text);margin:22px 0 12px;padding-bottom:9px;border-bottom:2px solid var(--border);line-height:1.35}
+#tab-l1 h3.act-title,#tab-l1 .act-title{font-size:14px;font-weight:600;color:var(--text);margin:22px 0 12px;padding-bottom:9px;border-bottom:2px solid var(--border);line-height:1.35}
 #tab-l1 h3.act-title:first-of-type{margin-top:4px}
+#tab-l1 .act-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.4px;color:var(--faint);margin:26px 0 4px}
 #tab-l1 .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px;margin-bottom:16px;align-items:start}
 #tab-l1 .paired-row.grid-2{align-items:stretch}
 #tab-l1 .paired-row.grid-2>.card{display:flex;flex-direction:column;height:100%}
 #tab-l1 .paired-row.grid-2>.card>.card-body{flex:1;display:flex;flex-direction:column;min-height:0}
 #tab-l1 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+#tab-l1 .two-col.paired-row{align-items:stretch}
+#tab-l1 .two-col.paired-row>.card{display:flex;flex-direction:column;height:100%}
+#tab-l1 .two-col.paired-row>.card>.card-body{flex:1;display:flex;flex-direction:column;min-height:0}
 #tab-l1 .card-header{padding:14px 18px 12px;border-bottom:1px solid #edf0f2;flex-shrink:0}
 #tab-l1 .card-title{font-size:15px;font-weight:600;color:#0f1923;margin-bottom:3px}
 #tab-l1 .card-sub{font-size:12px;color:#4a5568;line-height:1.55}
 #tab-l1 .card-body{padding:16px 18px;overflow-x:auto}
-#tab-l1 .chart-wrap{position:relative;background:#fafaf8;border:1px solid var(--border);border-radius:8px;padding:14px 16px;overflow:hidden}
+#tab-l1 .chart-wrap{position:relative;background:#fafaf8;border:1px solid var(--border);border-radius:8px;overflow:hidden}
 #tab-l1 .chart-wrap--l1-md{min-height:280px;height:clamp(260px,36vh,360px)}
 #tab-l1 .chart-wrap--l1-iqr{min-height:300px;height:clamp(280px,38vh,380px)}
 #tab-l1 .chart-wrap--l1-tall{min-height:320px;height:clamp(300px,42vh,420px)}
@@ -1763,252 +1767,255 @@ html, body, body * { font-size: 15px !important; }
 
 <!-- ===== TAB: How Quickly High Payments Are Resolved (Logic 1) ===== -->
 <div id="tab-l1" class="tab-pane">
-    <!-- ===== PAGE · logic1 dashboard 4 (synced) ===== -->
     <div class="page">
 
-      <!-- HEADER -->
-      <div class="header">
-        <div class="header-top">
-          <div>
-            <h1>Higher-payment cases are resolving faster, not slower; timing pattern that may warrant additional compliance validation</h1>
-          </div>
-        </div>
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <h1>Higher-Payment Cases Are Being Resolved Faster — Not Slower</h1>
+        <div class="header-meta">Payment Timing Anomaly · Q1 + Q2 2025 · OON Emergency + Air Ambulance</div>
       </div>
+    </div>
+  </div>
 
-      <p class="idr-observational-banner" role="note">The patterns below are statistical anomalies identified in publicly available IDR data. They are observational only and should be interpreted as monitoring signals, not determinations of non-compliance or wrongdoing.</p>
+  <!-- INSIGHT -->
+  <div class="insight">
+    Across <strong>1,209,444 qualifying merit decisions</strong> (Q1 + Q2 2025), cases where IDREs approved payments furthest above the federal benchmark were resolved in fewer days — not more. Routine cases near the QPA benchmark took a median of <strong>39 days</strong>; cases approved at more than 500% of the benchmark took a median of <strong>32 days</strong>. This 7-day inversion is present at <strong>7 of 14 certified IDREs</strong>, confirming it is systemic rather than isolated. A compliant review process produces the opposite pattern: larger deviations from benchmark should require more scrutiny, not less.
+  </div>
 
-      <!-- INSIGHT -->
-      <div class="insight">
-        Across <strong>1.2 million qualifying merit decisions</strong>, cases where IDREs approved payments furthest above the federal benchmark were resolved in fewer days — not more. Routine cases near the QPA benchmark took a median of <strong>39 days</strong>; cases approved at more than 500% of the benchmark took a median of <strong>32 days</strong>. This 7-day inversion is present at <strong>7 of 14 certified IDREs</strong>, so the pattern is systemic in the extract rather than isolated to one IDRE. Relative to a common expectation that larger benchmark deviations track with longer timelines, the observed ordering is inverted here and warrants further review.
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi k-red">
+      <div class="kpi-lbl">System-level inversion (median)</div>
+      <div class="kpi-desc" style="margin-bottom:8px">Extreme-tier cases resolved faster than Routine-tier cases</div>
+      <div class="kpi-val">7 days</div>
+    </div>
+    <div class="kpi k-blue">
+      <div class="kpi-lbl">Qualifying records</div>
+      <div class="kpi-desc" style="margin-bottom:8px">After filters: default=No, provider wins, matched IDRE, valid numeric fields · Q1+Q2 2025</div>
+      <div class="kpi-val">1,209,444</div>
+    </div>
+    <div class="kpi k-red">
+      <div class="kpi-lbl">IDREs flagged</div>
+      <div class="kpi-desc" style="margin-bottom:8px">Extreme cases faster than Routine · minimum 50 Extreme-tier cases</div>
+      <div class="kpi-val">7 of 14</div>
+    </div>
+    <div class="kpi k-amber">
+      <div class="kpi-lbl">QPA below 50% of Medicare</div>
+      <div class="kpi-desc" style="margin-bottom:8px">Share of Routine-tier cases where QPA was already below half Medicare rate</div>
+      <div class="kpi-val">81.4%</div>
+    </div>
+  </div>
+
+  <!-- ACT 1 -->
+  <div class="act-label">Act 1 — Core Finding</div>
+  <div class="act-title">Median days to IDRE determination decreases as payment tier increases</div>
+
+  <div class="two-col paired-row">
+    <!-- LEFT: line chart -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Median days by payment tier — should slope upward, slopes down</div>
+        <div class="card-sub">Each point = median days for all disputes in that tier. The downward slope confirms larger awards are receiving less, not more, review time.</div>
       </div>
-
-      <!-- KPI STRIP -->
-      <div class="kpi-strip">
-        <div class="kpi k-red">
-          <div class="kpi-lbl">System-level inversion (median)</div>
-          <div class="kpi-desc" style="margin-bottom:8px">Extreme-tier cases resolved faster than Routine-tier cases</div>
-          <div class="kpi-val">7 days</div>
-          <p class="kpi-context">faster resolution for the highest-payment cases vs routine ones</p>
+      <div class="card-body" style="padding:14px 16px 0;">
+        <div class="legend-row">
+          <span class="li"><span class="dot" style="background:#1a7a4a"></span>Routine &lt;150% QPA</span>
+          <span class="li"><span class="dot" style="background:#ba7517"></span>Elevated 150–300%</span>
+          <span class="li"><span class="dot" style="background:#d35400"></span>High 300–500%</span>
+          <span class="li"><span class="dot" style="background:#c0392b"></span>Extreme &gt;500%</span>
         </div>
-        <div class="kpi k-blue">
-          <div class="kpi-lbl">Qualifying records</div>
-          <div class="kpi-desc" style="margin-bottom:8px">After filters: default=No, provider wins, matched IDRE, valid numeric fields</div>
-          <div class="kpi-val">1,209,444</div>
-          <p class="kpi-context">filtered merit-decision records used for the timing analysis</p>
-        </div>
-        <div class="kpi k-red">
-          <div class="kpi-lbl">IDREs review-flagged</div>
-          <div class="kpi-desc" style="margin-bottom:8px">Extreme cases faster than Routine · minimum 50 Extreme-tier cases</div>
-          <div class="kpi-val">7 of 14</div>
-          <p class="kpi-context">IDREs with faster median timelines for Extreme tier than Routine (≥50 Extreme cases)</p>
-        </div>
-        <div class="kpi k-amber">
-          <div class="kpi-lbl">QPA below 50% of Medicare</div>
-          <div class="kpi-desc" style="margin-bottom:8px">Share of Routine-tier cases where QPA was already below half Medicare rate</div>
-          <div class="kpi-val">81.4%</div>
-          <p class="kpi-context">Routine-tier rows where QPA was below half the Medicare rate for the service code</p>
-        </div>
+        <div class="chart-wrap" style="height:280px"><canvas id="c_line"></canvas></div>
       </div>
+      <p class="chart-note">A compliant review process produces an upward slope — larger deviations from benchmark require more scrutiny. The consistent downward trend across all four tiers, confirmed at both the average and median level, indicates high-payment decisions are processed through a lower-scrutiny path regardless of financial magnitude.</p>
+    </div>
 
-      <h3 class="act-title">Median days to IDRE determination decreases as payment tier increases</h3>
-
-      <div class="grid-2 paired-row">
-        <!-- LEFT: line chart -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Median days by payment tier — expected upward slope vs observed downward slope</div>
-            <div class="card-sub">Each point = median days for all disputes in that tier. The downward slope shows larger awards associated with shorter median timelines in this extract.</div>
-          </div>
-          <div class="card-body" style="padding:14px 16px 0;">
-            <div class="legend-row">
-              <span class="li"><span class="dot" style="background:#1a7a4a"></span>Routine &lt;150% QPA</span>
-              <span class="li"><span class="dot" style="background:#ba7517"></span>Elevated 150–300%</span>
-              <span class="li"><span class="dot" style="background:#d35400"></span>High 300–500%</span>
-              <span class="li"><span class="dot" style="background:#c0392b"></span>Extreme &gt;500%</span>
-            </div>
-            <div class="chart-wrap chart-wrap--l1-md"><canvas id="c_line"></canvas></div>
-          </div>
-          <p class="chart-insight">Where larger benchmark deviations are associated with more review time, one would expect an upward slope. The consistent downward trend across all four tiers, at both the average and median, shows shorter median timelines as payment tiers rise in this dataset — a pattern that warrants further review against operational controls.</p>
-        </div>
-
-        <!-- RIGHT: IQR bar chart -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">IQR spread by tier — P25 → Median → P75</div>
-            <div class="card-sub">The spread narrows for the Extreme tier (24–48 days) vs. Routine (26–91 days). High-payment cases are not only faster on average — the IQR is tighter, which may indicate a repeatable process pattern that warrants further validation.</div>
-          </div>
-          <div class="card-body" style="padding:14px 16px 0;">
-            <div class="chart-wrap chart-wrap--l1-iqr"><canvas id="c_iqr"></canvas></div>
-          </div>
-          <p class="chart-insight">The narrowing interquartile range at the Extreme tier means these decisions are not only faster but more <strong>uniform</strong>. If case-by-case differences were the dominant driver, one would generally expect a wider spread for high-complexity high-payment cases; the observed tighter spread is a pattern for additional review.</p>
-        </div>
+    <!-- RIGHT: IQR bar chart -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">IQR spread by tier — P25 → Median → P75</div>
+        <div class="card-sub">The spread narrows for the Extreme tier (24–48 days) vs. Routine (26–91 days). High-payment cases are not just faster on average — they are consistently fast, inconsistent with individualized case review.</div>
       </div>
-
-      <div class="grid-2" style="margin-top:-4px;margin-bottom:24px;gap:10px;">
-        <p class="chart-insight-plain" style="border-radius:8px;border:1px solid var(--border)">Routine cases (near QPA) resolved in median <strong>39 days</strong>. Extreme cases (&gt;500% QPA) resolved in median <strong>32 days</strong>. Both the average and median show the same inversion — this is not an artifact of outliers. P75 drops from 91 days (Routine) to 48 days (Extreme), meaning even the slowest Extreme cases are resolved faster than the typical Routine case.</p>
-        <p class="chart-insight-plain" style="border-radius:8px;border:1px solid var(--border)">Additionally, the Medicare fee schedule cross-check reveals that <strong>81.4% of even Routine-tier cases</strong> have a QPA set below 50% of the Medicare rate for the same service — so high payment variance partly reflects a low QPA baseline in the benchmark data, not only high provider asks. The Medicare comparison (Act 3) separates those components at the service code level.</p>
+      <div class="card-body" style="padding:14px 16px 0;">
+        <div class="chart-wrap" style="height:306px"><canvas id="c_iqr"></canvas></div>
       </div>
+      <p class="chart-note">The narrowing interquartile range at the Extreme tier means these decisions are not only faster but more <strong>uniform</strong>. If IDREs were applying individual case scrutiny, the spread should be wider for high-complexity high-payment cases — not tighter.</p>
+    </div>
+  </div>
 
-      <h3 class="act-title">The timing inversion is broad — present at 7 of 14 certified IDREs</h3>
+  <!-- Summary below act 1 -->
+  <div class="two-col" style="margin-top:-4px;margin-bottom:24px;gap:10px;">
+    <p class="chart-note" style="border-radius:8px;border:1px solid #edf0f2;">Routine cases (near QPA) resolved in median <strong>39 days</strong>. Extreme cases (&gt;500% QPA) resolved in median <strong>32 days</strong>. Both the average and median show the same inversion — this is not an artifact of outliers. P75 drops from 91 days (Routine) to 48 days (Extreme), meaning even the slowest Extreme cases are resolved faster than the typical Routine case.</p>
+    <p class="chart-note" style="border-radius:8px;border:1px solid #edf0f2;">Additionally, the Medicare fee schedule cross-check reveals that <strong>81.4% of even Routine-tier cases</strong> have a QPA set below 50% of the Medicare rate for the same service — confirming the high payment variance is partly a reflection of an artificially low QPA baseline, not solely provider overasking. The Medicare comparison (Act 3) separates these two explanations at the service code level.</p>
+  </div>
 
-      <div class="grid-2 paired-row l1-idre-gap-row">
-        <!-- LEFT: horizontal bar gap chart -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Day gap by IDRE — Routine median days minus Extreme median days</div>
-            <div class="card-sub">Positive bars = Extreme cases resolved faster than Routine (review flag). Negative = Extreme cases took longer (baseline pattern). Sorted by gap descending.</div>
-          </div>
-          <div class="card-body" style="padding:12px 14px 0;">
-            <div class="legend-row">
-              <span class="li"><span class="dot" style="background:#c0392b"></span>REVIEW FLAG — Extreme faster than Routine</span>
-              <span class="li"><span class="dot" style="background:#1a7a4a"></span>No inversion detected</span>
-              <span class="li"><span class="dot" style="background:rgba(140,152,163,0.55)"></span>Insufficient data (&lt;50 Extreme cases)</span>
-            </div>
-            <div class="chart-wrap chart-wrap--l1-tall"><canvas id="c_idre"></canvas></div>
-          </div>
-          <p class="chart-insight"><strong>IPRO</strong> leads with a 49-day gap (Routine: 107 days → Extreme: 58 days). Capitol Bridge follows at 18.5 days. <strong>iMPROve Health</strong> shows a gap of 40 days but has only 24 Extreme-tier cases — below the 50-case threshold — so it is classified as insufficient data. <strong>Provider Resources</strong> is the confirmed exception with a −5 day gap, showing Extreme cases take slightly longer than Routine cases — the slope direction most often associated with longer timelines for higher tiers in other settings.</p>
-        </div>
+  <!-- ACT 2 -->
+  <div class="act-label">Act 2 — IDRE Attribution</div>
+  <div class="act-title">The inversion is systemic — present at 7 of 14 certified IDREs</div>
 
-        <!-- RIGHT: IDRE table -->
-        <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
-          <div class="card-header" style="flex-shrink:0;">
-            <div class="card-title">IDRE inversion detail — all 14 certified entities</div>
-            <div class="card-sub">Review flag = ≥50 Extreme-tier cases AND Extreme median days &lt; Routine median days. Sorted by day gap descending.</div>
-          </div>
-          <div class="card-body l1-idre-inversion-body" style="padding:0;overflow-y:auto;overflow-x:auto;overscroll-behavior:contain;flex:1;min-height:0;">
-            <table class="data-table sticky-head" style="width:100%;table-layout:fixed;" id="tbl_idre">
-              <colgroup>
-                <col style="width:4%"><col style="width:22%"><col style="width:9%">
-                <col style="width:9%"><col style="width:6%"><col style="width:8%"><col style="width:10%"><col style="width:10%"><col style="width:8%"><col style="width:14%">
-              </colgroup>
-              <thead>
-                <tr>
-                  <th onclick="sortT('tbl_idre',0)">No.</th>
-                  <th onclick="sortT('tbl_idre',1)">IDRE ↕</th>
-                  <th class="r" onclick="sortT('tbl_idre',2)">Routine ↕</th>
-                  <th class="r" onclick="sortT('tbl_idre',3)">Elevated ↕</th>
-                  <th class="r" onclick="sortT('tbl_idre',4)">High ↕</th>
-                  <th class="r" onclick="sortT('tbl_idre',5)">Extreme ↕</th>
-                  <th class="r" onclick="sortT('tbl_idre',6)">R. Median ↕</th>
-                  <th class="r" onclick="sortT('tbl_idre',7)">E. Median ↕</th>
-                  <th class="r" onclick="sortT('tbl_idre',8)">Gap ↕</th>
-                  <th onclick="sortT('tbl_idre',9)">Status</th>
-                </tr>
-              </thead>
-              <tbody id="tb_idre"></tbody>
-            </table>
-          </div>
-          <div class="callout" style="margin:8px 12px 10px;">
-            <strong>7 review-flagged IDREs</strong> (positive day gap with ≥50 Extreme-tier cases). 5 have insufficient Extreme-tier data (&lt;50 cases). 2 show no inversion (Provider Resources −5 days, Livanta no Extreme cases).
-          </div>
-        </div>
+  <div class="two-col paired-row" style="grid-template-columns:2fr 3fr;">
+    <!-- LEFT: horizontal bar gap chart -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Day gap by IDRE — Routine median days minus Extreme median days</div>
+        <div class="card-sub">Positive bars = Extreme cases resolved faster than Routine (flagged). Negative = Extreme cases took longer (expected behavior). Sorted by gap descending.</div>
       </div>
-
-      <h3 class="act-title">Providers most associated with fast Extreme-tier decisions at review-flagged IDREs</h3>
-
-      <div class="insight-red">
-        <strong>Pattern note — halomd.com domain:</strong> Dozens of separately named provider entities share the billing email domain halomd.com — NPPA Services, Precision Emergency Physicians, Emergency Medicine Specialists, IES Arizona PLLC, Villa Park Neurological Services, and more. When grouped by domain, halomd.com shows the largest combined volume of fast Extreme-tier decisions across multiple review-flagged IDREs in this extract. Entity relationships can be checked against IDRE certification records and billing registration files.
-      </div>
-
-      <div class="grid-2 paired-row" style="grid-template-columns:2fr 3fr;">
-        <!-- LEFT: provider bar chart -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Top provider-IDRE pairs by Extreme-tier case count at review-flagged IDREs</div>
-            <div class="card-sub">Minimum 10 Extreme-tier cases per pair. <span style="color:var(--red);font-weight:600">■ Red = halomd.com domain</span> &nbsp;<span style="color:var(--blue);font-weight:600">■ Blue = other domains</span>. Hover for detail.</div>
-          </div>
-          <div class="card-body" style="padding:14px 16px 0;">
-            <div class="chart-wrap chart-wrap--l1-tall"><canvas id="c_prov"></canvas></div>
-          </div>
-          <p class="chart-insight">Singleton Associates accounts for nearly 20,000 Extreme-tier cases split across IPRO and EdiPhy Advisors. The halomd.com corporate network, when treated as a single billing entity, represents an even larger combined volume. Median days for halomd.com entities at EdiPhy range from 26–35 days — consistent with the IDRE's system-level inversion.</p>
+      <div class="card-body" style="padding:14px 16px 0;">
+        <div class="legend-row">
+          <span class="li"><span class="dot" style="background:#c0392b"></span>FLAGGED — Extreme faster than Routine</span>
+          <span class="li"><span class="dot" style="background:#1a7a4a"></span>No inversion detected</span>
+          <span class="li"><span class="dot" style="background:rgba(140,152,163,0.55)"></span>Insufficient data (&lt;50 Extreme cases)</span>
         </div>
-
-        <!-- RIGHT: provider table -->
-        <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
-          <div class="card-header" style="flex-shrink:0;">
-            <div class="card-title">Provider-IDRE pairs — Extreme tier at review-flagged IDREs</div>
-            <div class="card-sub">Sorted by Extreme case count. Minimum 10 cases per pair. Avg QPA % Medicare — low values indicate the QPA baseline itself may be artificially low.</div>
-          </div>
-          <div class="card-body" style="padding:0;overflow-y:auto;overflow-x:auto;overscroll-behavior:contain;max-height:420px;">
-            <table class="data-table sticky-head" style="width:100%;table-layout:fixed;" id="tbl_prov">
-              <colgroup>
-                <col style="width:4%"><col style="width:18%"><col style="width:15%"><col style="width:15%">
-                <col style="width:5%"><col style="width:10%"><col style="width:8%"><col style="width:13%"><col style="width:12%">
-              </colgroup>
-              <thead>
-                <tr>
-                  <th onclick="sortT('tbl_prov',0)">No.</th>
-                  <th onclick="sortT('tbl_prov',1)">Provider ↕</th>
-                  <th onclick="sortT('tbl_prov',2)">Domain ↕</th>
-                  <th onclick="sortT('tbl_prov',3)">IDRE ↕</th>
-                  <th onclick="sortT('tbl_prov',4)">St ↕</th>
-                  <th class="r" onclick="sortT('tbl_prov',5)">Extreme ↕</th>
-                  <th class="r" onclick="sortT('tbl_prov',6)">Days ↕</th>
-                  <th class="r" onclick="sortT('tbl_prov',7)">Offer %QPA ↕</th>
-                  <th class="r" onclick="sortT('tbl_prov',8)">QPA %Med ↕</th>
-                </tr>
-              </thead>
-              <tbody id="tb_prov"></tbody>
-            </table>
-          </div>
-          <div class="callout" style="margin:10px 14px 14px;">
-            NPPA Services (halomd.com) at EdiPhy: average offer <strong>437,083%</strong> of QPA, average provider offer <strong>341,679%</strong> of Medicare. This is driven by service codes (e.g. CPT 95937) where QPA is near zero relative to Medicare.
-          </div>
-        </div>
+        <div class="chart-wrap" style="height:340px"><canvas id="c_idre"></canvas></div>
       </div>
+      <p class="chart-note"><strong>IPRO</strong> leads with a 49-day gap (Routine: 107 days → Extreme: 58 days). Capitol Bridge follows at 18.5 days. <strong>iMPROve Health</strong> shows a gap of 40 days but has only 45 Extreme-tier cases — below the 50-case threshold — so it is classified as insufficient data. <strong>Provider Resources</strong> is the confirmed exception with a −5 day gap, showing Extreme cases take slightly longer than Routine cases — exactly the expected behavior under compliant review.</p>
+    </div>
 
-      <h3 class="act-title">Which service codes drive high variance — and is the QPA the problem?</h3>
-
-      <div class="insight">
-        For each Extreme-tier service code, the QPA is compared against the Medicare fee schedule. <strong>BOTH</strong> = QPA below 50% of Medicare AND provider offer above 3× Medicare simultaneously — two benchmark dimensions diverge in the same row. <strong>LOW QPA</strong> = high variance explained primarily by a low QPA benchmark in the extract. The majority of Extreme-tier service codes fall into the BOTH category.
+    <!-- RIGHT: IDRE table -->
+    <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
+      <div class="card-header" style="flex-shrink:0;">
+        <div class="card-title">IDRE inversion detail — all 14 certified entities</div>
+        <div class="card-sub">Flagged = ≥50 Extreme-tier cases AND Extreme median days &lt; Routine median days. Sorted by day gap descending. Source: Q1+Q2 2025 combined.</div>
       </div>
-
-      <div class="grid-2 paired-row">
-        <!-- LEFT: bar chart by service code -->
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title">Median offer % QPA by service code — Extreme tier only</div>
-            <div class="card-sub"><span style="color:var(--red);font-weight:600">■ Red = BOTH</span> &nbsp;<span style="color:var(--orange);font-weight:600">■ Amber = LOW QPA</span> &nbsp;<span style="color:var(--green);font-weight:600">■ Green = Within expected</span>. Hover for detail.</div>
-          </div>
-          <div class="card-body" style="padding:14px 16px 0;">
-            <div class="chart-wrap chart-wrap--l1-md"><canvas id="c_svc"></canvas></div>
-          </div>
-          <p class="chart-insight">CPT 95937 (neuromuscular junction test) and 95955 (EEG during surgery) are the most extreme — QPA values at 0.03–0.04% of Medicare alongside approved provider offers exceeding 300,000% of Medicare. These codes sit far from the center of the distribution; they are rows where dispute outcomes are far from common Medicare multiples in the extract.</p>
-        </div>
-
-        <!-- RIGHT: service code table -->
-        <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
-          <div class="card-header" style="flex-shrink:0;">
-            <div class="card-title">Service code benchmark comparison — Extreme tier</div>
-            <div class="card-sub">Minimum 20 disputes per code. Interpretation labels whether high variance aligns with a low QPA benchmark (LOW QPA), high offer levels vs Medicare (HIGH VARIANCE), or both (BOTH).</div>
-          </div>
-          <div class="card-body" style="padding:0;overflow-y:auto;overflow-x:auto;overscroll-behavior:contain;max-height:400px;">
-            <table class="data-table sticky-head" style="width:100%;min-width:720px;table-layout:fixed;" id="tbl_svc">
-              <colgroup>
-                <col style="width:7%"><col style="width:20%"><col style="width:6%">
-                <col style="width:12%"><col style="width:7%"><col style="width:10%"><col style="width:11%"><col style="width:9%"><col style="width:18%">
-              </colgroup>
-              <thead>
-                <tr>
-                  <th onclick="sortT('tbl_svc',0)">Code ↕</th>
-                  <th onclick="sortT('tbl_svc',1)">Description ↕</th>
-                  <th class="r" onclick="sortT('tbl_svc',2)">N ↕</th>
-                  <th class="r" onclick="sortT('tbl_svc',3)">Med. Offer %QPA ↕</th>
-                  <th class="r" onclick="sortT('tbl_svc',4)">Avg Days ↕</th>
-                  <th class="r" onclick="sortT('tbl_svc',5)">QPA %Med ↕</th>
-                  <th class="r" onclick="sortT('tbl_svc',6)">Provider %Med ↕</th>
-                  <th class="r" onclick="sortT('tbl_svc',7)">%QPA&lt;50 ↕</th>
-                  <th onclick="sortT('tbl_svc',8)">Interpretation ↕</th>
-                </tr>
-              </thead>
-              <tbody id="tb_svc"></tbody>
-            </table>
-          </div>
-          <div class="insight-green" style="margin:10px 14px 14px;border-radius:0 6px 6px 0;">
-            <strong>How to read Interpretation:</strong> BOTH = QPA below Medicare AND provider offer above 3× Medicare — two benchmark dimensions signaled together. LOW QPA = high variance mainly from a low QPA benchmark in the row. WITHIN EXPECTED = no benchmark signals triggered. Commercial payers typically reimburse at 150–200% of Medicare; QPAs below 50% of Medicare sit outside that band in the reference data.
-          </div>
-        </div>
+      <div class="card-body" style="padding:0;overflow-y:auto;overflow-x:auto;overscroll-behavior:contain;max-height:420px;">
+        <table class="data-table sticky-head" style="width:100%;table-layout:fixed;" id="tbl_idre">
+          <colgroup>
+            <col style="width:4%"><col style="width:22%"><col style="width:9%">
+            <col style="width:9%"><col style="width:6%"><col style="width:8%"><col style="width:10%"><col style="width:10%"><col style="width:8%"><col style="width:14%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th onclick="sortT('tbl_idre',0)">No.</th>
+              <th onclick="sortT('tbl_idre',1)">IDRE ↕</th>
+              <th class="r" onclick="sortT('tbl_idre',2)">Routine ↕</th>
+              <th class="r" onclick="sortT('tbl_idre',3)">Elevated ↕</th>
+              <th class="r" onclick="sortT('tbl_idre',4)">High ↕</th>
+              <th class="r" onclick="sortT('tbl_idre',5)">Extreme ↕</th>
+              <th class="r" onclick="sortT('tbl_idre',6)">R. Median ↕</th>
+              <th class="r" onclick="sortT('tbl_idre',7)">E. Median ↕</th>
+              <th class="r" onclick="sortT('tbl_idre',8)">Gap ↕</th>
+              <th onclick="sortT('tbl_idre',9)">Status</th>
+            </tr>
+          </thead>
+          <tbody id="tb_idre"></tbody>
+        </table>
       </div>
+      <div class="callout" style="margin:10px 14px 14px;">
+        <strong>7 flagged IDREs</strong> (positive day gap with ≥50 Extreme-tier cases). 5 have insufficient Extreme-tier data (&lt;50 cases). 2 show no inversion (Provider Resources −5 days, Livanta no Extreme cases). Source: Q1+Q2 2025 combined.
+      </div>
+    </div>
+  </div>
+
+  <!-- ACT 3 -->
+  <div class="act-label">Act 3 — Priority Audit Targets</div>
+  <div class="act-title">Providers benefiting most from fast Extreme-tier decisions at flagged IDREs</div>
+
+  <div class="insight-red">
+    <strong>Critical observation — suppressed provider names (N/R):</strong> Five of the top six provider-IDRE pairs by Extreme-tier case count have provider names reported as "N/R" (Not Reported) — meaning CMS has suppressed the identity of the highest-volume beneficiaries of fast Extreme-tier decisions. The one named standout is <strong>NPPA Services at EdiPhy Advisors</strong>: 15 Extreme-tier cases averaging an extraordinary <strong>437,083% of QPA</strong> per determination, resolved in 33.4 days on average. This is the highest offer ratio of any named provider-IDRE pair in the dataset.
+  </div>
+
+  <div class="two-col paired-row" style="grid-template-columns:2fr 3fr;">
+    <!-- LEFT: provider bar chart -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Top provider-IDRE pairs by Extreme-tier case count at flagged IDREs</div>
+        <div class="card-sub">Minimum 10 Extreme-tier cases per pair. <span style="color:var(--red);font-weight:600">■ Red = halomd.com domain</span> &nbsp;<span style="color:var(--blue);font-weight:600">■ Blue = other / suppressed domains</span>. Sorted by Extreme case count. Source: Q1+Q2 2025.</div>
+      </div>
+      <div class="card-body" style="padding:14px 16px 0;">
+        <div class="chart-wrap" style="height:340px"><canvas id="c_prov"></canvas></div>
+      </div>
+      <p class="chart-note">N/R (suppressed) providers account for 5 of the top 6 pairs — CMS redacts provider names at the highest payment levels, limiting attribution. Among named providers, <strong>NPPA Services at EdiPhy</strong> is the standout with an average offer of 437,083% of QPA resolved in 33.4 days. <strong>PRM Texas Gynecology at C2C</strong> shows 7,565% avg QPA ratio in just 28.3 days — the fastest-resolved named provider pair.</p>
+    </div>
+
+    <!-- RIGHT: provider table -->
+    <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
+      <div class="card-header" style="flex-shrink:0;">
+        <div class="card-title">Provider-IDRE pairs — Extreme tier at flagged IDREs</div>
+        <div class="card-sub">Sorted by Extreme case count. Minimum 10 cases per pair. Avg QPA % Medicare — low values indicate the QPA baseline itself may be artificially low.</div>
+      </div>
+      <div class="card-body" style="padding:0;overflow-y:auto;overflow-x:auto;overscroll-behavior:contain;max-height:420px;">
+        <table class="data-table sticky-head" style="width:100%;table-layout:fixed;" id="tbl_prov">
+          <colgroup>
+            <col style="width:4%"><col style="width:18%"><col style="width:15%"><col style="width:15%">
+            <col style="width:5%"><col style="width:10%"><col style="width:8%"><col style="width:13%"><col style="width:12%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th onclick="sortT('tbl_prov',0)">No.</th>
+              <th onclick="sortT('tbl_prov',1)">Provider ↕</th>
+              <th onclick="sortT('tbl_prov',2)">Domain ↕</th>
+              <th onclick="sortT('tbl_prov',3)">IDRE ↕</th>
+              <th onclick="sortT('tbl_prov',4)">St ↕</th>
+              <th class="r" onclick="sortT('tbl_prov',5)">Extreme ↕</th>
+              <th class="r" onclick="sortT('tbl_prov',6)">Days ↕</th>
+              <th class="r" onclick="sortT('tbl_prov',7)">Offer %QPA ↕</th>
+              <th class="r" onclick="sortT('tbl_prov',8)">QPA %Med ↕</th>
+            </tr>
+          </thead>
+          <tbody id="tb_prov"></tbody>
+        </table>
+      </div>
+      <div class="callout" style="margin:10px 14px 14px;">
+        <strong>NPPA Services (halomd.com) at EdiPhy:</strong> 15 Extreme-tier cases, average offer <strong>437,083%</strong> of QPA — highest named provider ratio in the dataset. 5 of 13 qualifying pairs have suppressed (N/R) provider names, limiting full attribution at the highest payment levels.
+      </div>
+    </div>
+  </div>
+
+  <!-- ACT 4 -->
+  <div class="act-label">Act 4 — Medicare Benchmark</div>
+  <div class="act-title">Which service codes drive high variance — and is the QPA the problem?</div>
+
+  <div class="insight">
+    For each Extreme-tier service code, the QPA is compared against the Medicare fee schedule. <strong>BOTH</strong> = QPA below 50% of Medicare AND provider offer above 3× Medicare simultaneously — the insurer is underpaying and the provider is overasking. <strong>LOW QPA</strong> = high variance explained primarily by artificially low benchmark. The majority of Extreme-tier service codes fall into the BOTH category.
+  </div>
+
+  <div class="two-col paired-row">
+    <!-- LEFT: bar chart by service code -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Median offer % QPA by service code — Extreme tier only</div>
+        <div class="card-sub"><span style="color:var(--red);font-weight:600">■ Red = BOTH</span> &nbsp;<span style="color:var(--orange);font-weight:600">■ Amber = LOW QPA</span> &nbsp;<span style="color:var(--green);font-weight:600">■ Green = Within expected</span>. Hover for detail.</div>
+      </div>
+      <div class="card-body" style="padding:14px 16px 0;">
+        <div class="chart-wrap" style="height:320px"><canvas id="c_svc"></canvas></div>
+      </div>
+      <p class="chart-note">CPT 95937 (neuromuscular junction test) and 95955 (EEG during surgery) are the most extreme — QPA values at 0.03–0.04% of Medicare alongside approved provider offers exceeding 300,000% of Medicare. These are not outliers in the ordinary sense; they represent service codes where the dispute process has produced outcomes structurally disconnected from any federal payment reference.</p>
+    </div>
+
+    <!-- RIGHT: service code table -->
+    <div class="card" style="display:flex;flex-direction:column;overflow:hidden;">
+      <div class="card-header" style="flex-shrink:0;">
+        <div class="card-title">Service code benchmark comparison — Extreme tier</div>
+        <div class="card-sub">Minimum 20 disputes per code. Interpretation answers whether high variance reflects insurer underpaying (LOW QPA), provider overasking (HIGH VARIANCE), or both simultaneously (BOTH).</div>
+      </div>
+      <div class="card-body" style="padding:0;overflow-y:auto;overflow-x:auto;overscroll-behavior:contain;max-height:400px;">
+        <table class="data-table sticky-head" style="width:100%;min-width:720px;table-layout:fixed;" id="tbl_svc">
+          <colgroup>
+            <col style="width:7%"><col style="width:20%"><col style="width:6%">
+            <col style="width:12%"><col style="width:7%"><col style="width:10%"><col style="width:11%"><col style="width:9%"><col style="width:18%">
+          </colgroup>
+          <thead>
+            <tr>
+              <th onclick="sortT('tbl_svc',0)">Code ↕</th>
+              <th onclick="sortT('tbl_svc',1)">Description ↕</th>
+              <th class="r" onclick="sortT('tbl_svc',2)">N ↕</th>
+              <th class="r" onclick="sortT('tbl_svc',3)">Med. Offer %QPA ↕</th>
+              <th class="r" onclick="sortT('tbl_svc',4)">Avg Days ↕</th>
+              <th class="r" onclick="sortT('tbl_svc',5)">QPA %Med ↕</th>
+              <th class="r" onclick="sortT('tbl_svc',6)">Provider %Med ↕</th>
+              <th class="r" onclick="sortT('tbl_svc',7)">%QPA&lt;50 ↕</th>
+              <th onclick="sortT('tbl_svc',8)">Interpretation ↕</th>
+            </tr>
+          </thead>
+          <tbody id="tb_svc"></tbody>
+        </table>
+      </div>
+      <div class="insight-green" style="margin:10px 14px 14px;border-radius:0 6px 6px 0;">
+        <strong>How to read Interpretation:</strong> BOTH = QPA below Medicare AND provider offer above 3× Medicare — two problems simultaneously. LOW QPA = high variance mainly from artificially low benchmark. WITHIN EXPECTED = no benchmark flags triggered. Commercial payers typically reimburse at 150–200% of Medicare; QPAs below 50% of Medicare are outside this range.
+      </div>
+    </div>
+  </div>
 
     </div><!-- /page -->
 </div><!-- /tab-l1 -->
@@ -5558,371 +5565,39 @@ var l1Initialized = false;
 function initL1Charts() {
       // ── DATA ─────────────────────────────────────────────────────────────
 
-      const TIER_COLORS = {
-        r: "#1a7a4a",
-        e: "#ba7517",
-        h: "#d35400",
-        x: "#c0392b",
-      };
+      const TIER_COLORS = { r:'#1a7a4a', e:'#ba7517', h:'#d35400', x:'#c0392b' };
 
       const idreData = [
-        {
-          n: "IPRO",
-          r: 68756,
-          e: 682,
-          h: 113,
-          x: 63,
-          rm: 107,
-          em: 58,
-          gap: 49,
-          flag: "FLAG",
-        },
-        {
-          n: "iMPROve Health",
-          r: 34289,
-          e: 262,
-          h: 32,
-          x: 24,
-          rm: 84,
-          em: 44,
-          gap: 40,
-          flag: "INSUF",
-        },
-        {
-          n: "Capitol Bridge, LLC",
-          r: 46373,
-          e: 675,
-          h: 141,
-          x: 95,
-          rm: 67,
-          em: 48.5,
-          gap: 18.5,
-          flag: "FLAG",
-        },
-        {
-          n: "EdiPhy Advisors, LLC",
-          r: 84415,
-          e: 3599,
-          h: 367,
-          x: 273,
-          rm: 41,
-          em: 28,
-          gap: 13,
-          flag: "FLAG",
-        },
-        {
-          n: "Network Medical Review Co.",
-          r: 16508,
-          e: 347,
-          h: 57,
-          x: 33,
-          rm: 64,
-          em: 59,
-          gap: 5,
-          flag: "INSUF",
-        },
-        {
-          n: "C2C Innovative Solutions",
-          r: 94666,
-          e: 867,
-          h: 256,
-          x: 205,
-          rm: 35,
-          em: 32,
-          gap: 3,
-          flag: "FLAG",
-        },
-        {
-          n: "Maximus Federal Services",
-          r: 23439,
-          e: 899,
-          h: 302,
-          x: 269,
-          rm: 33,
-          em: 30,
-          gap: 3,
-          flag: "FLAG",
-        },
-        {
-          n: "Keystone Peer Review Org.",
-          r: 9421,
-          e: 279,
-          h: 49,
-          x: 47,
-          rm: 21,
-          em: 19,
-          gap: 2,
-          flag: "INSUF",
-        },
-        {
-          n: "Fed. Hearings & Appeals",
-          r: 70634,
-          e: 590,
-          h: 163,
-          x: 78,
-          rm: 28,
-          em: 26,
-          gap: 2,
-          flag: "FLAG",
-        },
-        {
-          n: "MCMC Services, LLC",
-          r: 51340,
-          e: 539,
-          h: 112,
-          x: 69,
-          rm: 25,
-          em: 23,
-          gap: 2,
-          flag: "FLAG",
-        },
-        {
-          n: "National Medical Reviews",
-          r: 13778,
-          e: 148,
-          h: 13,
-          x: 8,
-          rm: 43,
-          em: 42.5,
-          gap: 0.5,
-          flag: "INSUF",
-        },
-        {
-          n: "Provider Resources, Inc.",
-          r: 52885,
-          e: 273,
-          h: 75,
-          x: 65,
-          rm: 29,
-          em: 34,
-          gap: -5,
-          flag: "OK",
-        },
-        {
-          n: "Medical Evaluators of TX",
-          r: 13213,
-          e: 62,
-          h: 8,
-          x: 6,
-          rm: 130,
-          em: 185,
-          gap: -55,
-          flag: "INSUF",
-        },
-        {
-          n: "Livanta, LLC (Commence)",
-          r: 53,
-          e: 1,
-          h: 0,
-          x: 0,
-          rm: 424,
-          em: null,
-          gap: null,
-          flag: "OK",
-        },
+        {n:'IPRO',                        r:140167, e:727,  h:118, x:65,  rm:107,  em:58,   gap:49,   flag:'FLAG'},
+        {n:'iMPROve Health',              r:89431,  e:275,  h:32,  x:45,  rm:84,   em:44,   gap:40,   flag:'INSUF'},
+        {n:'Capitol Bridge, LLC',         r:102810, e:727,  h:147, x:112, rm:67,   em:48.5, gap:18.5, flag:'FLAG'},
+        {n:'EdiPhy Advisors, LLC',        r:184957, e:3679, h:369, x:292, rm:41,   em:28,   gap:13,   flag:'FLAG'},
+        {n:'Network Medical Review Co.',  r:39497,  e:398,  h:64,  x:33,  rm:64,   em:59,   gap:5,    flag:'INSUF'},
+        {n:'C2C Innovative Solutions',    r:191309, e:919,  h:260, x:216, rm:35,   em:32,   gap:3,    flag:'FLAG'},
+        {n:'Maximus Federal Services',    r:37119,  e:936,  h:304, x:284, rm:33,   em:30,   gap:3,    flag:'FLAG'},
+        {n:'Keystone Peer Review Org.',   r:10506,  e:279,  h:49,  x:47,  rm:21,   em:19,   gap:2,    flag:'INSUF'},
+        {n:'Fed. Hearings & Appeals',     r:135067, e:626,  h:170, x:87,  rm:28,   em:26,   gap:2,    flag:'FLAG'},
+        {n:'MCMC Services, LLC',          r:114583, e:554,  h:115, x:82,  rm:25,   em:23,   gap:2,    flag:'FLAG'},
+        {n:'National Medical Reviews',    r:25078,  e:154,  h:14,  x:8,   rm:43,   em:42.5, gap:0.5,  flag:'INSUF'},
+        {n:'Provider Resources, Inc.',    r:112938, e:299,  h:77,  x:65,  rm:29,   em:34,   gap:-5,   flag:'OK'},
+        {n:'Medical Evaluators of TX',    r:13224,  e:62,   h:8,   x:6,   rm:130,  em:185,  gap:-55,  flag:'INSUF'},
+        {n:'Livanta, LLC (Commence)',     r:53,     e:1,    h:0,   x:0,   rm:424,  em:null, gap:null, flag:'INSUF'},
       ];
 
       const provData = [
-        {
-          n: "Singleton Associates, P.A.",
-          dom: "saparm.com",
-          idre: "IPRO",
-          st: "TX",
-          c: 11605,
-          d: 143,
-          off: 9.22,
-          qpa: "2.0%",
-        },
-        {
-          n: "Singleton Associates, P.A.",
-          dom: "saparm.com",
-          idre: "EdiPhy Advisors",
-          st: "TX",
-          c: 8134,
-          d: 36,
-          off: 8.19,
-          qpa: "0.6%",
-        },
-        {
-          n: "NPPA SERVICES",
-          dom: "halomd.com",
-          idre: "EdiPhy Advisors",
-          st: "TX",
-          c: 4518,
-          d: 26,
-          off: 437083,
-          qpa: "0.35%",
-        },
-        {
-          n: "Remote Neuromonitoring PC",
-          dom: "specialtycare.net",
-          idre: "Fed. H&A",
-          st: "TX",
-          c: 3433,
-          d: 22,
-          off: 19.27,
-          qpa: "1.2%",
-        },
-        {
-          n: "PRECISION EMERGENCY PHYS",
-          dom: "halomd.com",
-          idre: "C2C Innovative",
-          st: "TX",
-          c: 3126,
-          d: 29,
-          off: 9.26,
-          qpa: "0.3%",
-        },
-        {
-          n: "N/R",
-          dom: "fam-llc.com",
-          idre: "Fed. H&A",
-          st: "TX",
-          c: 2757,
-          d: 28,
-          off: "N/R",
-          qpa: "0.21%",
-        },
-        {
-          n: "N/R",
-          dom: "halomd.com",
-          idre: "C2C Innovative",
-          st: "TX",
-          c: 2624,
-          d: 33,
-          off: 15.02,
-          qpa: "0.4%",
-        },
-        {
-          n: "Imaging Associates Indiana PC",
-          dom: "iairm.com",
-          idre: "IPRO",
-          st: "IN",
-          c: 2353,
-          d: 49,
-          off: 6.69,
-          qpa: "1.5%",
-        },
-        {
-          n: "OrthoMed Staffing, LLC",
-          dom: "orthomedstaffing.com",
-          idre: "EdiPhy Advisors",
-          st: "TX",
-          c: 2294,
-          d: 34,
-          off: 20.7,
-          qpa: "0.09%",
-        },
-        {
-          n: "SUMMIT ANESTHESIA PARTNERS",
-          dom: "summit-az.com",
-          idre: "C2C Innovative",
-          st: "AZ",
-          c: 1680,
-          d: 26,
-          off: 32.43,
-          qpa: "0.8%",
-        },
-        {
-          n: "EMERG MEDICINE SPECIALISTS",
-          dom: "halomd.com",
-          idre: "C2C Innovative",
-          st: "TX",
-          c: 1648,
-          d: 26,
-          off: 10.37,
-          qpa: "0.5%",
-        },
-        {
-          n: "N/R",
-          dom: "qmacsmso.com",
-          idre: "Fed. H&A",
-          st: "TX",
-          c: 1614,
-          d: 26,
-          off: 10.93,
-          qpa: "0.21%",
-        },
-        {
-          n: "OrthoMed Staffing, LLC",
-          dom: "orthomedstaffing.com",
-          idre: "C2C Innovative",
-          st: "TX",
-          c: 1464,
-          d: 26,
-          off: 17.7,
-          qpa: "0.09%",
-        },
-        {
-          n: "IES ARIZONA, PLLC",
-          dom: "halomd.com",
-          idre: "C2C Innovative",
-          st: "AZ",
-          c: 1409,
-          d: 28,
-          off: 13.78,
-          qpa: "0.5%",
-        },
-        {
-          n: "Sonoran Radiology, LTD",
-          dom: "sonoranrm.com",
-          idre: "IPRO",
-          st: "AZ",
-          c: 1396,
-          d: 137,
-          off: 7.16,
-          qpa: "1.8%",
-        },
-        {
-          n: "VILLA PARK NEUROLOGICAL",
-          dom: "halomd.com",
-          idre: "EdiPhy Advisors",
-          st: "TX",
-          c: 1328,
-          d: 26.5,
-          off: 1332.65,
-          qpa: "0.35%",
-        },
-        {
-          n: "PRM TEXAS GYNECOLOGY PC",
-          dom: "mdcapitaladvisors.com",
-          idre: "C2C Innovative",
-          st: "TX",
-          c: 1215,
-          d: 26,
-          off: 7565,
-          qpa: "0.01%",
-        },
-        {
-          n: "ARIZONA EP",
-          dom: "halomd.com",
-          idre: "C2C Innovative",
-          st: "AZ",
-          c: 1215,
-          d: 27,
-          off: 16.46,
-          qpa: "0.5%",
-        },
-        {
-          n: "Singleton Associates, P.A.",
-          dom: "saparm.com",
-          idre: "Network Med Rev",
-          st: "TX",
-          c: 1331,
-          d: 108,
-          off: 9.24,
-          qpa: "2.0%",
-        },
-        {
-          n: "Singleton Associates, P.A.",
-          dom: "saparm.com",
-          idre: "Fed. H&A",
-          st: "TX",
-          c: 1305,
-          d: 28,
-          off: 8.9,
-          qpa: "2.0%",
-        },
+        {n:'N/R',                           dom:'(suppressed)',              idre:'EdiPhy Advisors', st:'—',  c:31,  d:31.6, off:16659,   qpa:'0.03%'},
+        {n:'N/R',                           dom:'(suppressed)',              idre:'Fed. H&A',        st:'—',  c:29,  d:37.3, off:14955,   qpa:'0.11%'},
+        {n:'N/R',                           dom:'(suppressed)',              idre:'iMPROve Health',  st:'—',  c:18,  d:42.8, off:11678,   qpa:'0.06%'},
+        {n:'N/R',                           dom:'(suppressed)',              idre:'Capitol Bridge',  st:'—',  c:17,  d:72.1, off:9082,    qpa:'0.00%'},
+        {n:'PRM TEXAS GYNECOLOGY PC',        dom:'mdcapitaladvisors.com',    idre:'C2C Innovative',  st:'TX', c:17,  d:28.3, off:7565,    qpa:'0.13%'},
+        {n:'N/R',                           dom:'(suppressed)',              idre:'C2C Innovative',  st:'—',  c:17,  d:117.5,off:23048,   qpa:'0.59%'},
+        {n:'HUNTINGTON PLASTIC SURGERY PC',  dom:'—',                        idre:'Maximus Federal', st:'—',  c:16,  d:32.5, off:878,     qpa:'0.10%'},
+        {n:'NPPA SERVICES',                  dom:'halomd.com',               idre:'EdiPhy Advisors', st:'TX', c:15,  d:33.4, off:437083,  qpa:'0.25%'},
+        {n:'Hudson Regional Hospital',       dom:'—',                        idre:'C2C Innovative',  st:'NJ', c:14,  d:27.5, off:1093,    qpa:'0.24%'},
+        {n:'Singleton Associates, P.A.',     dom:'saparm.com',               idre:'MCMC Services',   st:'TX', c:14,  d:37.1, off:5663,    qpa:'1.03%'},
+        {n:'TULSA ER & HOSPITAL',            dom:'—',                        idre:'Maximus Federal', st:'OK', c:14,  d:59.0, off:48834,   qpa:'0.00%'},
+        {n:'DOCS HEALTH MEDICAL GROUP',      dom:'—',                        idre:'Maximus Federal', st:'—',  c:14,  d:31.6, off:728,     qpa:'0.27%'},
+        {n:'PRM TEXAS GYNECOLOGY PC',        dom:'mdcapitaladvisors.com',    idre:'Capitol Bridge',  st:'TX', c:12,  d:38.8, off:3194,    qpa:'0.12%'},
       ];
 
       const svcData = [
@@ -6061,16 +5736,13 @@ function initL1Charts() {
               });
       const isHalo = (d) => d.dom === "halomd.com";
 
-      // ── CHART DEFAULTS (align with global Chart.defaults at script top) ─
-      Chart.defaults.font.family = "inherit";
-      Chart.defaults.font.size = 13;
-      Chart.defaults.color = "#3d4a5c";
+      // ── CHART DEFAULTS ───────────────────────────────────────────────────
+      Chart.defaults.font.family = 'Inter, -apple-system, sans-serif';
+      Chart.defaults.font.size = 11;
+      Chart.defaults.color = '#565c65';
 
-      const GRID = { color: "rgba(0,0,0,0.06)" };
-      const AX = {
-        ticks: { color: "#3d4a5c", font: { size: 12 } },
-        grid: GRID,
-      };
+      const GRID = { color: 'rgba(0,0,0,0.06)' };
+      const AX = { ticks: { color: '#565c65', font: { size: 10.5 } }, grid: GRID };
 
       // ── LINE CHART: median days by tier ──────────────────────────────────
       new Chart(document.getElementById("c_line"), {
@@ -6422,7 +6094,6 @@ function initL1Charts() {
         .join("");
 
 
-      enforceChartFontSizes(13);
 }
 </script>
 <script>
